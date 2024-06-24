@@ -13,6 +13,10 @@ interface Person {
 }
 
 const BusinessCard = () => {
+  const isAdult = (age: number): boolean => {
+    return age >= 18;
+  };
+
   const person: Person = {
     firstName: 'Elliot',
     lastName: 'Garamendi',
@@ -28,7 +32,7 @@ const BusinessCard = () => {
   return (
     <div>
       <h2>Tarjeta de presentación</h2>
-      <h3>{person.firstName} {person.lastName} <sup>{person.age}</sup><sub>{person.isAlive ? 'true' : 'false'}</sub></h3>
+      <h3>{person.firstName} {person.lastName} <sup>{person.age}</sup><sub>{person.isAlive ? 'true' : 'false'}</sub> <small>{isAdult(person.age) ? '🟢' : '🔴'}</small></h3>
       <h4>{person.address?.city} {person.address?.country}</h4>
       <h5>{person.skills.join(', ')}</h5>
     </div>
