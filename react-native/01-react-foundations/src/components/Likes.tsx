@@ -1,11 +1,7 @@
-import { useState } from "react";
+import useCounter from "../hooks/useCounter";
 
 const Likes = () => {
-  const [likes, setLikes] = useState<number>(0);
-
-  const increaseLikesBy = (value: number) => {
-    setLikes(likes + value);
-  };
+  const { likes, increaseLikesBy } = useCounter({ initialValue: 0 });
 
   return (
     <div>
