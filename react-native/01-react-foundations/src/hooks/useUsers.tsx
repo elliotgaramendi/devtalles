@@ -26,6 +26,7 @@ const useUsers = () => {
     getUsers(page.current)
       .then(data => setUsers(data.data));
   };
+
   return {
     users,
     page,
