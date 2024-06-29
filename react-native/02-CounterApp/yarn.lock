@@ -3028,6 +3028,7 @@ __metadata:
     react: 18.2.0
     react-native: 0.74.2
     react-native-paper: 5.12.3
+    react-native-safe-area-context: 4.10.7
     react-test-renderer: 18.2.0
     typescript: 5.0.4
   languageName: unknown
@@ -8021,6 +8022,16 @@ __metadata:
     react-native-safe-area-context: "*"
     react-native-vector-icons: "*"
   checksum: 927a8948d220fb59cb4dae2f12f3b4dc2173b9cd42e38dc74a0f25584a69978555a260c140db973f8401f7fef394dee3ec42c90b6134deeb3aa462291fd0ce5f
+  languageName: node
+  linkType: hard
+
+"react-native-safe-area-context@npm:4.10.7":
+  version: 4.10.7
+  resolution: "react-native-safe-area-context@npm:4.10.7"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: a8b27b92e7a11b3874c1a48b8b2d3f89f7aba1df79ea3b3df2b4317d90f4785f047494cc402a083137f28e3927657e3eddfe6d0f747b5122180feeee4e448cae
   languageName: node
   linkType: hard
 
