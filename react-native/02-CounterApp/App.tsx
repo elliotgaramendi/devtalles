@@ -1,12 +1,17 @@
 /* eslint-disable react/no-unstable-nested-components */
 /* eslint-disable react/react-in-jsx-scope */
-import {PaperProvider, Text} from 'react-native-paper';
+import {SafeAreaView} from 'react-native';
+import {PaperProvider} from 'react-native-paper';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import HeaderApp from './src/components/HeaderApp';
+import {globalStyles} from './src/styles/styles';
 
 const App = () => {
   return (
     <PaperProvider settings={{icon: props => <Ionicons {...props} />}}>
-      <Text>CounterApp</Text>
+      <SafeAreaView style={globalStyles.body}>
+        <HeaderApp name="CounterApp" />
+      </SafeAreaView>
     </PaperProvider>
   );
 };
