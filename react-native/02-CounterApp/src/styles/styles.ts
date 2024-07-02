@@ -8,8 +8,8 @@ export const size = 3.5;
 
 export const globalStyles = StyleSheet.create({
   body: {
-    backgroundColor: primaryBackground,
     height: '100%',
+    backgroundColor: primaryBackground,
   },
 });
 
