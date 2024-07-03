@@ -1,12 +1,12 @@
-import React from 'react';
-import {SafeAreaView, Text, View} from 'react-native';
+/* eslint-disable react/react-in-jsx-scope */
+import {SafeAreaView} from 'react-native';
+import HeaderApp from './src/HeaderApp';
+import {globalStyles} from './styles/styles';
 
 function App(): React.JSX.Element {
   return (
-    <SafeAreaView>
-      <View>
-        <Text>CSS App</Text>
-      </View>
+    <SafeAreaView style={globalStyles.body}>
+      <HeaderApp />
     </SafeAreaView>
   );
 }
