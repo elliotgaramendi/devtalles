@@ -1,12 +1,12 @@
 /* eslint-disable react/react-in-jsx-scope */
 import {SafeAreaView, ScrollView, useWindowDimensions} from 'react-native';
-import Advertisement from './src/Advertisement';
-import Banner from './src/Banner';
-import HeaderApp from './src/HeaderApp';
-import Homework from './src/Homework';
-import Skills from './src/Skills';
-import Toast from './src/Toast';
-import {globalStyles} from './styles/styles';
+import Advertisement from './src/components/Advertisement';
+import Banner from './src/components/Banner';
+import HeaderApp from './src/components/HeaderApp';
+import Homework from './src/components/Homework';
+import Skills from './src/components/Skills';
+import Toast from './src/components/Toast';
+import {globalStyles} from './src/styles/styles';
 
 function App(): React.JSX.Element {
   const {width, height} = useWindowDimensions();
