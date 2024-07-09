@@ -2,8 +2,8 @@ import {StyleSheet} from 'react-native';
 
 export const primaryColor = '#23B5E8';
 export const secondaryColor = '#234B96';
-export const whiteColor = '#f1f5f8';
 export const blackColor = '#010508';
+export const whiteColor = '#f1f5f8';
 export const neutral950 = '#191B1C';
 export const primaryBackground = blackColor;
 export const secondaryBackground = neutral950;
@@ -27,13 +27,13 @@ export const layoutStyles = StyleSheet.create({
   },
   flexbox: {
     display: 'flex',
+    flexDirection: 'row',
   },
   flexboxIsCenter: {
     alignItems: 'center',
     justifyContent: 'center',
   },
   flexboxIsAutoFit: {
-    flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
   },
