@@ -1,6 +1,6 @@
-# [CSS App](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native/04-Calculator)
+# [Calculator](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native/04-Calculator)
 
-[![CSS App](./rn-04-Calculator.png)](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native/04-Calculator)
+[![Calculator](./rn-04-Calculator.png)](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native/04-Calculator)
 
 ## 📜 Descripción 📜
 
