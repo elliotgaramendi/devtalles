@@ -23,3 +23,7 @@ En este repositorio 👨‍💻 mostraré cómo voy aprendiendo 👨‍🏫 poco
 ### [Navigation App](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native/05-NavigationApp)
 
 [![Navigation App](./react-native/05-NavigationApp/rn-05-NavigationApp.png)](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native/05-NavigationApp)
+
+### [Zustand App](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native/06-ZustandApp)
+
+[![Zustand App](./react-native/06-ZustandApp/rn-06-ZustandApp.png)](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native/06-ZustandApp)
