@@ -1,6 +1,6 @@
 import {create} from 'zustand';
 
-export interface InitialState {
+interface InitialState {
   name: string;
   email: string;
   changeProfile: (name: string, email: string) => void;
