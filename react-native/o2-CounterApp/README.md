@@ -1,6 +1,6 @@
-# [Counter App](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native/02-CounterApp)
+# [Counter App](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native/o2-CounterApp)
 
-[![Counter App](./rn-02-CounterApp.png)](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native/02-CounterApp)
+[![Counter App](./rn-o2-CounterApp.png)](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native/o2-CounterApp)
 
 ## 📜 Descripción 📜
 

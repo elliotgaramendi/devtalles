@@ -1,6 +1,6 @@
-# [Navigation App](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native/05-NavigationApp)
+# [Navigation App](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native/o5-NavigationApp)
 
-[![Navigation App](./rn-05-NavigationApp.png)](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native/05-NavigationApp)
+[![Navigation App](./rn-o5-NavigationApp.png)](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native/o5-NavigationApp)
 
 ## 📜 Descripción 📜
 

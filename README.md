@@ -4,26 +4,26 @@ En este repositorio 👨‍💻 mostraré cómo voy aprendiendo 👨‍🏫 poco
 
 ## React Native
 
-### [React Foundations](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native/01-react-foundations)
+### [React Foundations](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native/o1-react-foundations)
 
-[![React Foundations](./react-native/01-react-foundations/public/rn-01-react-foundations.png)](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native/01-react-foundations)
+[![React Foundations](./react-native/o1-react-foundations/public/rn-o1-react-foundations.png)](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native/o1-react-foundations)
 
-### [Counter App](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native/02-CounterApp)
+### [Counter App](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native/o2-CounterApp)
 
-[![Counter App](./react-native/02-CounterApp/rn-02-CounterApp.png)](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native/02-CounterApp)
+[![Counter App](./react-native/o2-CounterApp/rn-o2-CounterApp.png)](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native/o2-CounterApp)
 
-### [CSS App](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native/03-CSSApp)
+### [CSS App](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native/o3-CSSApp)
 
-[![CSS App](./react-native/03-CSSApp/rn-03-CSSApp.png)](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native/03-CSSApp)
+[![CSS App](./react-native/o3-CSSApp/rn-o3-CSSApp.png)](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native/o3-CSSApp)
 
-### [Calculator](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native/04-Calculator)
+### [Calculator](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native/o4-Calculator)
 
-[![Calculator](./react-native/04-Calculator/rn-04-Calculator.png)](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native/04-Calculator)
+[![Calculator](./react-native/o4-Calculator/rn-o4-Calculator.png)](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native/o4-Calculator)
 
-### [Navigation App](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native/05-NavigationApp)
+### [Navigation App](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native/o5-NavigationApp)
 
-[![Navigation App](./react-native/05-NavigationApp/rn-05-NavigationApp.png)](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native/05-NavigationApp)
+[![Navigation App](./react-native/o5-NavigationApp/rn-o5-NavigationApp.png)](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native/o5-NavigationApp)
 
-### [Zustand App](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native/06-ZustandApp)
+### [Zustand App](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native/o6-ZustandApp)
 
-[![Zustand App](./react-native/06-ZustandApp/rn-06-ZustandApp.png)](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native/06-ZustandApp)
+[![Zustand App](./react-native/o6-ZustandApp/rn-o6-ZustandApp.png)](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native/o6-ZustandApp)

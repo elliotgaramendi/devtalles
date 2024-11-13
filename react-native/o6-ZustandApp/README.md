@@ -1,6 +1,6 @@
-# [Zustand App](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native/06-ZustandApp)
+# [Zustand App](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native/o6-ZustandApp)
 
-[![Zustand App](./rn-06-ZustandApp.png)](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native/06-ZustandApp)
+[![Zustand App](./rn-o6-ZustandApp.png)](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native/o6-ZustandApp)
 
 ## 📜 Descripción 📜
 

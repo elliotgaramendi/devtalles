@@ -1,10 +1,10 @@
-# [CSS App](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native/03-CSSApp)
+# [Calculator](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native/o4-Calculator)
 
-[![CSS App](./rn-03-CSSApp.png)](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native/03-CSSApp)
+[![Calculator](./rn-o4-Calculator.png)](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native/o4-Calculator)
 
 ## 📜 Descripción 📜
 
-👨‍💻 Aprendizaje de estilos en React Native usando Stylesheets para lograr diseños funcionales. 👨‍💻
+👨‍💻 Calculadora que permite realizar operaciones matemáticas básicas con una interfaz de usuario intuitiva y estilizada. 👨‍💻
 
 ## 📚 Tecnologías principales 📚
 
