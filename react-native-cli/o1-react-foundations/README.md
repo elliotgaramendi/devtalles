@@ -1,6 +1,6 @@
-# [React Foundations](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native/o1-react-foundations)
+# [React Foundations](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native-cli/o1-react-foundations)
 
-[![React Foundations](./public/rn-o1-react-foundations.png)](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native/o1-react-foundations)
+[![React Foundations](./public/rn-o1-react-foundations.png)](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native-cli/o1-react-foundations)
 
 ## 📜 Descripción 📜
 
