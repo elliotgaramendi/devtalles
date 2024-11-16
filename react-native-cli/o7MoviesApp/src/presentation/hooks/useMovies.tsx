@@ -9,6 +9,7 @@ const useMovies = () => {
   const [nowPlaying, setNowPlaying] = useState<Movie[]>([]);
   const [popular, setPopular] = useState<Movie[]>([]);
   const [topRated, setTopRated] = useState<Movie[]>([]);
+  const [upcoming, setUpcoming] = useState<Movie[]>([]);
 
 
   useEffect(() => {
@@ -17,14 +18,16 @@ const useMovies = () => {
 
   const initialLoad = async () => {
     setIsLoading(true);
-    const [nowPlayingData, popularData, topRatedData] = await Promise.all([
+    const [nowPlayingData, popularData, topRatedData, upcomingData] = await Promise.all([
       UseCases.moviesNowPlayingUseCase(movieDBFetcher),
       UseCases.moviesPopularUseCase(movieDBFetcher),
       UseCases.moviesTopRatedUseCase(movieDBFetcher),
+      UseCases.moviesUpcomingUseCase(movieDBFetcher),
     ]);
     setNowPlaying(nowPlayingData);
     setPopular(popularData);
     setTopRated(topRatedData);
+    setUpcoming(upcomingData);
     setIsLoading(false);
   };
 
@@ -33,6 +36,7 @@ const useMovies = () => {
     nowPlaying,
     popular,
     topRated,
+    upcoming,
   };
 };
 
