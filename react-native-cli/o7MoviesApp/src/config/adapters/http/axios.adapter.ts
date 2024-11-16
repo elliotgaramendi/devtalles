@@ -7,7 +7,6 @@ interface options {
 }
 
 export class AxiosAdapter implements HttpAdapter {
-
   private axiosInstance: AxiosInstance;
 
   constructor(options: options) {
