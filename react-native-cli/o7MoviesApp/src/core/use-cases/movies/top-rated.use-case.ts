@@ -3,12 +3,12 @@ import { type MovieDBMovieResponse } from '../../../infrastructure/interfaces/mo
 import { MovieMapper } from '../../../infrastructure/mappers/movie.mapper';
 import { type Movie } from '../../entities/movie.entity';
 
-export const moviesNowPlayingUseCase = async (fetcher: HttpAdapter): Promise<Movie[]> => {
+export const moviesTopRatedUseCase = async (fetcher: HttpAdapter): Promise<Movie[]> => {
   try {
-    const nowPlaying = await fetcher.get<MovieDBMovieResponse>('/now_playing');
-    return nowPlaying.results.map(MovieMapper.fromMovieDBResultToEntity);
+    const topRated = await fetcher.get<MovieDBMovieResponse>('/top_rated');
+    return topRated.results.map(MovieMapper.fromMovieDBResultToEntity);
   } catch (error) {
     console.log(error);
-    throw new Error(`Error fetching movies - NowPlaying: ${error}`);
+    throw new Error(`Error fetching movies - TopRated: ${error}`);
   }
 };

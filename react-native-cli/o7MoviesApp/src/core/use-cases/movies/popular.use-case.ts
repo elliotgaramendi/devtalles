@@ -12,4 +12,3 @@ export const moviesPopularUseCase = async (fetcher: HttpAdapter): Promise<Movie[
     throw new Error(`Error fetching movies - Popular: ${error}`);
   }
 };
-
