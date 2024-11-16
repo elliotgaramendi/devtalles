@@ -7,6 +7,7 @@ import * as UseCases from '../../core/use-cases';
 const useMovies = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [nowPlaying, setNowPlaying] = useState<Movie[]>([]);
+  const [popular, setPopular] = useState<Movie[]>([]);
 
 
   useEffect(() => {
@@ -15,14 +16,19 @@ const useMovies = () => {
 
   const initialLoad = async () => {
     setIsLoading(true);
-    const nowPlayingMovies = await UseCases.moviesNowPlayingUseCase(movieDBFetcher);
-    setNowPlaying(nowPlayingMovies);
+    const [nowPlayingData, popularData] = await Promise.all([
+      UseCases.moviesNowPlayingUseCase(movieDBFetcher),
+      UseCases.moviesPopularUseCase(movieDBFetcher),
+    ]);
+    setNowPlaying(nowPlayingData);
+    setPopular(popularData);
     setIsLoading(false);
   };
 
   return {
     isLoading,
     nowPlaying,
+    popular,
   };
 };
 
