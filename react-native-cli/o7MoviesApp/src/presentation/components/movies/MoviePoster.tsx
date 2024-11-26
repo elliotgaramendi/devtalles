@@ -8,9 +8,10 @@ import { RootStackParamList } from '../../navigation/Navigation';
 interface Props {
   movie: Movie;
   width?: number;
+  height?: number;
 }
 
-const MoviePoster = ({ movie, width = size * 64 }: Props) => {
+const MoviePoster = ({ movie, width = size * 64, height }: Props) => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   return (
@@ -18,6 +19,7 @@ const MoviePoster = ({ movie, width = size * 64 }: Props) => {
       onPress={() => navigation.navigate('Details', { movieId: movie.id })}
       style={({ pressed }) => [
         { width },
+        height ? { height } : null,
         utilStyles.mx2,
         pressed && { opacity: 0.9 },
       ]}
