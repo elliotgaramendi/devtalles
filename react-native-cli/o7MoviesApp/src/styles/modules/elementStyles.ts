@@ -2,9 +2,16 @@ import { StyleSheet } from 'react-native';
 import {
   blackColor,
   borderRadius,
+  primaryText,
+  size,
 } from './variables';
 
 export const elementStyles = StyleSheet.create({
+  title: {
+    color: primaryText,
+    fontSize: size * 8,
+    fontWeight: '800',
+  },
   image: {
     borderRadius: borderRadius,
   },
