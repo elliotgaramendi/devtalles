@@ -3,6 +3,6 @@ import { size } from './variables';
 
 export const componentStyles = StyleSheet.create({
   section: {
-    paddingVertical: size * 8,
+    paddingVertical: size * 4,
   },
 });
