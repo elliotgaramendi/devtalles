@@ -1,5 +1,6 @@
 /* eslint-disable react/react-in-jsx-scope */
-import { Text, View } from 'react-native';
+import { useEffect, useRef } from 'react';
+import { NativeScrollEvent, NativeSyntheticEvent, Text, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { Movie } from '../../../core/entities/movie.entity';
 import { componentStyles, elementStyles, layoutStyles, size, utilStyles } from '../../../styles/styles';
@@ -8,10 +9,29 @@ import MoviePoster from './MoviePoster';
 interface Props {
   title?: string;
   movies: Movie[];
-  height?: number;
+  loadNextPage?: () => void;
 }
 
-const MovieCarousel = ({ title, movies }: Props) => {
+const MovieCarousel = ({ title, movies, loadNextPage }: Props) => {
+  const isLoading = useRef(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      isLoading.current = false;
+    }, 1000);
+  }, [movies]);
+
+  const onScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+    if (isLoading.current) { return; }
+    const { contentOffset, contentSize, layoutMeasurement } = event.nativeEvent;
+    const almostAtEnd = contentOffset.x + layoutMeasurement.width >= contentSize.width - layoutMeasurement.width;
+    if (almostAtEnd) {
+      isLoading.current = true;
+      loadNextPage && loadNextPage();
+    }
+  };
+
+
   return (
     <View style={componentStyles.section}>
       <View style={[layoutStyles.container, utilStyles.gap4]}>
@@ -22,6 +42,7 @@ const MovieCarousel = ({ title, movies }: Props) => {
           renderItem={({ item }) => <MoviePoster movie={item} width={size * 36} height={size * 50} />}
           horizontal
           showsHorizontalScrollIndicator={false}
+          onScroll={onScroll}
         />
       </View>
     </View>

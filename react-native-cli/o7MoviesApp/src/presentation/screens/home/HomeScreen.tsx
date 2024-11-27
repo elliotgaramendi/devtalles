@@ -11,7 +11,7 @@ import useMovies from '../../hooks/useMovies';
 
 const HomeScreen = () => {
   const { top } = useSafeAreaInsets();
-  const { isLoading, nowPlaying, popular, topRated, upcoming } = useMovies();
+  const { isLoading, nowPlaying, popular, topRated, upcoming, popularNextPage } = useMovies();
 
   if (isLoading) {
     return (
@@ -24,7 +24,11 @@ const HomeScreen = () => {
   return (
     <ScrollView style={{ marginTop: top }}>
       <PosterCarousel movies={nowPlaying} />
-      <MovieCarousel title="Popular" movies={popular} />
+      <MovieCarousel
+        title="Popular"
+        movies={popular}
+        loadNextPage={popularNextPage}
+      />
       <MovieCarousel title="Top rated" movies={topRated} />
       <MovieCarousel title="Upcoming" movies={upcoming} />
     </ScrollView>
