@@ -5,4 +5,11 @@ export const layoutStyles = StyleSheet.create({
   container: {
     paddingHorizontal: size * 4,
   },
+  flexbox: {
+    flexDirection: 'row',
+  },
+  flexboxIsCenter: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });

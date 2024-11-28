@@ -1,6 +1,9 @@
+export const primaryColor = '#23B5E8';
 export const blackColor = '#010508';
+export const whiteColor = '#F1F5F8';
 export const neutral500 = '#77797A';
-export const primaryText = blackColor;
+export const primaryBackground = blackColor;
+export const primaryText = whiteColor;
 export const secondaryText = neutral500;
 export const size = 3.5;
 export const borderRadius = size * 4;

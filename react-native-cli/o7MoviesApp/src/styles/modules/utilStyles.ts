@@ -6,6 +6,7 @@ export const utilStyles = StyleSheet.create({
   top2: { top: size * 2 },
   left2: { left: size * 2 },
   zIndex1: { zIndex: 1 },
+  flex1: { flex: 1 },
   gap2: { gap: size * 2 },
   gap4: { gap: size * 4 },
   p2: { padding: size * 2 },
