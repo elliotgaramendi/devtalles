@@ -1,9 +1,10 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { useNavigation } from '@react-navigation/native';
 import { StackScreenProps } from '@react-navigation/stack';
-import { Text, View } from 'react-native';
+import { Text } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { componentStyles, elementStyles, utilStyles } from '../../../styles/styles';
+import { elementStyles, utilStyles } from '../../../styles/styles';
+import ScreenLoader from '../../components/loaders/ScreenLoader';
 import MovieDetail from '../../components/movie/MovieDetail';
 import MovieHeader from '../../components/movie/MovieHeader';
 import useMovie from '../../hooks/useMovie';
@@ -18,11 +19,7 @@ const DetailsScreen = ({ route }: Props) => {
 
 
   if (isLoading || movie === undefined || movieCast === undefined) {
-    return (
-      <View style={[componentStyles.section]}>
-        <Text>Loading...</Text>
-      </View>
-    );
+    return <ScreenLoader />;
   }
 
   return (
