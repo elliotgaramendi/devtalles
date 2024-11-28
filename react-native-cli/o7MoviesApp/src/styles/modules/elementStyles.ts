@@ -23,31 +23,28 @@ export const elementStyles = StyleSheet.create({
   },
   image: {
     borderRadius: borderRadius,
+    shadowColor: blackColor,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
   },
   imageIsPoster: {
     width: '100%',
     height: '100%',
-    shadowColor: blackColor,
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
   },
   imageIsBannerPoster: {
     width: '100%',
     height: '100%',
+    borderRadius: borderRadius * 2,
     borderTopLeftRadius: 0,
     borderTopRightRadius: 0,
-    shadowColor: blackColor,
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
+  },
+  imageIsCardTitle: {
+    width: size * 25,
+    height: size * 37.5,
   },
 });
