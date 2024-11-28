@@ -15,12 +15,6 @@ interface Props {
 const MovieCarousel = ({ title, movies, loadNextPage }: Props) => {
   const isLoading = useRef(false);
 
-  useEffect(() => {
-    setTimeout(() => {
-      isLoading.current = false;
-    }, 1000);
-  }, [movies]);
-
   const onScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
     if (isLoading.current) { return; }
     const { contentOffset, contentSize, layoutMeasurement } = event.nativeEvent;
@@ -31,6 +25,11 @@ const MovieCarousel = ({ title, movies, loadNextPage }: Props) => {
     }
   };
 
+  useEffect(() => {
+    setTimeout(() => {
+      isLoading.current = false;
+    }, 1000);
+  }, [movies]);
 
   return (
     <View style={componentStyles.section}>
@@ -39,7 +38,7 @@ const MovieCarousel = ({ title, movies, loadNextPage }: Props) => {
         <FlatList
           data={movies}
           keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item }) => <MoviePoster movie={item} width={size * 36} height={size * 50} />}
+          renderItem={({ item }) => <MoviePoster movie={item} width={size * 36} height={size * 54} />}
           horizontal
           showsHorizontalScrollIndicator={false}
           onScroll={onScroll}
