@@ -15,3 +15,10 @@ export interface MovieDetails extends Movie {
   originalTitle: string;
   productionCompanies: string[];
 }
+
+export interface MovieCast {
+  id: number;
+  name: string;
+  character: string;
+  avatar: string;
+}

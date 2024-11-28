@@ -12,11 +12,6 @@ const useMovies = () => {
   const [topRated, setTopRated] = useState<Movie[]>([]);
   const [upcoming, setUpcoming] = useState<Movie[]>([]);
 
-
-  useEffect(() => {
-    initialLoad();
-  }, []);
-
   const initialLoad = async () => {
     setIsLoading(true);
     const [nowPlayingData, popularData, topRatedData, upcomingData] = await Promise.all([
@@ -31,6 +26,10 @@ const useMovies = () => {
     setUpcoming(upcomingData);
     setIsLoading(false);
   };
+
+  useEffect(() => {
+    initialLoad();
+  }, []);
 
   return {
     isLoading,
