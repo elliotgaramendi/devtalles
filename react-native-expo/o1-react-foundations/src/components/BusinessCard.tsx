@@ -1,14 +1,38 @@
+interface Address {
+  country: string;
+  city: string;
+}
+
+interface Person {
+  firstName: string;
+  lastName: string;
+  age: number;
+  isAlive: boolean;
+  skills: string[];
+  address?: Address;
+}
+
 const BusinessCard = () => {
-  const name = 'Elliot';
-  const age = 29;
-  const isAlive = true;
-  const skills = ['React', 'Astro', 'Figma', 'OpenAI', 'LLaMA'];
+  const person: Person = {
+    firstName: 'Elliot',
+    lastName: 'Garamendi',
+    age: 29,
+    isAlive: true,
+    skills: ['React', 'React Native', 'Next.js', 'Astro'],
+    address: {
+      country: 'Perú',
+      city: 'Lima'
+    }
+  };
+
+  const { firstName, age, isAlive, skills, address } = person;
 
   return (
     <>
       <h2>Business Card</h2>
-      <h3>{name} <sup>{age}</sup><sub>{isAlive ? 'true' : 'false'}</sub></h3>
-      <h4>{skills.join(', ')}</h4>
+      <h3>{firstName} <sup>{age}</sup><sub>{isAlive ? 'true' : 'false'}</sub></h3>
+      <h4>{address?.city}, {address?.country}</h4>
+      <h5>{skills.join(', ')}</h5>
     </>
   );
 };
