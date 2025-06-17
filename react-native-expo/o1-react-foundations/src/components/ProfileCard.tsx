@@ -64,7 +64,7 @@ const BusinessCard = ({ followers, onFollowersChange }: { followers: number, onF
           </div>
         </div>
         <div className="flex gap-4">
-          <FollowButton onClick={() => onFollowersChange(followers + 1)} />
+          <FollowButton onClick={() => onFollowersChange(1)} />
           <button className="flex-1 py-2 bg-gray-700 text-gray-200 rounded-lg font-medium hover:bg-gray-600 transition">
             Message
           </button>
