@@ -11,7 +11,7 @@ function App() {
     <AuthProvider>
       <main>
         <section className="flex min-h-dvh py-16">
-          <div className="flex flex-col place-items-center place-content-center gap-2 md:flex-row container mx-auto px-4">
+          <div className="grid place-items-center place-content-center gap-2 md:grid-cols-2 container mx-auto px-4">
             <BusinessCard followers={followers} onFollowersChange={increaseFollowersBy} />
             <AuthPage />
           </div>
