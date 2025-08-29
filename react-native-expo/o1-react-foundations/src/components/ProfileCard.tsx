@@ -25,7 +25,7 @@ const BusinessCard = ({ followers, onFollowersChange }: { followers: number, onF
     firstName: 'Elliot',
     lastName: 'Garamendi',
     roles: ['💻 Frontend Developer ', '🤖 AI Engineer'],
-    age: 29,
+    age: new Date().getFullYear() - new Date("1996-01-31").getFullYear(),
     isAlive: true,
     skills: ['React', 'Astro', 'OpenAI', 'LLaMA'],
     image: 'https://i.postimg.cc/s2D6D148/elliotgaramendi-card.webp',
@@ -65,7 +65,7 @@ const BusinessCard = ({ followers, onFollowersChange }: { followers: number, onF
         </div>
         <div className="flex gap-4">
           <FollowButton onClick={() => onFollowersChange(1)} />
-          <button className="flex-1 py-2 bg-gray-700 text-gray-200 rounded-lg font-medium hover:bg-gray-600 transition">
+          <button className="flex-1 py-2 px-4 bg-gray-700 text-gray-200 rounded-lg font-medium hover:bg-gray-600 transition">
             Message
           </button>
         </div>
