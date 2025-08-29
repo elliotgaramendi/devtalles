@@ -1,4 +1,4 @@
-import FollowButton from "./FollowButton";
+import FollowButton from "../elemens/FollowButton";
 
 interface Address {
   country: string;

@@ -1,4 +1,4 @@
-import { useAuthContext } from "../context/AuthContext";
+import { useAuthContext } from "../../context/AuthContext";
 
 const AuthPage = () => {
   const { isChecking, isAuthenticated, user, signIn, signOut } = useAuthContext();
@@ -8,7 +8,7 @@ const AuthPage = () => {
   }
 
   return (
-    <div>
+    <div className="py-4">
       {isAuthenticated ? (
         <div className="flex flex-col gap-1 items-center">
           <h3>Welcome! 🎉</h3>
