@@ -1,0 +1,3 @@
+### Get Users
+GET https://reqres.in/api/users?page=1
+x-api-key: reqres-free-v1
