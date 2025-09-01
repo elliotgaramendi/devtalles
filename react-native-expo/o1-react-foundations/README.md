@@ -1,4 +1,5 @@
-# ⚛️ React Foundations ✨🚀
+# [⚛️ React Foundations ✨🚀](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native-expo/o1-react-foundations)
+[![Movies App](./o1-react-foundations.png)](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native-expo/o1-react-foundations)
 
 A compact, practical starter showcasing modern React patterns with TypeScript, Vite and Tailwind. Includes example hooks, an Axios API layer, modular UI components and simple auth simulation — perfect for learning, prototyping or building small production features. 🎯📦
 
