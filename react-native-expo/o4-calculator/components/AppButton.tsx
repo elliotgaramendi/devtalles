@@ -1,5 +1,9 @@
-import { elementStyles } from "@/styles/styles";
 import { Pressable, Text, TextStyle } from "react-native";
+
+import * as Haptics from 'expo-haptics';
+
+import { elementStyles } from "@/styles/styles";
+
 
 interface Props {
   type?: 'button_primary' | 'button_secondary' | 'button_secondaryBg';
@@ -23,7 +27,10 @@ const AppButton = ({
         type && elementStyles[type],
         pressed && elementStyles.button_active,
       ]}
-      onPress={onPress}
+      onPress={() => {
+        Haptics.selectionAsync()
+        onPress()
+      }}
       onLongPress={onLongPress}
     >
       <Text style={contentStyles}>{content}</Text>
