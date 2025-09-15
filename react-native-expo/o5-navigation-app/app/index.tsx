@@ -9,13 +9,13 @@ export default function Index() {
       <Text className="text-xl font-work-bold text-primary">
         This is a app
       </Text>
-      <Text className="text-lg font-work-light text-secondary">
+      <Text className="text-lg font-work-medium text-secondary">
         With react-native
       </Text>
-      <Text className="text-md font-work-medium text-secondary-100">
+      <Text className="text-md font-work-regular text-secondary-100">
         And react-native
       </Text>
-      <Text className="text-sm font-work-regular text-tertiary">
+      <Text className="text-sm font-work-light text-tertiary">
         I love this app
       </Text>
     </View>
