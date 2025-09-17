@@ -1,3 +1,4 @@
+import { styleVariables } from '@/styles/styles';
 import { Stack } from 'expo-router';
 
 const StackLayout = () => {
@@ -6,16 +7,16 @@ const StackLayout = () => {
       screenOptions={{
         headerShadowVisible: false,
         headerStyle: {
-          backgroundColor: '#010508'
+          backgroundColor: styleVariables.blackColor
         },
-        headerTintColor: '#23B5E8',
+        headerTintColor: styleVariables.primaryColor,
         headerTitleStyle: {
-          color: '#fefefe',
+          color: styleVariables.whiteColor,
           fontFamily: 'WorkSans-Black',
-          fontSize: 24
+          fontSize: styleVariables.size * 6
         },
         contentStyle: {
-          backgroundColor: '#010508'
+          backgroundColor: styleVariables.blackColor
         }
       }}
     >
