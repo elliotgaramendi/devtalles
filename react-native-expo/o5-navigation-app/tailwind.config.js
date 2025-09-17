@@ -5,13 +5,17 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#49129C',
-        secondary: {
-          DEFAULT: '#B40086',
-          100: '#C51297',
-          200: '#831266',
+        primary: {
+          DEFAULT: '#23B5E8',
+          100: '#B6E6F7',
+          200: '#91DAF3',
         },
-        tertiary: '#EF2967'
+        secondary: '#234B96',
+        warning: '#E8B523',
+        app: {
+          black: '#010508',
+          white: '#FEFEFE',
+        },
       },
       fontFamily: {
         'work-black': ['WorkSans-Black', 'sans-serif'],
