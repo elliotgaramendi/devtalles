@@ -1,13 +1,12 @@
 import { useFonts } from 'expo-font';
-import { SplashScreen, Stack } from "expo-router";
-
+import { Slot, SplashScreen } from 'expo-router';
 import { useEffect } from 'react';
+
 import '../styles/global.css';
 
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-
   const [fontsLoaded, error] = useFonts({
     'WorkSans-Black': require('../assets/fonts/WorkSans-Black.ttf'),
     'WorkSans-Bold': require('../assets/fonts/WorkSans-Bold.ttf'),
@@ -18,12 +17,10 @@ export default function RootLayout() {
 
   useEffect(() => {
     if (error) throw error;
-
     if (fontsLoaded) SplashScreen.hideAsync();
   }, [fontsLoaded, error]);
 
   if (!fontsLoaded && !error) return null;
 
-
-  return <Stack />;
+  return <Slot />;
 }
