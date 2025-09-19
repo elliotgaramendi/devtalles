@@ -31,7 +31,6 @@ const StackLayout = () => {
           title: 'Products',
         }}
       />
-
       <Stack.Screen
         name="profile/index"
         options={{
