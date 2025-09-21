@@ -1,50 +1,83 @@
-# Welcome to your Expo app 👋
+# [🧮 Calculator App](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native-expo/o4-calculator)
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A modern and interactive **calculator application** built with **React Native** and **Expo** ⚡️.  
+This app demonstrates advanced state management with custom hooks, reusable components, and responsive UI design.  
+Features include smooth haptic feedback, dynamic updates, and a clean professional dark theme — perfect for exploring modern mobile development! 🚀✨
 
-## Get started
+## ✨ Features
 
-1. Install dependencies
+- 🧮 **Fully Functional Calculator**: Supports addition, subtraction, multiplication, and division
+- 🔄 **Live Formula & Result Preview**: Displays operations dynamically while typing
+- 📱 **Cross-Platform**: Works seamlessly on both iOS and Android
+- 🎨 **Modern Dark UI**: Professional theme with styled buttons and typography
+- 👆 **Smart Interactions**: Tap for input, long press support, and haptic feedback
+- ⚡ **Reusable Components**: Custom `AppButton` with multiple styles
+- 🎯 **Responsive Design**: Adapts perfectly to different screen sizes
 
-   ```bash
-   npm install
-   ```
+## 📸 Screenshots
 
-2. Start the app
+| 🤖 Android                                 | 🍏 iOS                             |
+| ----------------------------------------- | --------------------------------- |
+| ![Android Screenshot](./docs/android.png) | ![iOS Screenshot](./docs/ios.png) |
 
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+## 🚀 Getting Started
 
 ```bash
-npm run reset-project
-```
+# Clone the repository and navigate to the project
+git clone https://github.com/elliotgaramendi/devtalles.git
+cd devtalles/react-native-expo/o4-calculator
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+# Install dependencies
+npm install
 
-## Learn more
+# Start the development server
+npx expo start
+````
 
-To learn more about developing your project with Expo, look at the following resources:
+**Run on your device:**
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+* 📱 Scan QR code with **Expo Go** app
+* 🖥️ Press `i` for **iOS simulator**
+* 🤖 Press `a` for **Android emulator**
 
-## Join the community
+## 🛠️ Tech Stack
 
-Join our community of developers creating universal apps.
+* ⚛️ **React Native**: Cross-platform mobile framework
+* 🎉 **Expo**: Development platform and build service
+* 📘 **TypeScript**: Type-safe JavaScript development
+* 🎨 **StyleSheet**: Modular and reusable styling system
+* 🔧 **Custom Hook (`useCalculator`)**: Encapsulated state and logic for calculator operations
+* 📳 **Expo Haptics**: Vibration and feedback on interactions
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## 🎨 Design Features
+
+* 🌑 **Dark Theme**: Clean professional look with primary background
+* 💙 **Accent Colors**: Styled buttons with visual hierarchy
+* ✨ **Interactive Feedback**: Haptic vibrations and press effects
+* 🔤 **Custom Fonts**: SpaceMono for clean and modern typography
+* 📐 **Flexible Layouts**: Grid-based calculator interface
+
+## 🤝 Contributing
+
+Contributions are welcome! 🎉 Feel free to open issues or submit pull requests to help improve this project.
+
+1. Fork the repository 🍴
+2. Create your feature branch 🌿
+3. Commit your changes 💾
+4. Push to the branch 🚀
+5. Open a Pull Request 📮
+
+## Connect — Socials 🤝🌐
+
+* 📺 YouTube: [https://www.youtube.com/@elliotgaramendi](https://www.youtube.com/@elliotgaramendi)
+* 🐙 GitHub: [https://github.com/elliotgaramendi](https://github.com/elliotgaramendi)
+* 💼 LinkedIn: [https://www.linkedin.com/in/elliotgaramendi/](https://www.linkedin.com/in/elliotgaramendi/)
+* 📸 Instagram: [https://www.instagram.com/elliotgaramendi/](https://www.instagram.com/elliotgaramendi/)
+
+## 📄 License
+
+This project is open source and available under the MIT License.
+
+---
+
+**Made with ♥️ by Elliot Garamendi with React Native**
