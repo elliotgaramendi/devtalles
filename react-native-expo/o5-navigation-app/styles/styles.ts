@@ -3,5 +3,6 @@ export const styleVariables = {
   secondaryColor: '#234b96',
   blackColor: '#010508',
   whiteColor: '#fefefe',
+  neutral200: '#bebebe',
   size: 3.5
 };
