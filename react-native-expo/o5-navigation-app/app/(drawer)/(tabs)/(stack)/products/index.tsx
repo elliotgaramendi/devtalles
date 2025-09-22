@@ -12,7 +12,7 @@ const ProductsScreen = () => {
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
             <Link
-              href={`/(stack)/products/${item.id}`}
+              href={`./products/${item.id}`}
               className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 mb-4 mx-2 border border-white/20 shadow-lg"
             >
               <View className="flex flex-col gap-2">

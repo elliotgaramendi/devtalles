@@ -1,10 +1,33 @@
 import { styleVariables } from '@/styles/styles';
-import { Stack } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
+import { DrawerActions } from '@react-navigation/native';
+import { router, Stack, useNavigation } from 'expo-router';
 
 const StackLayout = () => {
+  const navigation = useNavigation();
+
+  const onHeaderLeftClick = (canGoBack: boolean | undefined) => {
+    if (canGoBack) {
+      router.back();
+      return;
+    }
+
+    navigation.dispatch(DrawerActions.toggleDrawer);
+  };
+
   return (
     <Stack
       screenOptions={{
+        headerLeft: ({ tintColor, canGoBack }) => (
+          <Ionicons
+            name={canGoBack ? 'chevron-back' : 'menu'}
+            color={tintColor}
+            className="mr-5"
+            size={styleVariables.size * 6}
+            onPress={() => onHeaderLeftClick(canGoBack)}
+          />
+        ),
+        headerBackVisible: false,
         headerShadowVisible: false,
         headerStyle: {
           backgroundColor: styleVariables.blackColor
@@ -17,7 +40,7 @@ const StackLayout = () => {
         },
         contentStyle: {
           backgroundColor: styleVariables.blackColor
-        }
+        },
       }}
     >
       <Stack.Screen
