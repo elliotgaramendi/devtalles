@@ -46,7 +46,7 @@ const ProductDetailsScreen = () => {
               <View>
                 <Text className="text-app-white/70 text-sm mb-1">Price</Text>
                 <Text className="font-work-black text-3xl text-app-white">
-                  {product.price}
+                  {product.price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
                 </Text>
               </View>
               <View className="w-16 h-16 bg-white/10 rounded-full items-center justify-center">

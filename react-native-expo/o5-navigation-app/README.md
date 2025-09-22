@@ -1,50 +1,91 @@
-# Welcome to your Expo app 👋
+# [🧭 Navigation App](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native-expo/o5-navigation-app)
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+An elegant and interactive **navigation application** built with **React Native**, **Expo**, and **Expo Router** ⚡️.
+This app demonstrates professional navigation patterns including **stack navigation**, **dynamic routing**, and **parameterized screens**.
+Features include custom typography, gradient backgrounds, and reusable UI components — perfect for learning advanced navigation in modern mobile development! 🚀✨
 
-## Get started
+## ✨ Features
 
-1. Install dependencies
+- 🧭 **Stack Navigation**: Navigate seamlessly across screens (`Home`, `Products`, `Profile`, `Settings`)
+- 📦 **Dynamic Routes**: Product details with **ID-based navigation**
+- 📱 **Cross-Platform**: Fully compatible with iOS and Android
+- 🎨 **Modern UI**: Gradient backgrounds, glassmorphism, and custom typography
+- 👆 **Interactive Buttons**: Navigate with tap gestures using `AppButton`
+- ⚡ **Reusable Components**: Shared UI with consistent design
+- 🎯 **Responsive Layouts**: Tailwind-like utility classes with `nativewind`
 
-   ```bash
-   npm install
-   ```
+## 📸 Screenshots
 
-2. Start the app
+| 🤖 Android                                 | 🍏 iOS                             |
+| ----------------------------------------- | --------------------------------- |
+| ![Android Screenshot](./docs/android.png) | ![iOS Screenshot](./docs/ios.png) |
 
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+## 🚀 Getting Started
 
 ```bash
-npm run reset-project
-```
+# Clone the repository and navigate to the project
+git clone https://github.com/elliotgaramendi/devtalles.git
+cd devtalles/react-native-expo/o5-navigation-app
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+# Install dependencies
+npm install
 
-## Learn more
+# Start the development server
+npx expo start
+````
 
-To learn more about developing your project with Expo, look at the following resources:
+**Run on your device:**
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+* 📱 Scan QR code with **Expo Go** app
+* 🖥️ Press `i` for **iOS simulator**
+* 🤖 Press `a` for **Android emulator**
 
-## Join the community
+## 🛠️ Tech Stack
 
-Join our community of developers creating universal apps.
+* ⚛️ **React Native**: Cross-platform mobile framework
+* 🎉 **Expo**: Development platform and build service
+* 🗺️ **Expo Router**: File-based navigation system
+* 📘 **TypeScript**: Strongly typed JavaScript
+* 🎨 **NativeWind (Tailwind CSS)**: Utility-first styling in React Native
+* 🔧 **Custom Fonts**: WorkSans family for modern typography
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## 🎨 Design Features
+
+* 🌑 **Dark Theme**: Elegant background with gradients
+* 🟣 **Glassmorphism Cards**: Semi-transparent panels with blur effects
+* ✨ **Dynamic Headers**: Contextual titles for each screen
+* 🔤 **Custom Typography**: WorkSans font family integration
+* 📐 **Flexible Layouts**: Utility classes for responsive design
+
+## 🗺️ Navigation Structure
+
+* **Home** → Main menu with navigation buttons
+* **Products** → Product list with FlatList
+* **Product Details** → Dynamic route: `/products/[id]`
+* **Profile** → User profile screen
+* **Settings** → Settings management
+
+## 🤝 Contributing
+
+Contributions are welcome! 🎉 Feel free to open issues or submit pull requests to help improve this project.
+
+1. Fork the repository 🍴
+2. Create your feature branch 🌿
+3. Commit your changes 💾
+4. Push to the branch 🚀
+5. Open a Pull Request 📮
+
+## Connect — Socials 🤝🌐
+
+* 📺 YouTube: [https://www.youtube.com/@elliotgaramendi](https://www.youtube.com/@elliotgaramendi)
+* 🐙 GitHub: [https://github.com/elliotgaramendi](https://github.com/elliotgaramendi)
+* 💼 LinkedIn: [https://www.linkedin.com/in/elliotgaramendi/](https://www.linkedin.com/in/elliotgaramendi/)
+* 📸 Instagram: [https://www.instagram.com/elliotgaramendi/](https://www.instagram.com/elliotgaramendi/)
+
+## 📄 License
+
+This project is open source and available under the MIT License.
+
+---
+
+**Made with ♥️ by Elliot Garamendi with React Native**
