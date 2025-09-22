@@ -1,16 +1,18 @@
 # [🧭 Navigation App](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native-expo/o5-navigation-app)
 
-An elegant and interactive **navigation application** built with **React Native**, **Expo**, and **Expo Router** ⚡️.
-This app demonstrates professional navigation patterns including **stack navigation**, **dynamic routing**, and **parameterized screens**.
-Features include custom typography, gradient backgrounds, and reusable UI components — perfect for learning advanced navigation in modern mobile development! 🚀✨
+An elegant and interactive **navigation application** built with **React Native**, **Expo**, and **Expo Router** ⚡️.  
+This app demonstrates professional navigation patterns including **drawer navigation**, **tab navigation**, **stack navigation**, and **dynamic routing**.  
+Features include custom typography, dark theme, and reusable UI components — perfect for learning advanced navigation in modern mobile development! 🚀✨
 
 ## ✨ Features
 
-- 🧭 **Stack Navigation**: Navigate seamlessly across screens (`Home`, `Products`, `Profile`, `Settings`)
-- 📦 **Dynamic Routes**: Product details with **ID-based navigation**
+- 🧭 **Drawer Navigation**: Global app menu with multiple sections
+- 📑 **Tab Navigation**: Organized bottom tabs for quick access
+- 📦 **Stack Navigation**: Navigate seamlessly across screens (`Home`, `Products`, `Profile`, `Settings`)
+- 🔀 **Dynamic Routes**: Product details with **ID-based navigation**
 - 📱 **Cross-Platform**: Fully compatible with iOS and Android
-- 🎨 **Modern UI**: Gradient backgrounds, glassmorphism, and custom typography
-- 👆 **Interactive Buttons**: Navigate with tap gestures using `AppButton`
+- 🎨 **Modern UI**: Dark theme, glassmorphism, and custom typography
+- 👆 **Interactive Buttons**: Navigate with gestures and header actions
 - ⚡ **Reusable Components**: Shared UI with consistent design
 - 🎯 **Responsive Layouts**: Tailwind-like utility classes with `nativewind`
 
@@ -48,22 +50,36 @@ npx expo start
 * 📘 **TypeScript**: Strongly typed JavaScript
 * 🎨 **NativeWind (Tailwind CSS)**: Utility-first styling in React Native
 * 🔧 **Custom Fonts**: WorkSans family for modern typography
+* 🎭 **Vector Icons**: Ionicons for tab and drawer icons
 
 ## 🎨 Design Features
 
 * 🌑 **Dark Theme**: Elegant background with gradients
 * 🟣 **Glassmorphism Cards**: Semi-transparent panels with blur effects
-* ✨ **Dynamic Headers**: Contextual titles for each screen
+* ✨ **Dynamic Headers**: Contextual titles and drawer/tabs integration
 * 🔤 **Custom Typography**: WorkSans font family integration
 * 📐 **Flexible Layouts**: Utility classes for responsive design
 
 ## 🗺️ Navigation Structure
 
-* **Home** → Main menu with navigation buttons
-* **Products** → Product list with FlatList
-* **Product Details** → Dynamic route: `/products/[id]`
-* **Profile** → User profile screen
-* **Settings** → Settings management
+```
+Drawer
+ ├── Tabs
+ │    ├── (Stack)
+ │    │     ├── Home
+ │    │     ├── Products
+ │    │     ├── Profile
+ │    │     └── Settings
+ │    ├── Purchased
+ │    └── Favorites
+ └── User
+ └── Schedule
+```
+
+* **Drawer** → Global app menu (User, Schedule, Tabs)
+* **Tabs** → Bottom navigation (Stack, Purchased, Favorites)
+* **Stack** → Nested screens (`Home`, `Products`, `Profile`, `Settings`)
+* **Dynamic Routes** → Product Details: `/products/[id]`
 
 ## 🤝 Contributing
 
