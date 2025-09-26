@@ -34,7 +34,7 @@ npm install
 
 # Start the development server
 npx expo start
-````
+```
 
 **Run on your device:**
 
