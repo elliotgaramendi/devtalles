@@ -22,8 +22,9 @@ export default function Index() {
         movies={popularQuery.data ?? []}
       />
       <MovieHorizontalList
-        title="Best rated"
-        movies={topRatedQuery.data ?? []}
+        title="Top Rated"
+        movies={topRatedQuery.data?.pages.flat() ?? []}
+        loadNextPage={topRatedQuery.fetchNextPage}
       />
       <MovieHorizontalList
         title="Upcoming"
