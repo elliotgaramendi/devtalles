@@ -2,6 +2,7 @@ import MovieCast from '@/presentation/components/movie/MovieCast';
 import MovieDescription from '@/presentation/components/movie/MovieDescription';
 import MovieHeader from '@/presentation/components/movie/MovieHeader';
 import { useMovie } from '@/presentation/hooks/useMovie';
+import { styleVariables } from '@/styles/styles';
 import { useLocalSearchParams } from 'expo-router';
 import { ActivityIndicator, ScrollView, Text, View } from 'react-native';
 
@@ -12,9 +13,9 @@ const MovieScreen = () => {
 
   if (movieQuery.isLoading || !movieQuery.data) {
     return (
-      <View className="flex flex-1 justify-center items-center">
+      <View className="flex flex-1 items-center justify-center">
         <Text className="mb-4">Loading movie...</Text>
-        <ActivityIndicator color="purple" size={32} />
+        <ActivityIndicator color={styleVariables.primaryColor} size={styleVariables.size * 8} />
       </View>
     );
   }

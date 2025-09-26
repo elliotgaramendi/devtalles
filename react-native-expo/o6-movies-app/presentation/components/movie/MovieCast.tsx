@@ -10,7 +10,7 @@ const MovieCast = ({ cast }: Props) => {
   return (
     <View className="py-4">
       <View className="container mx-auto px-4 gap-2">
-        <Text className="font-bold text-xl">Actors</Text>
+        <Text className="text-app-white font-bold text-xl">Actors</Text>
         <FlatList
           data={cast}
           keyExtractor={(item) => item.id.toString()}

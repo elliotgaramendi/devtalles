@@ -1,3 +1,4 @@
+import { styleVariables } from '@/styles/styles';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
@@ -31,7 +32,7 @@ const MovieHeader = ({ poster, originalTitle, title }: Props) => {
       >
         <Ionicons
           name="chevron-back"
-          size={32}
+          size={styleVariables.size * 8}
           color="white"
           className="shadow"
         />
@@ -47,8 +48,8 @@ const MovieHeader = ({ poster, originalTitle, title }: Props) => {
         />
       </View>
       <View className="container mx-auto px-4">
-        <Text className="font-normal">{originalTitle}</Text>
-        <Text className="font-semibold text-2xl">{title}</Text>
+        <Text className="text-app-white font-normal">{originalTitle}</Text>
+        <Text className="text-app-white font-semibold text-2xl">{title}</Text>
       </View>
     </View>
   );

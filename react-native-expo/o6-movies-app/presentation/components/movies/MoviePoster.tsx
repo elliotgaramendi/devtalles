@@ -10,7 +10,7 @@ interface Props {
 const MoviePoster = ({ id, poster, smallPoster = false }: Props) => {
   return (
     <Pressable
-      className="p-2 shadow-sm shadow-sky-500 active:opacity-90"
+      className="p-2 shadow-sm shadow-primary active:opacity-90"
       onPress={() => router.push(`/movie/${id}`)}
     >
       <Image

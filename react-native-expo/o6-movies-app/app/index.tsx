@@ -1,6 +1,7 @@
 import MainSlideshow from "@/presentation/components/movies/MainSlideshow";
 import MovieHorizontalList from "@/presentation/components/movies/MovieHorizontalList";
 import { useMovies } from "@/presentation/hooks/useMovies";
+import { styleVariables } from "@/styles/styles";
 import { ActivityIndicator, ScrollView, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -11,7 +12,7 @@ export default function Index() {
   if (nowPlayingQuery.isLoading) {
     return (
       <View className="flex-1 items-center justify-center">
-        <ActivityIndicator color="purple" size={40} />
+        <ActivityIndicator color={styleVariables.primaryColor} size={styleVariables.size * 8} />
       </View>
     );
   }

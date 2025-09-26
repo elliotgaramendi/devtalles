@@ -17,7 +17,7 @@ const MainSlideshow = ({ movies }: Props) => {
   return (
     <View className="py-4">
       <View className="container mx-auto px-4 items-center justify-center gap-2">
-        <Text className="text-4xl font-bold">MoviesApp</Text>
+        <Text className="text-primary text-4xl font-bold">MoviesApp</Text>
       </View>
       <Carousel
         ref={ref}

@@ -38,7 +38,7 @@ const MovieHorizontalList = ({ title, movies, loadNextPage }: Props) => {
   return (
     <View className="py-4">
       <View className="container mx-auto px-4">
-        {title && <Text className="text-3xl font-bold">{title}</Text>}
+        {title && <Text className="text-app-white text-3xl font-bold">{title}</Text>}
       </View>
       <FlatList
         horizontal

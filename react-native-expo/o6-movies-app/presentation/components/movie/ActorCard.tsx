@@ -19,7 +19,7 @@ export const ActorCard = ({ actor }: Props) => {
         >
           {actor.name}
         </Text>
-        <Text className="text-gray-600 text-xs">{actor.character}</Text>
+        <Text className="text-gray-400 text-xs">{actor.character}</Text>
       </View>
     </View>
   );
