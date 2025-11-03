@@ -1,6 +1,7 @@
-import { useThemeColor } from '@/hooks/use-theme-color';
 import { View, ViewProps } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
+import { useThemeColor } from '@/hooks/use-theme-color';
 
 interface Props extends ViewProps {
   className?: string;
@@ -38,4 +39,5 @@ const ThemedView = ({
     </View>
   );
 };
+
 export default ThemedView;
