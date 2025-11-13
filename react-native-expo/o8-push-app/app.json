@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "o8-push-app",
-    "slug": "o8-push-app",
+    "slug": "push-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -43,6 +43,13 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "2c81f343-dd73-4871-808d-7aa1563c86bf"
+      }
+    },
+    "owner": "elliotgaramendi"
   }
 }
