@@ -25,6 +25,7 @@ export default function RootLayout() {
         }}
       >
         <Stack.Screen name="index" options={{ title: 'Push App' }} />
+        <Stack.Screen name="chat" options={{ title: 'Chat' }} />
       </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>
