@@ -1,12 +1,14 @@
-import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+import { Body, Controller, Post } from '@nestjs/common';
+import { PushNotificationService } from './push-notification/push-notification.service';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(
+    private readonly pushNotificationService: PushNotificationService,
+  ) {}
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @Post('/send-notification')
+  sendNotification(@Body() body: { to: string[] }) {
+    void this.pushNotificationService.sendNotification(body.to);
   }
 }
