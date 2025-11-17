@@ -1,50 +1,118 @@
-# Welcome to your Expo app 👋
+# 🎨 [Components App](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native-expo/o7-components-app)
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A modern and sleek **UI components playground** built with **React Native**, **Expo**, and **Expo Router** ⚡️.
+This app serves as a **comprehensive demo of reusable UI elements**, interactive layouts, system components, animations, and themed widgets.
+Perfect for developers who want to explore, learn, and build beautiful interfaces in React Native! ✨📱
 
-## Get started
+## ✨ Features
 
-1. Install dependencies
+* 🎛️ **UI Showcase**: Explore dozens of ready-to-use components (inputs, switches, buttons, cards, alerts, and more)
+* 🧭 **File-Based Navigation**: Clean Expo Router structure for all demo screens
+* 🎨 **Theming Engine**: Light and dark modes powered by a custom theme context
+* 🌀 **Animations**: Smooth examples including fade-in images and Reanimated-based effects
+* 🔄 **Pull to Refresh**: Native refresh control demonstration
+* 📜 **Section List Demo**: Grouped lists with headers and themed styling
+* 🪄 **Modals**: Multiple modal window examples using Expo Router modals
+* 🎠 **Slides Showcase**: Onboarding-like carousel with custom images
+* 📱 **Cross-Platform**: Works flawlessly on Android, iOS, and Web (via Expo)
+* ⚡ **Responsive Styling**: Built with NativeWind (Tailwind) for scalable UI
 
-   ```bash
-   npm install
-   ```
+## 📸 Screenshots
 
-2. Start the app
+| 🤖 Android                                 | 🍏 iOS                             |
+| ----------------------------------------- | --------------------------------- |
+| ![Android Screenshot](./docs/android.png) | ![iOS Screenshot](./docs/ios.png) |
 
-   ```bash
-   npx expo start
-   ```
+---
 
-In the output, you'll find options to open the app in a
+## 🚀 Getting Started
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+1. **Clone the repository:**
 
 ```bash
-npm run reset-project
+git clone <your-repo-url>
+cd /devtalles/react-native-expo/o7-components-app
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+2. **Install dependencies:**
 
-## Learn more
+```bash
+npm install
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+3. **Start the development server:**
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+```bash
+npx expo start
+```
 
-## Join the community
+**Run on your device:**
 
-Join our community of developers creating universal apps.
+* 📱 Scan QR code with **Expo Go**
+* 🖥️ Press `i` to launch **iOS simulator**
+* 🤖 Press `a` to launch **Android emulator**
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+---
+
+## 🛠️ Tech Stack
+
+* ⚛️ **React Native** – Cross-platform framework
+* 🎉 **Expo** – Development platform, routing, and build tools
+* 🗺️ **Expo Router** – File-based navigation system
+* 📘 **TypeScript** – Fully typed components
+* 🎨 **NativeWind** – Tailwind for React Native
+* 🎭 **Expo Image** – Fast and optimized image rendering
+* 🎞️ **React Native Reanimated** – Animations and gestures
+* 💾 **Async Storage** – Persistent storage for themes/settings
+* 🧩 **Expo Haptics** – Vibration feedback for supported components
+
+---
+
+## 🎯 Key Components & Screens
+
+Your app includes a rich set of modular UI demos:
+
+### 📦 **UI Components**
+
+* **ThemedText** – Dynamic typography with theme support
+* **ThemedCard** – Beautiful card containers
+* **ThemedButton** – Styled and responsive button
+* **ThemedSwitch** – Toggle component with animations
+* **ThemedView** – Adaptive wrapper for backgrounds
+* **ThemedTextInput** – Customizable input fields
+
+### 🧭 **Screens / Examples**
+
+* ⚠️ **Alerts** – Interactive alert examples
+* 🎞️ **Animation 101 & 102** – Basics of animations and transitions
+* 🌀 **Infinite Scroll** – Paginated loading list
+* 💬 **Modals** – Native and custom modal screens
+* 🔄 **Pull to Refresh** – RefreshControl demo
+* 📚 **Section List** – Grouped list UI
+* 🎠 **Slides** – Onboarding carousel with images
+* 🔤 **Text Inputs** – Custom form fields
+* 🎨 **Themes** – Light/Dark theme switcher
+
+Each folder in `/app` corresponds to a live example screen.
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! 🎉 Submit issues or PRs to improve the component collection.
+
+1. Fork the repository 🍴
+2. Create a new feature branch 🌿
+3. Commit your changes 💾
+4. Push your branch 🚀
+5. Open a Pull Request 📮
+
+---
+
+## 📄 License
+
+This project is open source under the MIT License.
+
+---
+
+**Made with ♥️ using React Native and Expo**
