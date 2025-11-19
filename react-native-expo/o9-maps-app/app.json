@@ -10,7 +10,10 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.elliotgaramendi.o9mapsapp"
+      "bundleIdentifier": "com.elliotgaramendi.o9mapsapp",
+      "config": {
+        "googleMapsApiKey": "process.env.GOOGLE_MAPS_API_KEY_IOS"
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -21,7 +24,12 @@
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "package": "com.elliotgaramendi.o9mapsapp"
+      "package": "com.elliotgaramendi.o9mapsapp",
+      "config": {
+        "googleMaps": {
+          "apiKey": "process.env.GOOGLE_MAPS_API_KEY_ANDROID"
+        }
+      }
     },
     "web": {
       "output": "static",
