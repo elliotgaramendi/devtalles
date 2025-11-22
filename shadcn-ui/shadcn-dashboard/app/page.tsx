@@ -1,7 +1,5 @@
+import { redirect } from 'next/navigation';
+
 export default function Home() {
-  return (
-    <h1>
-      shadcn/ui dashboard
-    </h1>
-  );
+  redirect("dashboard");
 }
