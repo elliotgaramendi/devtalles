@@ -1,15 +1,19 @@
-import Link from "next/link";
+'use client';
+import Link from 'next/link';
+import { useState } from 'react';
 
 const links = [
   { name: "accordion", href: "/dashboard/accordion" },
   { name: "alert", href: "/dashboard/alert" },
 ];
 
-export default function DashboardLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function DashboardLayout({ children }: { children: React.ReactNode }) {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
   return (
     <>
       <nav className="bg-white border-b border-gray-200 fixed z-30 w-full">
@@ -17,14 +21,13 @@ export default function DashboardLayout({
           <div className="flex items-center justify-between">
             <div className="flex items-center justify-start">
               <button
-                id="toggleSidebarMobile"
-                aria-expanded="true"
+                onClick={toggleSidebar}
+                aria-expanded={sidebarOpen}
                 aria-controls="sidebar"
                 className="lg:hidden mr-2 text-gray-600 hover:text-gray-900 cursor-pointer p-2 hover:bg-gray-100 focus:bg-gray-100 focus:ring-2 focus:ring-gray-100 rounded"
               >
                 <svg
-                  id="toggleSidebarMobileHamburger"
-                  className="w-6 h-6"
+                  className={`w-6 h-6 ${sidebarOpen ? 'hidden' : ''}`}
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -36,8 +39,7 @@ export default function DashboardLayout({
                   ></path>
                 </svg>
                 <svg
-                  id="toggleSidebarMobileClose"
-                  className="w-6 h-6 hidden"
+                  className={`w-6 h-6 ${sidebarOpen ? '' : 'hidden'}`}
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -53,7 +55,6 @@ export default function DashboardLayout({
                 href="#"
                 className="text-xl font-bold flex items-center lg:ml-2.5"
               >
-                {/* Logo */}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 256 256"
@@ -84,13 +85,11 @@ export default function DashboardLayout({
                   ></line>
                 </svg>
                 <span className="self-center whitespace-nowrap ml-2">
-                  {" "}
                   Shadcn/ui
                 </span>
               </a>
             </div>
             <div className="flex items-center">
-              {/* User Avatar */}
               <div className="bg-blue-500 text-white p-2 rounded-full w-12 h-12 flex items-center justify-center">
                 FH
               </div>
@@ -98,13 +97,15 @@ export default function DashboardLayout({
           </div>
         </div>
       </nav>
+
       <div className="flex overflow-hidden bg-white pt-16">
         <aside
           id="sidebar"
-          className="fixed hidden z-20 h-full top-0 left-0 pt-16 lg:flex flex-shrink-0 flex-col w-64 transition-width duration-75"
+          className={`fixed z-20 h-full top-0 left-0 pt-16 flex-shrink-0 flex-col w-64 transition-all duration-300 ${sidebarOpen ? 'flex' : 'hidden lg:flex'
+            }`}
           aria-label="Sidebar"
         >
-          <div className="relative flex-1 flex flex-col min-h-0 borderR border-gray-200 bg-white pt-0">
+          <div className="relative flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white pt-0">
             <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
               <div className="flex-1 px-3 bg-white divide-y space-y-1">
                 <ul className="space-y-2 pb-2">
@@ -112,6 +113,7 @@ export default function DashboardLayout({
                     <li key={link.href}>
                       <Link
                         href={link.href}
+                        onClick={() => setSidebarOpen(false)}
                         className="text-base capitalize text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 group"
                       >
                         <span className="ml-3">{link.name}</span>
@@ -123,10 +125,14 @@ export default function DashboardLayout({
             </div>
           </div>
         </aside>
+
         <div
-          className="bg-gray-900 opacity-50 hidden fixed inset-0 z-10"
+          className={`bg-gray-900 opacity-50 fixed inset-0 z-10 ${sidebarOpen ? '' : 'hidden'
+            }`}
           id="sidebarBackdrop"
+          onClick={toggleSidebar}
         ></div>
+
         <div
           id="main-content"
           className="h-full w-full bg-gray-50 relative overflow-y-auto lg:ml-64"
@@ -135,11 +141,21 @@ export default function DashboardLayout({
             <div className="pt-6 px-4">
               <div className="w-full min-h-[calc(100vh-230px)]">
                 <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8">
-                  {children}
+                  {children || (
+                    <div className="text-center py-12">
+                      <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                        Bienvenido al Dashboard
+                      </h2>
+                      <p className="text-gray-600">
+                        Selecciona una opción del menú lateral
+                      </p>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
           </main>
+
           <footer className="bg-white md:flex md:items-center md:justify-between shadow rounded-lg p-4 md:p-6 xl:p-8 my-6 mx-4">
             <ul className="flex items-center flex-wrap mb-6 md:mb-0">
               <li>
