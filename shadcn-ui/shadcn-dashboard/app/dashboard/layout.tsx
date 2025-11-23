@@ -5,6 +5,7 @@ import { useState } from 'react';
 const links = [
   { name: "accordion", href: "/dashboard/accordion" },
   { name: "alert", href: "/dashboard/alert" },
+  { name: "button", href: "/dashboard/button" },
 ];
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {

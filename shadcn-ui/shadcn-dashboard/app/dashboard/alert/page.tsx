@@ -4,7 +4,7 @@ import { AlertCircleIcon, CheckCircle2Icon, PopcornIcon } from "lucide-react";
 const AlertPage = () => {
   return (
     <section>
-      <Alert variant="success">
+      <Alert variant="destructive">
         <CheckCircle2Icon />
         <AlertTitle>Success! Your changes have been saved</AlertTitle>
         <AlertDescription>
