@@ -5,7 +5,7 @@ import { AppState } from 'react-native';
 
 import { PermissionStatus } from '@/infrastructure/interfaces/location';
 
-import { usePermissionsStore } from '../store/usePermissions';
+import { usePermissionsStore } from '../store/usePermissionsStore';
 
 const PermissionsCheckerProvider = ({ children }: PropsWithChildren) => {
   const { locationStatus, checkLocationPermission } = usePermissionsStore();
