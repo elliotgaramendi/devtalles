@@ -1,4 +1,3 @@
-
 import { Pressable, PressableProps, StyleSheet, Text } from 'react-native';
 
 interface Props extends PressableProps {

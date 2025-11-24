@@ -1,4 +1,3 @@
-
 import { ThemedText } from '@/presentation/components/shared/themed-text';
 import { View } from 'react-native';
 

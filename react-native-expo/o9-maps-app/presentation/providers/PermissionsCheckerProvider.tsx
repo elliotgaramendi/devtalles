@@ -1,4 +1,3 @@
-
 import { router } from 'expo-router';
 import { PropsWithChildren, useEffect } from 'react';
 import { AppState } from 'react-native';

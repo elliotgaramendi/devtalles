@@ -22,4 +22,5 @@ const PermissionsScreen = () => {
     </ThemedView>
   );
 };
+
 export default PermissionsScreen;

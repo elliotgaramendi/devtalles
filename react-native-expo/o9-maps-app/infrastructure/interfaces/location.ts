@@ -1,4 +1,3 @@
-
 export enum PermissionStatus {
   CHECKING = 'checking',
   GRANTED = 'GRANTED',

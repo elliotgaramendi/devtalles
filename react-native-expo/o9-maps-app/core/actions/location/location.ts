@@ -1,4 +1,3 @@
-
 import { LatLng } from '@/infrastructure/interfaces/lat-lng';
 import * as Location from 'expo-location';
 
