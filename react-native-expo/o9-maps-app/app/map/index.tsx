@@ -1,52 +1,32 @@
-import { ThemedView } from '@/presentation/components/shared/themed-view';
-import { StyleSheet } from 'react-native';
-import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import { useEffect } from 'react';
+import { ActivityIndicator, View } from 'react-native';
+
+import CustomMap from '@/presentation/components/maps/CustomMap';
+import { useLocationStore } from '@/presentation/store/useLocationStore';
 
 const MapScreen = () => {
-  return (
-    <ThemedView style={styles.container}>
-      <MapView
-        // showsPointsOfInterest={false}
-        style={styles.map}
-        provider={PROVIDER_GOOGLE}
-        initialRegion={{
-          latitude: 45.41256,
-          longitude: -75.698931,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
-        }}
-      >
-        <Marker
-          coordinate={{
-            latitude: 45.41256,
-            longitude: -75.698931,
-          }}
-          title="Aquí estoy"
-          description="Esta es mi casa por algún lado de Ottawa"
-        />
+  const { lastKnownLocation, getLocation } = useLocationStore();
 
-        <Marker
-          coordinate={{
-            latitude: 45.434005,
-            longitude: -75.677708,
-          }}
-          title="Un parque"
-          description="Esta es mi casa por algún lado de Ottawa"
-        />
-      </MapView>
-    </ThemedView>
+  useEffect(() => {
+    if (lastKnownLocation === null) {
+      getLocation();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  if (lastKnownLocation === null) {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator />
+      </View>
+    );
+  }
+
+  return (
+    <View>
+      <CustomMap initialLocation={lastKnownLocation} />
+    </View>
   );
 };
 
 export default MapScreen;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  map: {
-    width: '100%',
-    height: '100%',
-    // backgroundColor: 'red',
-  },
-});
