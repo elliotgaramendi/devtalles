@@ -9,7 +9,8 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.elliotgaramendi.o10productsapp"
     },
     "android": {
       "adaptiveIcon": {
@@ -19,7 +20,8 @@
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.elliotgaramendi.o10productsapp"
     },
     "web": {
       "output": "static",
@@ -37,6 +39,16 @@
           "dark": {
             "backgroundColor": "#000000"
           }
+        }
+      ],
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/Kanit-Bold.ttf",
+            "./assets/fonts/Kanit-Regular.ttf",
+            "./assets/fonts/Kanit-Thin.ttf"
+          ]
         }
       ]
     ],
