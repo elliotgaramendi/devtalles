@@ -50,7 +50,8 @@
             "./assets/fonts/Kanit-Thin.ttf"
           ]
         }
-      ]
+      ],
+      "expo-secure-store"
     ],
     "experiments": {
       "typedRoutes": true,
