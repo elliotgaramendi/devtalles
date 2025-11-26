@@ -1,6 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
-import { Pressable, PressableProps, StyleSheet, Text } from 'react-native';
+import { Pressable, PressableProps, StyleSheet } from 'react-native';
 import { useThemeColor } from '../hooks/use-theme-color';
+import { ThemedText } from './themed-text';
 
 interface Props extends PressableProps {
   children: string;
@@ -20,7 +21,7 @@ const ThemedButton = ({ children, icon, ...rest }: Props) => {
       ]}
       {...rest}
     >
-      <Text style={{ color: 'white' }}>{children}</Text>
+      <ThemedText style={{ color: 'white' }}>{children}</ThemedText>
 
       {icon && (
         <Ionicons

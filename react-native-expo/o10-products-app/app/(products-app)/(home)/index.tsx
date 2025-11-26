@@ -1,6 +1,7 @@
 import { ThemedText } from '@/presentation/theme/components/themed-text';
 import { useThemeColor } from '@/presentation/theme/hooks/use-theme-color';
 import { View } from 'react-native';
+
 const HomeScreen = () => {
   const primary = useThemeColor({}, 'primary');
 
