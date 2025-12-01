@@ -19,6 +19,23 @@ const returnUserToken = (data: AuthResponse): { user: User; token: string; } => 
   };
 };
 
+export const authRegister = async (email: string, password: string, fullName: string) => {
+  email = email.toLowerCase();
+
+  try {
+    const { data } = await productsApi.post<AuthResponse>('/auth/register', {
+      email,
+      password,
+      fullName,
+    });
+
+    return returnUserToken(data);
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+};
+
 export const authLogin = async (email: string, password: string) => {
   email = email.toLowerCase();
 
