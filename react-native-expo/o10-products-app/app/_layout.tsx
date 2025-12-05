@@ -20,8 +20,6 @@ const queryClient = new QueryClient({
 });
 
 export default function RootLayout() {
-
-
   const colorScheme = useColorScheme();
   const backgroundColor = useThemeColor({}, 'background');
 
