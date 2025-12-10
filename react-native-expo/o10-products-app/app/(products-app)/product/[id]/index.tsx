@@ -135,8 +135,6 @@ const ProductScreen = () => {
               />
             </ThemedView>
 
-            {/* Botón para guardar */}
-
             <View
               style={{
                 marginHorizontal: 10,

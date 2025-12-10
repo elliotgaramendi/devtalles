@@ -1,5 +1,7 @@
 import ProductList from '@/presentation/products/components/ProductList';
 import { useProducts } from '@/presentation/products/hooks/useProducts';
+import { FAB } from '@/presentation/theme/components/FAB';
+import { router } from 'expo-router';
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
 
 const HomeScreen = () => {
@@ -19,7 +21,13 @@ const HomeScreen = () => {
         products={productsQuery.data?.pages.flatMap((page) => page) ?? []}
         loadNextPage={loadNextPage}
       />
+
+      <FAB
+        iconName="add-outline"
+        onPress={() => router.push('/(products-app)/product/new')}
+      />
     </View>
   );
 };
+
 export default HomeScreen;
