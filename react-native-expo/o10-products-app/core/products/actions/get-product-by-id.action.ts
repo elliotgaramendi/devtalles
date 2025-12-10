@@ -24,6 +24,7 @@ export const getProductById = async (id: string): Promise<Product> => {
       images: data.images.map((image) => `${API_URL}/files/product/${image}`),
     };
   } catch (error) {
+    console.log(error);
     throw new Error(`product with id ${id} not found`);
   }
 };
