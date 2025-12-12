@@ -3,7 +3,7 @@ import { Gender, type Product } from '../interfaces/product.interface';
 
 const emptyProduct: Product = {
   id: '',
-  title: 'Nuevo producto',
+  title: '',
   description: '',
   price: 0,
   images: [],

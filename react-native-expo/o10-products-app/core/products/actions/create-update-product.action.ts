@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { productsApi } from '@/core/api/productsApi';
 import { Product } from '../interfaces/product.interface';
 
@@ -13,13 +12,50 @@ export const updateCreateProduct = (product: Partial<Product>) => {
   return createProduct(product);
 };
 
+const prepareImages = async (images: string[]) => {
+  const fileImages = images.filter((image) => image.includes('file'));
+  const currentImages = images.filter((image) => !image.includes('file'));
+
+  if (fileImages.length > 0) {
+    const uploadPromises = fileImages.map(uploadImages);
+    const uploadedImages = await Promise.all(uploadPromises);
+
+    currentImages.push(...uploadedImages);
+  }
+
+  return currentImages.map((image) => image.split('/').pop()!);
+};
+
+const uploadImages = async (image: string): Promise<string> => {
+  const formData = new FormData() as any;
+  formData.append('file', {
+    uri: image,
+    type: 'image/jpeg',
+    name: image.split('/').pop()
+  });
+
+  const { data } = await productsApi.post<{ image: string }>(
+    '/files/product',
+    formData,
+    {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    }
+  );
+
+  return data.image;
+};
+
 const updateProduct = async (product: Partial<Product>) => {
   const { id, images = [], user, ...rest } = product;
 
   try {
+    const checkImages = await prepareImages(images);
+
     const { data } = await productsApi.patch<Product>(`/products/${id}`, {
-      // todo: images
       ...rest,
+      images: checkImages
     });
 
     return data;
@@ -33,9 +69,11 @@ async function createProduct(product: Partial<Product>) {
   const { id, images = [], user, ...rest } = product;
 
   try {
+    const checkImages = await prepareImages(images);
+
     const { data } = await productsApi.post<Product>(`/products`, {
-      // todo: images
       ...rest,
+      images: checkImages
     });
 
     return data;
