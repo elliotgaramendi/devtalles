@@ -1,31 +1,51 @@
 import { Size } from '@/core/products/interfaces/product.interface';
 import ProductImages from '@/presentation/products/components/ProductImages';
 import { useProduct } from '@/presentation/products/hooks/useProduct';
+import { useCameraStore } from '@/presentation/store/useCameraStore';
+import MenuIconButton from '@/presentation/theme/components/MenuIconButton';
 import { ThemedView } from '@/presentation/theme/components/themed-view';
 import ThemedButton from '@/presentation/theme/components/ThemedButton';
 import ThemeButtonGroup from '@/presentation/theme/components/ThemedButtonGroup';
 import ThemedTextInput from '@/presentation/theme/components/ThemedTextInput';
-import { Ionicons } from '@expo/vector-icons';
-import { Redirect, useLocalSearchParams, useNavigation } from 'expo-router';
+import {
+  Redirect,
+  router,
+  useLocalSearchParams,
+  useNavigation,
+} from 'expo-router';
 import { Formik } from 'formik';
 import { useEffect } from 'react';
 import {
   ActivityIndicator,
   KeyboardAvoidingView,
   Platform,
+  RefreshControl,
   ScrollView,
-  View
+  View,
 } from 'react-native';
 
 const ProductScreen = () => {
+  const { selectedImages, clearImages } = useCameraStore();
+
   const { id } = useLocalSearchParams();
   const navigation = useNavigation();
 
   const { productQuery, productMutation } = useProduct(`${id}`);
 
   useEffect(() => {
+    return () => {
+      clearImages();
+    };
+  }, [clearImages]);
+
+  useEffect(() => {
     navigation.setOptions({
-      headerRight: () => <Ionicons name="camera-outline" size={25} />,
+      headerRight: () => (
+        <MenuIconButton
+          onPress={() => router.push('/camera')}
+          icon="camera-outline"
+        />
+      ),
     });
   }, [navigation]);
 
@@ -52,13 +72,26 @@ const ProductScreen = () => {
   const product = productQuery.data!;
 
   return (
-    <Formik initialValues={product} onSubmit={productMutation.mutate}>
+    <Formik initialValues={product} onSubmit={(productLike) => productMutation.mutate({
+      ...productLike,
+      images: [...productLike.images, ...selectedImages]
+    })}
+    >
       {({ values, handleSubmit, handleChange, setFieldValue }) => (
         <KeyboardAvoidingView
           behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         >
-          <ScrollView>
-            <ProductImages images={values.images} />
+          <ScrollView
+            refreshControl={
+              <RefreshControl
+                refreshing={productQuery.isFetching}
+                onRefresh={async () => {
+                  await productQuery.refetch();
+                }}
+              />
+            }
+          >
+            <ProductImages images={[...product.images, ...selectedImages]} />
 
             <ThemedView style={{ marginHorizontal: 10, marginTop: 20 }}>
               <ThemedTextInput
