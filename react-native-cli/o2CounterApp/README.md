@@ -1,6 +1,6 @@
 # [Counter App](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native-cli/o2CounterApp)
 
-| 🤖 Android                     | 🍏 iOS                 |
+| 🤖 Android                      | 🍏 iOS                  |
 | ------------------------------ | ---------------------- |
 | ![Android](./docs/android.png) | ![iOS](./docs/ios.png) |
 
