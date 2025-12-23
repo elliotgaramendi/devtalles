@@ -1,6 +1,8 @@
 # [Navigation App](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native-cli/o5NavigationApp)
 
-[![Navigation App](./rn-o5NavigationApp.png)](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native-cli/o5NavigationApp)
+| 🤖 Android                      | 🍏 iOS                  |
+| ------------------------------ | ---------------------- |
+| ![Android](./docs/android.png) | ![iOS](./docs/ios.png) |
 
 ## 📜 Descripción 📜
 
