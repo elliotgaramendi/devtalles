@@ -1,6 +1,8 @@
 # [Zustand App](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native-cli/o6ZustandApp)
 
-[![Zustand App](./rn-o6ZustandApp.png)](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native-cli/o6ZustandApp)
+| 🤖 Android                      | 🍏 iOS                  |
+| ------------------------------ | ---------------------- |
+| ![Android](./docs/android.png) | ![iOS](./docs/ios.png) |
 
 ## 📜 Descripción 📜
 
