@@ -26,7 +26,7 @@ const DetailsScreen = ({ route }: Props) => {
     <>
       <Text
         onPress={() => navigation.goBack()}
-        style={[elementStyles.title, utilStyles.pAbsolute, utilStyles.top2, utilStyles.left2, utilStyles.zIndex1]}
+        style={[elementStyles.title, utilStyles.pAbsolute, utilStyles.top14, utilStyles.left2, utilStyles.zIndex1]}
       >
         ⬅️
       </Text>

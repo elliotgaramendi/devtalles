@@ -4,6 +4,7 @@ import { secondaryText, size } from './variables';
 export const utilStyles = StyleSheet.create({
   pAbsolute: { position: 'absolute' },
   top2: { top: size * 2 },
+  top14: { top: size * 14 },
   left2: { left: size * 2 },
   zIndex1: { zIndex: 1 },
   flex1: { flex: 1 },
