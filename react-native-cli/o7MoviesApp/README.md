@@ -1,6 +1,8 @@
 # [🎥 Movies App 🎥](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native-cli/o7MoviesApp)
 
-[![Movies App](./rnc-o7MoviesApp.png)](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native-cli/o7MoviesApp)
+| 🤖 Android                      | 🍏 iOS                  |
+| ------------------------------ | ---------------------- |
+| ![Android](./docs/android.png) | ![iOS](./docs/ios.png) |
 
 ## 📜 Descripción 📜
 ✨ Movies App es una aplicación diseñada para explorar y descubrir películas con información detallada y opciones interactivas. 🚀 Muestra los estrenos más recientes, películas populares y más, utilizando una interfaz amigable y dinámica. 🎬
@@ -21,7 +23,7 @@
    cp .env.template .env
    ```
 
-4. **Editar el archivo `.env` y añadir tu clave de API**
+4. **Editar el archivo `.env` y añadir tu clave de API** (No token, solo clave)
    ```
    BACKEND_API_KEY = {{your_api_key}}
    ```
