@@ -10,4 +10,6 @@ En este repositorio 👨‍💻 mostraré cómo voy aprendiendo 👨‍🏫 poco
 
 ## React Native CLI
 ### [Movies App](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native-cli/o7MoviesApp)
-[![Movies App](./react-native-cli/o7MoviesApp/rnc-o7MoviesApp.png)](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native-cli/o7MoviesApp)
+| 🤖 Android                                 | 🍏 iOS                             |
+| ----------------------------------------- | --------------------------------- |
+| ![Android Screenshot](./react-native-cli/o7MoviesApp/docs/android.png) | ![iOS Screenshot](./react-native-cli/o7MoviesApp/docs/ios.png) |
