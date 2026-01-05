@@ -592,7 +592,7 @@
         592
       ],
       "id": "e81fcbef-333f-4584-a69d-5e4ea75505dd",
-      "name": "Google Sheets Trigger1",
+      "name": "Google Sheets Trigger",
       "credentials": {
         "googleSheetsTriggerOAuth2Api": {
           "id": "pBgsIwsPD0ajf6ou",
@@ -744,7 +744,7 @@
         ]
       ]
     },
-    "Google Sheets Trigger1": {
+    "Google Sheets Trigger": {
       "main": [
         []
       ]
@@ -754,11 +754,18 @@
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "4c9e8a92-bf1b-436d-b9be-b6ac5a2a3efd",
+  "versionId": "e9294968-6158-45b3-80f4-b230100c06f5",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "0dc478ffadb10a0b348de6fc571450ede4c28b77379ab8caef06ff485e601790"
   },
   "id": "IzvqIL4hbrBTbGGy",
-  "tags": []
+  "tags": [
+    {
+      "updatedAt": "2025-12-31T16:34:49.630Z",
+      "createdAt": "2025-12-23T15:16:55.976Z",
+      "id": "swmGKsBS1CJqDu7U",
+      "name": "first workflow"
+    }
+  ]
 }
