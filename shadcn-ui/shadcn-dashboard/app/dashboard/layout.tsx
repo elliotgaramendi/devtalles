@@ -1,5 +1,6 @@
 'use client';
-import Link from 'next/link';
+
+import Link from "next/link";
 import { useState } from 'react';
 
 const links = [
@@ -9,13 +10,16 @@ const links = [
   { name: "alert dialog", href: "/dashboard/alert-dialog" },
 ];
 
-export default function DashboardLayout({ children }: { children: React.ReactNode }) {
+export default function DashboardLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
-
   return (
     <>
       <nav className="bg-white border-b border-gray-200 fixed z-30 w-full">
@@ -53,8 +57,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                   ></path>
                 </svg>
               </button>
-              <a
-                href="#"
+              <Link
+                href="/dashboard"
                 className="text-xl font-bold flex items-center lg:ml-2.5"
               >
                 <svg
@@ -87,27 +91,27 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                   ></line>
                 </svg>
                 <span className="self-center whitespace-nowrap ml-2">
+                  {" "}
                   Shadcn/ui
                 </span>
-              </a>
+              </Link>
             </div>
             <div className="flex items-center">
               <div className="bg-blue-500 text-white p-2 rounded-full w-12 h-12 flex items-center justify-center">
-                FH
+                EG
               </div>
             </div>
           </div>
         </div>
       </nav>
-
       <div className="flex overflow-hidden bg-white pt-16">
         <aside
           id="sidebar"
-          className={`fixed z-20 h-full top-0 left-0 pt-16 flex-shrink-0 flex-col w-64 transition-all duration-300 ${sidebarOpen ? 'flex' : 'hidden lg:flex'
+          className={`fixed z-20 h-full top-0 left-0 pt-16 shrink-0 flex-col w-64 transition-all duration-300 ${sidebarOpen ? 'flex' : 'hidden lg:flex'
             }`}
           aria-label="Sidebar"
         >
-          <div className="relative flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white pt-0">
+          <div className="relative flex-1 flex flex-col min-h-0 borderR border-gray-200 bg-white pt-0">
             <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
               <div className="flex-1 px-3 bg-white divide-y space-y-1">
                 <ul className="space-y-2 pb-2">
@@ -127,14 +131,12 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             </div>
           </div>
         </aside>
-
         <div
           className={`bg-gray-900 opacity-50 fixed inset-0 z-10 ${sidebarOpen ? '' : 'hidden'
             }`}
           id="sidebarBackdrop"
           onClick={toggleSidebar}
         ></div>
-
         <div
           id="main-content"
           className="h-full w-full bg-gray-50 relative overflow-y-auto lg:ml-64"
@@ -157,7 +159,6 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               </div>
             </div>
           </main>
-
           <footer className="bg-white md:flex md:items-center md:justify-between shadow rounded-lg p-4 md:p-6 xl:p-8 my-6 mx-4">
             <ul className="flex items-center flex-wrap mb-6 md:mb-0">
               <li>

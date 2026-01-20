@@ -3,8 +3,8 @@ import { AlertCircleIcon, CheckCircle2Icon, PopcornIcon } from "lucide-react";
 
 const AlertPage = () => {
   return (
-    <section>
-      <Alert variant="destructive">
+    <section className="grid gap-2">
+      <Alert variant="success">
         <CheckCircle2Icon />
         <AlertTitle>Success! Your changes have been saved</AlertTitle>
         <AlertDescription>

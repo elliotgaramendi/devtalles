@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 import { ChevronRightIcon, LoaderCircle, User } from "lucide-react";
 
 const ButtonPage = () => {
@@ -26,7 +26,7 @@ const ButtonPage = () => {
       </Button>
 
       <Button disabled>
-        <LoaderCircle />
+        <LoaderCircle className="animate-spin" />
         Please wait
       </Button>
     </div>

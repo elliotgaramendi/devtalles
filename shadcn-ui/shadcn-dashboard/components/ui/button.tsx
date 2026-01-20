@@ -40,8 +40,8 @@ const buttonVariants = cva(
 
 function Button({
   className,
-  variant,
-  size,
+  variant = "default",
+  size = "default",
   capitalize = false,
   asChild = false,
   ...props
@@ -55,6 +55,8 @@ function Button({
   return (
     <Comp
       data-slot="button"
+      data-variant={variant}
+      data-size={size}
       className={cn(buttonVariants({ variant, size, className }), capitalize)}
       {...props}
     />
