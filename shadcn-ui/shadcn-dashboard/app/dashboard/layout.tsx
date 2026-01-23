@@ -8,6 +8,7 @@ const links = [
   { name: "alert", href: "/dashboard/alert" },
   { name: "button", href: "/dashboard/button" },
   { name: "alert dialog", href: "/dashboard/alert-dialog" },
+  { name: "dialog", href: "/dashboard/dialog" },
 ];
 
 export default function DashboardLayout({
@@ -97,7 +98,7 @@ export default function DashboardLayout({
               </Link>
             </div>
             <div className="flex items-center">
-              <div className="bg-blue-500 text-white p-2 rounded-full w-12 h-12 flex items-center justify-center">
+              <div className="bg-blue-500 text-white p-2 rounded-full w-10 h-10 flex items-center justify-center text-sm">
                 EG
               </div>
             </div>
