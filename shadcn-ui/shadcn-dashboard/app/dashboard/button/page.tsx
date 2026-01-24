@@ -5,7 +5,7 @@ import { ChevronRightIcon, LoaderCircle, User } from "lucide-react";
 
 const ButtonPage = () => {
   return (
-    <div className="flex flex-wrap items-center gap-2 md:flex-row">
+    <section className="flex flex-wrap items-center gap-2 md:flex-row">
       <Button>default</Button>
       <Button variant="destructive">destructive</Button>
       <Button variant="ghost">ghost</Button>
@@ -29,7 +29,7 @@ const ButtonPage = () => {
         <LoaderCircle className="animate-spin" />
         Please wait
       </Button>
-    </div>
+    </section>
   );
 };
 

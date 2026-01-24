@@ -9,7 +9,8 @@ const links = [
   { name: "button", href: "/dashboard/button" },
   { name: "alert dialog", href: "/dashboard/alert-dialog" },
   { name: "dialog", href: "/dashboard/dialog" },
-];
+  { name: "badge", href: "/dashboard/badge" },
+].sort((a, b) => a.name.localeCompare(b.name));
 
 export default function DashboardLayout({
   children,
