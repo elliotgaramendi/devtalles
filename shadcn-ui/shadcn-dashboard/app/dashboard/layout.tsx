@@ -1,5 +1,6 @@
 'use client';
 
+import { Avatar, AvatarBadge, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import Link from "next/link";
 import { useState } from 'react';
 
@@ -101,9 +102,11 @@ export default function DashboardLayout({
               </Link>
             </div>
             <div className="flex items-center">
-              <div className="bg-blue-500 text-white p-2 rounded-full w-10 h-10 flex items-center justify-center text-sm">
-                EG
-              </div>
+              <Avatar>
+                <AvatarImage src="https://github.com/elliotgaramendi.png" alt="Elliot Garamendi" />
+                <AvatarFallback>EG</AvatarFallback>
+                <AvatarBadge className="bg-green-600 dark:bg-green-800" />
+              </Avatar>
             </div>
           </div>
         </div>
