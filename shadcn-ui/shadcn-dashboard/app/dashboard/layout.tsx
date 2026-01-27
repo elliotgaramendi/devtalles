@@ -13,6 +13,7 @@ const links = [
   { name: "badge", href: "/dashboard/badge" },
   { name: "calendar", href: "/dashboard/calendar" },
   { name: "avatar", href: "/dashboard/avatar" },
+  { name: "card", href: "/dashboard/card" },
 ].sort((a, b) => a.name.localeCompare(b.name));
 
 export default function DashboardLayout({
@@ -26,7 +27,7 @@ export default function DashboardLayout({
     setSidebarOpen(!sidebarOpen);
   };
   return (
-    <>
+    <header className="relative z-50">
       <nav className="bg-white border-b border-gray-200 fixed z-30 w-full">
         <div className="px-3 py-3 lg:px-5 lg:pl-3">
           <div className="flex items-center justify-between">
@@ -287,6 +288,6 @@ export default function DashboardLayout({
           </p>
         </div>
       </div>
-    </>
+    </header>
   );
 }
