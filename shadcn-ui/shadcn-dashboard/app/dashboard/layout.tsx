@@ -2,7 +2,7 @@
 
 import { Avatar, AvatarBadge, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import Link from "next/link";
-import { useState } from 'react';
+import { ReactNode, useState } from 'react';
 
 const links = [
   { name: "accordion", href: "/dashboard/accordion" },
@@ -21,12 +21,13 @@ const links = [
   { name: "context menu", href: "/dashboard/context-menu" },
   { name: "menubar", href: "/dashboard/menubar" },
   { name: "input OTP", href: "/dashboard/input-otp" },
+  { name: "progress", href: "/dashboard/progress" },
 ].sort((a, b) => a.name.localeCompare(b.name));
 
 export default function DashboardLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
