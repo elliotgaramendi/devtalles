@@ -1,6 +1,6 @@
 "use client"
 
-import { ColumnDef, SortDirection } from "@tanstack/react-table";
+import { ColumnDef, FilterFn, Row, SortDirection } from "@tanstack/react-table";
 import { ChevronDown, ChevronUp, MoreHorizontal } from "lucide-react";
 import { toast } from 'sonner';
 
@@ -28,6 +28,15 @@ const statusVariants = {
 
 type Status = keyof typeof statusVariants
 
+const myCustomFilterFn: FilterFn<Payment> = (row: Row<Payment>, columnId: string, filterValue: string) => {
+  filterValue = filterValue.toLowerCase();
+
+  const filterParts = filterValue.split(" ");
+  const rowValues =
+    `${row.original.email} ${row.original.clientName} ${row.original.status}`.toLowerCase();
+
+  return filterParts.every((part) => rowValues.includes(part));
+};
 
 const SortedIcon = ({ isSorted }: { isSorted: false | SortDirection }) => {
   if (isSorted === "asc") {
@@ -80,6 +89,7 @@ export const columns: ColumnDef<Payment>[] = [
   },
   {
     accessorKey: "email",
+    filterFn: myCustomFilterFn,
     header: ({ column }) => {
       return (
         <Button
