@@ -78,7 +78,7 @@ export function DataTable<TData, TValue>({
   });
 
   return (
-    <div>
+    <div className="flex flex-col gap-4">
       <div className="flex flex-col md:flex-row items-center justify-between gap-4 py-4">
         <Input
           placeholder="Filter..."
@@ -196,11 +196,30 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      <div className="flex items-center not-visited:justify-between">
+      <div className="flex flex-col md:flex-row items-center not-visited:justify-between">
         <div className="text-muted-foreground flex-1 text-sm">
           {table.getFilteredSelectedRowModel().rows.length} of{" "}
           {table.getFilteredRowModel().rows.length} row(s) selected.
         </div>
+        <Select
+          onValueChange={(value) => {
+            table.setPageSize(+value);
+          }}
+        >
+          <SelectTrigger className="w-45 m-2">
+            <SelectValue placeholder="10 Rows" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>Rows per page</SelectLabel>
+              <SelectItem value="10">10</SelectItem>
+              <SelectItem value="20">20</SelectItem>
+              <SelectItem value="30">30</SelectItem>
+              <SelectItem value="50">40</SelectItem>
+              <SelectItem value="100">100</SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
         <div className="flex items-center justify-end space-x-2 py-4">
           <Button
             variant="outline"
