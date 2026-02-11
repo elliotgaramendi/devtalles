@@ -31,7 +31,8 @@ const links = [
   { name: "dropdown menu", href: "/dashboard/dropdown-menu" },
   { name: "select", href: "/dashboard/select" },
   { name: "radio group", href: "/dashboard/radio-group" },
-  { name: "switch", href: "/dashboard/switch" }
+  { name: "switch", href: "/dashboard/switch" },
+  { name: "forms", href: "/dashboard/forms" }
 ].sort((a, b) => a.name.localeCompare(b.name));
 
 export default function DashboardLayout({
