@@ -1,0 +1,1480 @@
+{
+  "name": "scraping-websites",
+  "nodes": [
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1oyBrruL8MZpOz6akpWnbIAmWtxktZUyy5mNr6dCkwLE",
+          "mode": "list",
+          "cachedResultName": "Course Scraping",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1oyBrruL8MZpOz6akpWnbIAmWtxktZUyy5mNr6dCkwLE/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Webs",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1oyBrruL8MZpOz6akpWnbIAmWtxktZUyy5mNr6dCkwLE/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        272,
+        224
+      ],
+      "id": "99ad740a-d9c1-4010-9d68-48f1ef82b1f4",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "uHIIvKRo7RQz3rID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Start of process\nTake websites to search for information on them.",
+        "height": 112,
+        "width": 608,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        32,
+        0
+      ],
+      "id": "a0212328-948e-45ea-8ef8-bd30235109f8",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## Get information\nGet HTML, transform it to Markdown, Consult OpenAI",
+        "height": 112,
+        "width": 976
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        688,
+        0
+      ],
+      "id": "0d41361f-57e1-459b-b03b-37beafb83082",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## Firecrawl\nSecure Sites",
+        "height": 112,
+        "width": 160,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2176,
+        0
+      ],
+      "id": "1388b440-cfae-44a9-b47e-3d7d10172da3",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "## Document\nUpdate spreadsheet and create Google Doc",
+        "height": 112,
+        "width": 1024,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2400,
+        0
+      ],
+      "id": "8160f499-53dd-4309-8b94-5cc757026fcb",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {}
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        48,
+        128
+      ],
+      "id": "97ecbc2e-0b77-4d91-a257-181840d6ccf6",
+      "name": "Find sites to investigate"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        48,
+        320
+      ],
+      "id": "2db17459-48c6-4b08-aa8b-f522917334b6",
+      "name": "Manual process start"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "a0e46e75-f4d4-4833-87f5-5b333ffaa301",
+              "leftValue": "={{ $json.Web }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "eacfd002-74b1-4d2b-8772-ec4845787ae9",
+              "leftValue": "={{ $json.Web }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        496,
+        224
+      ],
+      "id": "1c30d33f-e77d-43e2-ba0e-00d40f28ee53",
+      "name": "Filter websites with links"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.Web }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        720,
+        224
+      ],
+      "id": "971b376c-7cfd-40b9-82ce-048f0c14d307",
+      "name": "Get HTML from the website"
+    },
+    {
+      "parameters": {
+        "html": "={{ $json.data }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.markdown",
+      "typeVersion": 1,
+      "position": [
+        944,
+        224
+      ],
+      "id": "66fca7d8-62c0-4de4-8c12-c06ac87d8db5",
+      "name": "Convert to Markdown"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-5-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-5-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=# Información\nEres un asistente para extraer datos de un sitio web, se te dará la información en formato Markdown, y necesito que retornes la información en el formato deseado.\n\nNo retornes nada más de lo que te necesito.\n\nSi el URL no está completo, completarlo usando el URL que también te proveeran del sitio del cual se extrae la información.\n\n## Objetivo\nInformación que necesitas extraer y encontrar: \n\n- Nombre del instructor (instructorName)\n- url del curso de Udemy (udemyUrl) (si lo tiene, si no null)\n- url del curso de DevTalles (devtallesUrl) \n- Nombre del curso (courseName)\n- Descripción del curso (description)\n- Categoría del curso (category)\n- Otra información relevante (additionalInformation)\n\n## Ejemplo de salida\nNecesito un json con la siguiente estructura:\n[\n{\n  courseName: 'XXX',\n  instructor: 'XXX',\n  devtallesUrl: 'https://xxx',\n  udemyUrl: 'https://xxx',\n  description: 'xxx',\n  category: 'xxx',\n  additionalInformation: 'xxxx' \n},\n{\n  courseName: 'XXX',\n  instructor: 'XXX',\n  devtallesUrl: 'https://xxx',\n  udemyUrl: 'https://xxx',\n  description: 'xxx',\n  category: 'xxx',\n  additionalInformation: 'xxxx' \n}\n]\n",
+              "role": "system"
+            },
+            {
+              "content": "=# URL del sitio\n{{ $('Get row(s) in sheet').item.json.Web }}\n\n# Data a extrar\n{{ $json.data }}"
+            }
+          ]
+        },
+        "jsonOutput": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        1168,
+        224
+      ],
+      "id": "ac350f1a-14e2-4a76-b068-49741ebacd0e",
+      "name": "Send information to OpenAI"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "message.content.courses",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        1520,
+        224
+      ],
+      "id": "47436e6c-fe22-4ac6-90c8-68f286e45065",
+      "name": "Extract course array"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1728,
+        224
+      ],
+      "id": "95a70784-e9bc-433b-8081-b43f8cb4246a",
+      "name": "Sweep each course"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1oyBrruL8MZpOz6akpWnbIAmWtxktZUyy5mNr6dCkwLE",
+          "mode": "list",
+          "cachedResultName": "Course Scraping",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1oyBrruL8MZpOz6akpWnbIAmWtxktZUyy5mNr6dCkwLE/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1111955540,
+          "mode": "list",
+          "cachedResultName": "Results",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1oyBrruL8MZpOz6akpWnbIAmWtxktZUyy5mNr6dCkwLE/edit#gid=1111955540"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Name": "={{ $json.courseName }}",
+            "Instructor": "={{ $json.instructor }}",
+            "DevTalles": "={{ $json.devtallesUrl }}",
+            "Udemy": "={{ $json.udemyUrl }}",
+            "Description": "={{ $json.description }}"
+          },
+          "matchingColumns": [
+            "Name"
+          ],
+          "schema": [
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Instructor",
+              "displayName": "Instructor",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "DevTalles",
+              "displayName": "DevTalles",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Udemy",
+              "displayName": "Udemy",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Description",
+              "displayName": "Description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Syllabus",
+              "displayName": "Syllabus",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1984,
+        240
+      ],
+      "id": "896a955f-47d8-4c2a-b10a-6440138d969d",
+      "name": "Update general course information",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "uHIIvKRo7RQz3rID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.firecrawl.dev/v2/scrape",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer fc-eb1ae0f9b50b47b5b183b0bbf15e5471"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"url\": \"www.udemy.com/course/nest-framework/?couponCode=AGOSTO-BEST-2025\",\n  \"onlyMainContent\": true,\n  \"maxAge\": 172800000,\n  \"parsers\": [\n    \"pdf\"\n  ],\n  \"formats\": [\n    \"markdown\"\n  ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2208,
+        -224
+      ],
+      "id": "5bb6b646-048e-41fc-b695-7385da2f602c",
+      "name": "Obtain data using Firecrawl",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "operation": "scrape",
+        "url": "={{ $json.Udemy }}",
+        "requestOptions": {}
+      },
+      "type": "@mendable/n8n-nodes-firecrawl.firecrawl",
+      "typeVersion": 1,
+      "position": [
+        2208,
+        240
+      ],
+      "id": "155f5f01-f3a9-49be-8b1f-e7dd4ac4f223",
+      "name": "Extract information from Udemy"
+    },
+    {
+      "parameters": {
+        "folderId": "1dRozaJT5BKc3OLUMGPyz_c0xdwIWqrN3",
+        "title": "={{ $json.data.metadata.title.replaceAll(':','').replaceAll('|','-') }}"
+      },
+      "type": "n8n-nodes-base.googleDocs",
+      "typeVersion": 2,
+      "position": [
+        2432,
+        240
+      ],
+      "id": "a7951f5e-8842-4248-8811-5b779161f68c",
+      "name": "Create course document",
+      "credentials": {
+        "googleDocsOAuth2Api": {
+          "id": "6Q7XmSDRsIx9zVv1",
+          "name": "Google Docs account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1oyBrruL8MZpOz6akpWnbIAmWtxktZUyy5mNr6dCkwLE",
+          "mode": "list",
+          "cachedResultName": "Course Scraping",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1oyBrruL8MZpOz6akpWnbIAmWtxktZUyy5mNr6dCkwLE/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1111955540,
+          "mode": "list",
+          "cachedResultName": "Results",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1oyBrruL8MZpOz6akpWnbIAmWtxktZUyy5mNr6dCkwLE/edit#gid=1111955540"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Name": "={{ $('Update general course information').item.json.Name }}",
+            "Syllabus": "=https://docs.google.com/document/d/{{ $json.id }}"
+          },
+          "matchingColumns": [
+            "Name"
+          ],
+          "schema": [
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Instructor",
+              "displayName": "Instructor",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "DevTalles",
+              "displayName": "DevTalles",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Udemy",
+              "displayName": "Udemy",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Description",
+              "displayName": "Description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Syllabus",
+              "displayName": "Syllabus",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2656,
+        240
+      ],
+      "id": "e934fe77-403d-4e5d-baeb-733b6124ea61",
+      "name": "Update syllabus URL",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "uHIIvKRo7RQz3rID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-5-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-5-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=# Información\nEres un asistente para extraer la descripción de un curso que recibirás en formato Markdown y debes de extraer toda la informacón relevante que después será usada para crear un Documento de Google Docs.\n\nNo retornes nada más de lo que te necesito.\n\n## Ejemplo de salida:\nLa información de salida, en un formato que Google Docs pueda interpretar, con saltos de línea y demás.\n\n{\n  information: 'xxxxxx'\n}",
+              "role": "=system"
+            },
+            {
+              "content": "={{ $('Extract information from Udemy').item.json.data.markdown }}"
+            }
+          ]
+        },
+        "jsonOutput": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        2896,
+        240
+      ],
+      "id": "6a02ee0f-fbb3-4212-9432-b9303c12467c",
+      "name": "Extract information from the course"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentURL": "={{ $('Create course document').item.json.id }}",
+        "actionsUi": {
+          "actionFields": [
+            {
+              "action": "insert",
+              "text": "={{ $json.message.content.information }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.googleDocs",
+      "typeVersion": 2,
+      "position": [
+        3280,
+        240
+      ],
+      "id": "e29e6424-7722-420f-ae58-989a5dfb0f67",
+      "name": "Update the syllabus within Google Docs",
+      "credentials": {
+        "googleDocsOAuth2Api": {
+          "id": "6Q7XmSDRsIx9zVv1",
+          "name": "Google Docs account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "name": "End of course reading",
+      "typeVersion": 1,
+      "position": [
+        3520,
+        240
+      ],
+      "id": "d473ca11-5277-4431-adba-eafec1fef197"
+    }
+  ],
+  "pinData": {
+    "Send information to OpenAI": [
+      {
+        "json": {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": {
+              "courses": [
+                {
+                  "courseName": "Nest: Desarrollo backend escalable con Node",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/nest?coupon=AGOSTO-BEST-2025",
+                  "udemyUrl": "https://www.udemy.com/course/nest-framework/?couponCode=AGOSTO-BEST-2025",
+                  "description": "Nest es un framework de node extensible, versátil y progresivo que sirve como columna vertebral para aplicaciones del lado del servidor.",
+                  "category": "Backend",
+                  "additionalInformation": "coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "React: De cero a experto",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/react-de-cero?coupon=AGOSTO-BEST-2025",
+                  "udemyUrl": "https://www.udemy.com/course/react-cero-experto/?couponCode=AGOSTO-BEST-2025",
+                  "description": "Aprende desde los fundamentos de React hasta aspectos avanzados y despliegues; todo el contenido está basado en TypeScript.",
+                  "category": "Desarrollo Web",
+                  "additionalInformation": "70K Alumnos; coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "Principios: SOLID y Clean Code",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/solid-clean-code?coupon=AGOSTO-BEST-2025",
+                  "udemyUrl": "https://www.udemy.com/course/solid-clean/?couponCode=AGOSTO-BEST-2025",
+                  "description": "Curso sobre los principios S.O.L.I.D. y fundamentos de arquitectura y desarrollo de software.",
+                  "category": "Infraestructura",
+                  "additionalInformation": "coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "Django: Crea aplicaciones web robustas con Python",
+                  "instructor": "Ricardo Cuéllar",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/django?coupon=AGOSTO-BEST-2025",
+                  "udemyUrl": "https://www.udemy.com/course/django-aplicaciones-robustas-con-python/?couponCode=AGOSTO-BEST-2025",
+                  "description": "Aprende Django desde las bases con este curso práctico: sitios web, bases de datos, APIs REST y despliegue.",
+                  "category": "Backend",
+                  "additionalInformation": "coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "Docker: Guía práctica de uso para desarrolladores",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/docker-guia-practica?coupon=AGOSTO-BEST-2025",
+                  "udemyUrl": "https://www.udemy.com/course/docker-guia-practica/?couponCode=AGOSTO-BEST-2025",
+                  "description": "Aprende Docker: creación de imágenes, versionamiento y construcción automática.",
+                  "category": "Infraestructura",
+                  "additionalInformation": "coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "Patrones de Diseño: Soluciones prácticas y eficientes",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/patrones-diseno?coupon=AGOSTO-BEST-2025",
+                  "udemyUrl": "https://www.udemy.com/course/patrones-diseno/?couponCode=AGOSTO-BEST-2025",
+                  "description": "24 patrones de diseño para resolver problemas comunes, escribir código más limpio y escalable.",
+                  "category": "Desarrollo Web",
+                  "additionalInformation": "coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": ".NET Backend: .NET Core, SQL Server y seguridad JWT",
+                  "instructor": "Teddy Paz",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/NET-Backend?coupon=AGOSTO-BEST-2025",
+                  "udemyUrl": "https://www.udemy.com/course/backend-net-core/?couponCode=AGOSTO-BEST-2025",
+                  "description": "Construye desde cero una API RESTful profesional en .NET para un e-commerce real, con JWT, EF y despliegue en la nube.",
+                  "category": "Backend",
+                  "additionalInformation": "coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "React Router: Navegación declarativa y framework",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/react-router",
+                  "udemyUrl": null,
+                  "description": "Aprende a trabajar con React Router como librería o framework, aprovechando server actions, pre-rendering y más.",
+                  "category": "Backend",
+                  "additionalInformation": "Gratis"
+                },
+                {
+                  "courseName": "Java avanzado: reactividad, concurrencia y patrones",
+                  "instructor": "Gabriel Chaldú",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/java-avanzado?coupon=AGOSTO-BEST-2025",
+                  "udemyUrl": "https://www.udemy.com/course/java-avanzado/?couponCode=AGOSTO-BEST-2025",
+                  "description": "Lleva Java al siguiente nivel: código limpio, Streams, RxJava, concurrencia, patrones y proyectos prácticos.",
+                  "category": "Backend",
+                  "additionalInformation": "coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "NestJS + Microservicios: Aplicaciones escalables y modulares",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/nestjs-microservicios?coupon=AGOSTO-BEST-2025",
+                  "udemyUrl": "https://www.udemy.com/course/nestjs-microservicios/?couponCode=AGOSTO-BEST-2025",
+                  "description": "Crea sistemas distribuidos usando múltiples bases de datos, transportadores y técnicas para escalar microservicios.",
+                  "category": "Backend",
+                  "additionalInformation": "coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "SQL de cero: Tu guía práctica con PostgreSQL",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/sql-con-postgres?coupon=AGOSTO-BEST-2025",
+                  "udemyUrl": "https://www.udemy.com/course/sql-de-cero/?couponCode=AGOSTO-BEST-2025",
+                  "description": "Desde cero hasta nivel competitivo: diseño de bases, consultas SQL, triggers, funciones y procedimientos.",
+                  "category": "Base de datos",
+                  "additionalInformation": "coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "Java: Explora el lenguaje desde cero",
+                  "instructor": "Gabriel Chaldú",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/Java?coupon=AGOSTO-BEST-2025",
+                  "udemyUrl": "https://www.udemy.com/course/devtalles-java/?couponCode=AGOSTO-BEST-2025",
+                  "description": "Aprende Java desde cero: sintaxis, POO, colecciones, archivos, excepciones y patrones como MVC.",
+                  "category": "Backend",
+                  "additionalInformation": "coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "Python: Fundamentos hasta los detalles",
+                  "instructor": "Ricardo Cuéllar",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/python?coupon=AGOSTO-BEST-2025",
+                  "udemyUrl": "https://www.udemy.com/course/devtalles-python/?couponCode=AGOSTO-BEST-2025",
+                  "description": "Bases de Python: variables, control, funciones, POO, módulos y entornos virtuales, con ejemplos prácticos.",
+                  "category": "Backend",
+                  "additionalInformation": "coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "C#: Empieza tu camino en el lenguaje",
+                  "instructor": "Teddy Paz",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/csharp?coupon=ATBMICASA",
+                  "udemyUrl": "https://www.udemy.com/course/devtalles-csharp/?couponCode=AGOSTO-BEST-2025",
+                  "description": "Aprende C# desde cero: sintaxis, POO, LINQ, archivos JSON, MVC y APIs con ASP.NET Core.",
+                  "category": "Backend",
+                  "additionalInformation": "devtalles coupon=ATBMICASA; udemy coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "Zustand: Gestor de estado para React",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/zustand-gestor-de-estado-para-react",
+                  "udemyUrl": "https://www.udemy.com/course/react-zustand/?couponCode=AGOSTO-BEST-2025",
+                  "description": "Zustand como reemplazo directo a Redux, Redux Toolkit y ContextAPI para gestionar estado en React.",
+                  "category": "Desarrollo Web",
+                  "additionalInformation": "coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "React Pro: Lleva tus bases al siguiente nivel",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/react-pro?coupon=AGOSTO-BEST-2025",
+                  "udemyUrl": "https://www.udemy.com/course/react-pro/?couponCode=AGOSTO-BEST-2025",
+                  "description": "Curso avanzado para mejorar habilidades en React (para quienes ya conocen Hooks).",
+                  "category": "Desarrollo Web",
+                  "additionalInformation": "coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "GIT+GitHub: Todo un sistema de control de versiones de cero",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/git-github-control-versiones?coupon=AGOSTO-BEST-2025",
+                  "udemyUrl": "https://www.udemy.com/course/git-github/?couponCode=AGOSTO-BEST-2025",
+                  "description": "Domina Git, GitHub, Markdown, repositorios, issues, wikis y trabajo en equipo.",
+                  "category": "Infraestructura",
+                  "additionalInformation": "coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "RN Expo + Gemini: Aplicaciones con inteligencia artificial",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/expo-gemini?coupon=AGOSTO-BEST-2025",
+                  "udemyUrl": "https://www.udemy.com/course/expo-gemini/?couponCode=AGOSTO-BEST-2025",
+                  "description": "Integra Google Gemini en React Native Expo con un backend en Nest para funcionalidades de IA.",
+                  "category": "Móvil",
+                  "additionalInformation": "coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "Nest + GraphQL: Evoluciona tus APIs",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/nest-graphql?coupon=AGOSTO-BEST-2025",
+                  "udemyUrl": "https://www.udemy.com/course/nest-graphql/?couponCode=AGOSTO-BEST-2025",
+                  "description": "Implementa GraphQL en el backend con Nest.js (Code First) para APIs flexibles y dinámicas.",
+                  "category": "Backend",
+                  "additionalInformation": "coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "React Native CLI: Aplicaciones nativas para IOS y Android",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/react-native?coupon=AGOSTO-BEST-2025",
+                  "udemyUrl": "https://www.udemy.com/course/react-native-fh/?couponCode=AGOSTO-BEST-2025",
+                  "description": "Curso completo de React Native con CLI, más de 33 horas de contenido y despliegues en tiendas.",
+                  "category": "Móvil",
+                  "additionalInformation": "coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "Flutter + Gemini: Aplicaciones con inteligencia artificial",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/Flutter-Gemini?coupon=AGOSTO-BEST-2025",
+                  "udemyUrl": "https://www.udemy.com/course/flutter-gemini/?couponCode=AGOSTO-BEST-2025",
+                  "description": "Trabaja con la IA de Google Gemini usando su SDK nativo siguiendo buenas prácticas.",
+                  "category": "Móvil",
+                  "additionalInformation": "coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "Flutter móvil: Recursos Nativos - Nivel intermedio",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/flutter-movil-intermedio?coupon=AGOSTO-BEST-2025",
+                  "udemyUrl": "https://www.udemy.com/course/flutter-movil-recursos-nativos/?couponCode=AGOSTO-BEST-2025",
+                  "description": "Uso de recursos nativos: sensores, biométricos, deep-linking, mapas, ads y más.",
+                  "category": "Dart Flutter",
+                  "additionalInformation": "355 Alumnos; coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "OpenAI: Ejercicios y asistentes con Angular + NestJS",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/openai-angular-nestjs?coupon=AGOSTO-BEST-2025",
+                  "udemyUrl": "https://www.udemy.com/course/angular-nest-openai/?couponCode=AGOSTO-BEST-2025",
+                  "description": "Curso práctico de OpenAI: uso en Node, consumo desde Angular, generación de imágenes, audio, asistentes.",
+                  "category": "Backend",
+                  "additionalInformation": "coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "React Native Expo: Aplicaciones nativas para iOS y Android",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/react-native-expo?coupon=AGOSTO-BEST-2025",
+                  "udemyUrl": "https://www.udemy.com/course/react-native-expo/?couponCode=AGOSTO-BEST-2025",
+                  "description": "Curso completo de React Native con Expo: más de 25 horas, despliegues incluidos.",
+                  "category": "Móvil",
+                  "additionalInformation": "coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "Dart: De cero hasta los detalles",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/dart-cero-hasta-detalles?coupon=AGOSTO-BEST-2025",
+                  "udemyUrl": "https://www.udemy.com/course/dart-de-cero-hasta-los-detalles/?couponCode=AGOSTO-BEST-2025",
+                  "description": "Desde lo más básico de Dart hasta temas complejos necesarios para trabajar con tecnologías que usan Dart.",
+                  "category": "Dart Flutter",
+                  "additionalInformation": "coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "ReactiveX - RxJs: De cero hasta los detalles",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/reactivex-rxjs?coupon=AGOSTO-BEST-2025",
+                  "udemyUrl": "https://www.udemy.com/course/rxjs-de-cero-hasta-los-detalles/?couponCode=AGOSTO-BEST-2025",
+                  "description": "Enseña fundamentos y operadores de RxJS y programación reactiva con observables.",
+                  "category": "Desarrollo Web",
+                  "additionalInformation": "coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "Astro: El framework para sitios web orientados al contenido",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/Astro?coupon=AGOSTO-BEST-2025",
+                  "udemyUrl": "https://www.udemy.com/course/astro-guia-completa/?couponCode=AGOSTO-BEST-2025",
+                  "description": "Aprende a usar Astro para construir sitios web rápidos y eficientes con tecnologías conocidas.",
+                  "category": "Desarrollo Web",
+                  "additionalInformation": "1.5K Alumnos; coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "Angular: Aplicaciones en tiempo real con sockets y rest",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": null,
+                  "udemyUrl": "https://www.udemy.com/course/angular-aplicaciones-en-tiempo-real/?couponCode=AGOSTO-BEST-2025",
+                  "description": "Crea servidores REST e integra comunicación por sockets con varias aplicaciones Angular en tiempo real.",
+                  "category": "Desarrollo Web",
+                  "additionalInformation": "coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "Vue + TS: Lleva tus bases al siguiente nivel - Intermedio",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/Vue-intermedio?coupon=AGOSTO-BEST-2025",
+                  "udemyUrl": "https://www.udemy.com/course/vue-intermedio/?couponCode=AGOSTO-BEST-2025",
+                  "description": "Curso orientado a usuarios con base en Vue, todo en TypeScript usando script setup y código reusable.",
+                  "category": "Desarrollo Web",
+                  "additionalInformation": "coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "Angular: De cero a experto",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/angular-moderno?coupon=AGOSTO-BEST-2025",
+                  "udemyUrl": "https://www.udemy.com/course/angular-fernando-herrera/?couponCode=AGOSTO-BEST-2025",
+                  "description": "Aprende Angular en profundidad con el nuevo paradigma Zoneless basado en señales, desde cero con ejercicios prácticos.",
+                  "category": "Desarrollo Web",
+                  "additionalInformation": "48K Alumnos; coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "JavaScript Moderno: Guía para dominar el lenguaje",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/javascript-moderno?coupon=AGOSTO-BEST-2025",
+                  "udemyUrl": "https://www.udemy.com/course/javascript-fernando-herrera/?couponCode=AGOSTO-BEST-2025",
+                  "description": "Enseña JavaScript actual desde cero hasta nivel avanzado y competitivo, base para librerías y frameworks.",
+                  "category": "Desarrollo Web",
+                  "additionalInformation": "coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "Flutter Móvil: De cero a experto",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/flutter-movil-cero-a-experto?coupon=AGOSTO-BEST-2025",
+                  "udemyUrl": "https://www.udemy.com/course/flutter-cero-a-experto/?couponCode=AGOSTO-BEST-2025",
+                  "description": "Cubre todo lo necesario de Flutter para crear apps móviles y desplegarlas, siguiendo DDD.",
+                  "category": "Dart Flutter",
+                  "additionalInformation": "5.7K Alumnos; coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "NestJS + Testing: Pruebas unitarias y end to end (E2E)",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/NestJS-Testing?coupon=AGOSTO-BEST-2025",
+                  "udemyUrl": "https://www.udemy.com/course/nestjs-testing-e2e/?couponCode=AGOSTO-BEST-2025",
+                  "description": "Aprende a realizar pruebas unitarias, integración y E2E en aplicaciones NestJS con Jest.",
+                  "category": "Backend",
+                  "additionalInformation": "coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "React: Aplicaciones en tiempo real con socket-io",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/React-con-Socket-io?coupon=AGOSTO-BEST-2025",
+                  "udemyUrl": "https://www.udemy.com/course/react-socket-io-fernando/?couponCode=AGOSTO-BEST-2025",
+                  "description": "Curso enfocado en manejar React con Socket.io para crear aplicaciones con comunicación instantánea.",
+                  "category": "Desarrollo Web",
+                  "additionalInformation": "coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "Flutter Intermedio: Diseños profesionales y animaciones",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/flutter-Intermedio?coupon=AGOSTO-BEST-2025",
+                  "udemyUrl": "https://www.udemy.com/course/flutter-disenos-y-animaciones/?couponCode=AGOSTO-BEST-2025",
+                  "description": "Aprende a crear animaciones personalizadas y diseños atractivos para apps móviles y tabletas.",
+                  "category": "Dart Flutter",
+                  "additionalInformation": "coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "Vue.js - de Cero a Experto: Composition Api",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/vue-cero-a-experto?coupon=AGOSTO-BEST-2025",
+                  "udemyUrl": "https://www.udemy.com/course/vuejs-fh/?couponCode=AGOSTO-BEST-2025",
+                  "description": "Curso renovado que se enfoca en Composition API, TypeScript y Vitest para crear aplicaciones modernas.",
+                  "category": "Desarrollo Web",
+                  "additionalInformation": "coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "PWA - Aplicaciones Web Progresivas: De cero a experto",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/PWA?coupon=AGOSTO-BEST-2025",
+                  "udemyUrl": "https://www.udemy.com/course/aplicaciones-web-progresivas/?couponCode=AGOSTO-BEST-2025",
+                  "description": "Aprende a crear y transformar aplicaciones web en PWAs con offline, notificaciones push y más.",
+                  "category": "Desarrollo Web",
+                  "additionalInformation": "coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "NodeJS: De cero a experto",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/nodejs-de-cero-a-experto?coupon=AGOSTO-BEST-2025",
+                  "udemyUrl": "https://www.udemy.com/course/nodejs-de-cero-a-experto/?couponCode=AGOSTO-BEST-2025",
+                  "description": "Curso para empezar a trabajar con Node en backend y usarlo en proyectos reales.",
+                  "category": "Backend",
+                  "additionalInformation": "2K Alumnos; coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "Shadcn/ui: Componentes accesibles y personalizables",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/shadcn-ui",
+                  "udemyUrl": "https://www.udemy.com/course/shadcnui-components/",
+                  "description": "Aprende a usar y configurar la librería shadcn/ui para tener control absoluto sobre componentes React.",
+                  "category": "Desarrollo Web",
+                  "additionalInformation": "2K Alumnos"
+                },
+                {
+                  "courseName": "JavaScript: de cero hasta los detalles",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": null,
+                  "udemyUrl": "https://www.udemy.com/course/javascript-de-cero-hasta-los-detalles/?couponCode=AGOSTO-BEST-2025",
+                  "description": "Al completar el curso tendrás una base sólida de JavaScript mediante ejercicios prácticos y explicaciones.",
+                  "category": "Desarrollo Web",
+                  "additionalInformation": "coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "Programación para principiantes",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/programacion-para-principiantes?coupon=AGOSTO-BEST-2025",
+                  "udemyUrl": "https://www.udemy.com/course/programacion-para-principiantes/?couponCode=AGOSTO-BEST-2025",
+                  "description": "Curso objetivo para brindar una base en lógica y programación, finalizando con un pequeño juego web.",
+                  "category": "Desarrollo Web",
+                  "additionalInformation": "coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "TypeScript: tu completa guía y manual de mano.",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/typescript-guia-completa?coupon=AGOSTO-BEST-2025",
+                  "udemyUrl": "https://www.udemy.com/course/typescript-guia-completa/?couponCode=AGOSTO-BEST-2025",
+                  "description": "Aprenderás TypeScript a detalle y realizarás más de 50 scripts para mejorar tu forma de programar.",
+                  "category": "Desarrollo Web",
+                  "additionalInformation": "coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "JavaScript: ECMAScript 6 y todos sus detalles",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": null,
+                  "udemyUrl": "https://www.udemy.com/course/ecmascript-6-es2015/?couponCode=AGOSTO-BEST-2025",
+                  "description": "Curso sobre ECMAScript 6 para usar JavaScript con más potencia y crear mejores aplicaciones web.",
+                  "category": "Desarrollo Web",
+                  "additionalInformation": "coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "Mini-Curso: Riverpod providers con anotaciones",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/riverpod-con-anotaciones",
+                  "udemyUrl": null,
+                  "description": "Mini-curso diseñado para enseñar Riverpod con anotaciones y generación de código (también incluye info tradicional).",
+                  "category": "Dart Flutter",
+                  "additionalInformation": "Gratis"
+                },
+                {
+                  "courseName": "Node: Autenticación Rest con Clean Architecture",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/node-clean-architecture",
+                  "udemyUrl": null,
+                  "description": "Orientado a programadores en Node que desean estructurar proyectos aplicando Clean Architecture y casos de uso con TypeScript.",
+                  "category": "Backend",
+                  "additionalInformation": ""
+                },
+                {
+                  "courseName": "REDUX en Angular con NGRX: Desde las bases hasta la práctica",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": null,
+                  "udemyUrl": "https://www.udemy.com/course/redux-ngrx-angular/?couponCode=AGOSTO-BEST-2025",
+                  "description": "Implementa el patrón Redux en proyectos Angular y controla el flujo de información en la app.",
+                  "category": "Desarrollo Web",
+                  "additionalInformation": "coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "Angular PRO: Lleva tus bases al siguiente nivel",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/angular-pro?coupon=AGOSTO-BEST-2025",
+                  "udemyUrl": "https://www.udemy.com/course/angular-pro-siguiente-nivel/?couponCode=AGOSTO-BEST-2025",
+                  "description": "Angular PRO incluye SSR, SSG, Testing, Zoneless, TanStack, optimizaciones y más.",
+                  "category": "Desarrollo Web",
+                  "additionalInformation": "1000 Alumnos; coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "Flutter Avanzado: Lleva tu conocimiento al siguiente nivel",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/flutter-avanzado?coupon=AGOSTO-BEST-2025",
+                  "udemyUrl": "https://www.udemy.com/course/flutter-avanzado-fernando-herrera/?couponCode=AGOSTO-BEST-2025",
+                  "description": "Curso avanzado con información para crear mejores aplicaciones con Flutter (no es para principiantes).",
+                  "category": "Dart Flutter",
+                  "additionalInformation": "coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "Flutter Web: Aplicaciones y páginas web profesionales",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/flutter-web?coupon=AGOSTO-BEST-2025",
+                  "udemyUrl": "https://www.udemy.com/course/flutter-web-fh/?couponCode=AGOSTO-BEST-2025",
+                  "description": "Crea aplicaciones web y páginas profesionales con Flutter usando Null-Safety.",
+                  "category": "Dart Flutter",
+                  "additionalInformation": "coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "OpenAI: Ejercicios prácticos y asistentes con React + NestJS",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/openai?coupon=AGOSTO-BEST-2025",
+                  "udemyUrl": "https://www.udemy.com/course/react-nest-openai/?couponCode=AGOSTO-BEST-2025",
+                  "description": "Consumo de OpenAI en Node desde React: generación de imágenes, audio, asistentes y más.",
+                  "category": "Backend",
+                  "additionalInformation": "coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "jQuery Avanzado - 100 trucos profesionales",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": null,
+                  "udemyUrl": "https://www.udemy.com/course/jquery-avanzado-100-trucos-profesionales/?couponCode=AGOSTO-BEST-2025",
+                  "description": "Reforzar conocimientos de jQuery mediante 100 ejercicios prácticos de alto nivel.",
+                  "category": "Desarrollo Web",
+                  "additionalInformation": "coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "jQuery: De cero a avanzado mediante ejercicios prácticos",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": null,
+                  "udemyUrl": "https://www.udemy.com/course/jquery-de-cero-a-avanzado-mediante-ejercicios-practicos/?couponCode=AGOSTO-BEST-2025",
+                  "description": "Adquirir conocimiento para manipular la página web dinámicamente y construir una colección de códigos.",
+                  "category": "Desarrollo Web",
+                  "additionalInformation": "coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "Visual Studio Code: Mejora tu velocidad para codificar",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/visual-studio-code",
+                  "udemyUrl": "https://www.udemy.com/vscode-mejora-tu-velocidad-para-codificar/",
+                  "description": "Mejora la velocidad de desarrollo con atajos, edición rápida y trucos en VSCode.",
+                  "category": "Infraestructura",
+                  "additionalInformation": "Gratis"
+                },
+                {
+                  "courseName": "NestJs + Reportes: Genera PDFs desde Node",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/nestjs-reportes?coupon=AGOSTO-BEST-2025",
+                  "udemyUrl": "https://www.udemy.com/course/nestjs-reportes/?couponCode=AGOSTO-BEST-2025",
+                  "description": "Genera reportes en PDF con NestJS integrando Pdfmake y ChartJS para informes personalizados.",
+                  "category": "Backend",
+                  "additionalInformation": "coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "PL/SQL de ORACLE en Español",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": null,
+                  "udemyUrl": "https://www.udemy.com/course/plsql-de-oracle/?couponCode=AGOSTO-BEST-2025",
+                  "description": "Aprende a crear scripts, métodos y funciones almacenadas en Oracle para mejorar eficiencia.",
+                  "category": "Base de datos",
+                  "additionalInformation": "coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "Next.js: El framework de React para producción",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/nextjs?coupon=AGOSTO-BEST-2025",
+                  "udemyUrl": "https://www.udemy.com/course/nextjs-fh/?couponCode=AGOSTO-BEST-2025",
+                  "description": "Next.js: renderizado híbrido, TypeScript, agrupación inteligente y más para producción.",
+                  "category": "Desarrollo Web",
+                  "additionalInformation": "coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "qwik: Introducción al Framework",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/qwik-introduccion",
+                  "udemyUrl": null,
+                  "description": "Entrada robusta al framework Qwik: rutas, estados, SSR, reanudabilidad e integraciones con OpenAI.",
+                  "category": "Desarrollo Web",
+                  "additionalInformation": "4.5K Alumnos; Gratis"
+                },
+                {
+                  "courseName": "Flutter BLoC: Mini-Curso",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/flutter-bloc",
+                  "udemyUrl": null,
+                  "description": "Mini-curso sobre Flutter Bloc para aprender cubits, blocs simples/compuestos y comunicación entre ellos.",
+                  "category": "Base de datos",
+                  "additionalInformation": "1.4K Alumnos"
+                },
+                {
+                  "courseName": "TanStack Query: Un poderoso gestor de estado asíncrono",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/tanstack-query",
+                  "udemyUrl": null,
+                  "description": "Mejora la experiencia de usuario y simplifica tareas relacionadas a peticiones HTTP con TanStack Query.",
+                  "category": "Desarrollo Web",
+                  "additionalInformation": "Gratis"
+                },
+                {
+                  "courseName": "Vue.js Tradicional: Options API",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": "https://cursos.devtalles.com/courses/vue-js?coupon=AGOSTO-BEST-2025",
+                  "udemyUrl": null,
+                  "description": "Curso sobre Vue.js tradicional usando Options API para construir aplicaciones versátiles.",
+                  "category": "Desarrollo Web",
+                  "additionalInformation": "coupon=AGOSTO-BEST-2025"
+                },
+                {
+                  "courseName": "Angular: Convierte cualquier template HTML en una WebAPP",
+                  "instructor": "Fernando Herrera",
+                  "devtallesUrl": null,
+                  "udemyUrl": "https://www.udemy.com/html-hacia-angular/",
+                  "description": "Curso básico y gratuito de Angular para transformar un template HTML en una WebApp.",
+                  "category": "Desarrollo Web",
+                  "additionalInformation": "Gratis"
+                }
+              ]
+            },
+            "refusal": null,
+            "annotations": []
+          },
+          "finish_reason": "stop"
+        }
+      }
+    ],
+    "Extract course array": [
+      {
+        "json": {
+          "courseName": "Nest: Desarrollo backend escalable con Node",
+          "instructor": "Fernando Herrera",
+          "devtallesUrl": "https://cursos.devtalles.com/courses/nest?coupon=AGOSTO-BEST-2025",
+          "udemyUrl": "https://www.udemy.com/course/nest-framework/?couponCode=AGOSTO-BEST-2025",
+          "description": "Nest es un framework de node extensible, versátil y progresivo que sirve como columna vertebral para aplicaciones del lado del servidor.",
+          "category": "Backend",
+          "additionalInformation": "coupon=AGOSTO-BEST-2025"
+        }
+      }
+    ],
+    "Extract information from Udemy": [
+      {
+        "json": {
+          "success": true,
+          "data": {
+            "markdown": "[Development](https://www.udemy.com/courses/development/) [Web Development](https://www.udemy.com/courses/development/web-development/) [NestJS](https://www.udemy.com/topic/nestjs/)\n\n![](https://img-c.udemycdn.com/course/240x135/4756420_66fc_4.jpg)Preview this course\n\n# Nest: Desarrollo backend escalable con Node\n\nREST, TypeScript, Websockets, Autenticación, Authorización, Docker, Mongo, Postgres, TypeOrm,\n\nBestseller\n\n[Rating: 4.9 out of 54.9(3,865 ratings)](https://www.udemy.com/course/nest-framework/#reviews)\n\n18,098 students\n\nCreated by [Fernando Herrera](https://www.udemy.com/course/nest-framework/#instructor-1), [{d/t} - DevTalles](https://www.udemy.com/course/nest-framework/#instructor-2)\n\nLast updated 5/2024\n\nSpanish\n\nSpanish \\[Auto\\]\n\nCurrent price$9.99\n\nOriginal Price~~$19.99~~\n\nDiscount50% off\n\n**4 days** left at this price!\n\nAdd to cart\n\nBuy now\n\n30-Day Money-Back Guarantee\n\n## This course includes:\n\n- 25 hours on-demand video\n\n- 31 articles\n\n- 2 downloadable resources\n\n- Access on mobile and TV\n\n- Full lifetime access\n\n- Certificate of completion\n\n\nShare [Gift this course](https://www.udemy.com/join/signup-popup/?locale=en_US&response_type=html&return_link=https%3A%2F%2Fwww.udemy.com%2Fcourse%2Fnest-framework%2F%3FcouponCode%3DAGOSTO-BEST-2025&source=course_landing_page&ref=&next=%2Fgift%2Fnest-framework%2F%3FcouponCode%3DAGOSTO-BEST-2025) Apply Coupon\n\n- **AGOSTO-BEST-2025** is applied\n- Instructor coupon\n\nApply couponApply\n\n![](https://img-c.udemycdn.com/course/240x135/4756420_66fc_4.jpg)Preview this course\n\nCurrent price$9.99\n\nOriginal Price~~$19.99~~\n\nDiscount50% off\n\n**4 days** left at this price!\n\nAdd to cart\n\nBuy now\n\n30-Day Money-Back Guarantee\n\n## This course includes:\n\n- 25 hours on-demand video\n\n- 31 articles\n\n- 2 downloadable resources\n\n- Access on mobile and TV\n\n- Full lifetime access\n\n- Certificate of completion\n\n\nShare [Gift this course](https://www.udemy.com/join/signup-popup/?locale=en_US&response_type=html&return_link=https%3A%2F%2Fwww.udemy.com%2Fcourse%2Fnest-framework%2F%3FcouponCode%3DAGOSTO-BEST-2025&source=course_landing_page&ref=&next=%2Fgift%2Fnest-framework%2F%3FcouponCode%3DAGOSTO-BEST-2025) Apply Coupon\n\n- **AGOSTO-BEST-2025** is applied\n- Instructor coupon\n\nApply couponApply\n\n## Training 2 or more people?\n\nGet your team access to 30,000+ top Udemy courses anytime, anywhere.\n\n[Try Udemy Business](https://www.udemy.com/udemy-business/?locale=en_US&path=request-demo-mx%2F&ref=marketplace_control_development&utm_campaign=mx-hooks&utm_content=clp&utm_medium=referral&utm_source=marketplace&utm_term=)\n\nNest: Desarrollo backend escalable con Node\n\nBestseller\n\n[Rating: 4.9 out of 54.9(3,865 ratings)](https://www.udemy.com/course/nest-framework/#reviews)\n\n18,098 students\n\nCurrent price$9.99\n\nOriginal Price~~$19.99~~\n\nAdd to cart\n\nOverviewCurriculumInstructorReviews\n\n## What you'll learn\n\n- Nest con TypeScript\n\n- Backend servers con Node\n\n- Restful APIS robustas y seguras\n\n- Conexiones con bases de datos SQL y NoSQL\n\n- Websockets\n\n- Validaciones de data y tipos\n\n- Nest Guards, interceptors, pipes, controllers, decorators, services, filters, modules y middlewares\n\n\n## Explore related topics\n\n- [NestJS](https://www.udemy.com/topic/nestjs/)\n- [Web Development](https://www.udemy.com/courses/development/web-development/)\n- [Development](https://www.udemy.com/courses/development/)\n\n## This course includes:\n\n- 25 hours on-demand video\n\n- 31 articles\n\n- 2 downloadable resources\n\n\n- Access on mobile and TV\n\n- Certificate of completion\n\n\n## Course content\n\n17 sections • 229 lectures • 25h 0m total length\n\nExpand all sections\n\n### Introducción al curso7 lectures • 37min\n\n- Video introductorio\n\n\n\nPreview02:31\n\n- Introducción al curso\n\n\n\n05:37\n\n- ¿Cómo funcionará el curso?\n\n\n\n06:15\n\n- ¿Preguntas?\n\n\n\n05:20\n\n- Instalaciones recomendadas\n\n\n\n13:47\n\n- Material adicional - Guía de Atajos\n\n\n\n03:28\n\n- ¡Únete a Nuestra Comunidad de DevTalles en Discord!\n\n\n\n00:18\n\n\n### Breve introducción a TypeScript y conocimientos generales necesarios18 lectures • 2hr 12min\n\n- Introducción a la sección\n\n\n\nPreview01:18\n\n- Temas puntuales de la sección\n\n\n\n00:17\n\n- Preparación del proyecto\n\n\n\nPreview07:27\n\n- Tipos y bases sobre módulos\n\n\n\nPreview08:57\n\n- Tipos de datos - continuación\n\n\n\n07:07\n\n- Objetos e interfaces\n\n\n\n10:48\n\n- Tipos en arreglos\n\n\n\n04:36\n\n- Clases y forma abreviada\n\n\n\n12:00\n\n- Getters, métodos y THIS\n\n\n\n08:31\n\n- Métodos asíncronos\n\n\n\n10:16\n\n- Colocar tipo de dato a respuestas http (genéricos)\n\n\n\n10:17\n\n- Inyección de dependencias\n\n\n\nPreview12:02\n\n- Genéricos + Sustitución de Liskov\n\n\n\n08:05\n\n- Resolver el principio de sustitución\n\n\n\n06:48\n\n- Decoradores\n\n\n\n09:53\n\n- Decorador de método - @Deprecated\n\n\n\n06:46\n\n- Resumen de lo aprendido\n\n\n\n06:51\n\n- Código fuente de la sección\n\n\n\n00:08\n\n\n### Primeros pasos en Nest16 lectures • 1hr 50min\n\n- Introducción a la sección\n\n\n\n03:40\n\n- Temas puntuales de la sección\n\n\n\n00:12\n\n- ¿Qué es Nest? y ¿Por qué usarlo?\n\n\n\n11:21\n\n- Instalar Nest CLI - Command Line Interface\n\n\n\n03:11\n\n- Generar nuestro primer proyecto - CarDealership\n\n\n\n06:37\n\n- Explicación de cada archivo y directorio\n\n\n\nPreview12:40\n\n- Módulos\n\n\n\n08:04\n\n- Controladores\n\n\n\n09:44\n\n- Desactivar Prettier\n\n\n\n01:36\n\n- Obtener un carro por ID\n\n\n\n10:12\n\n- Servicios\n\n\n\n06:33\n\n- Inyección de dependencias\n\n\n\n09:46\n\n- Pipes\n\n\n\n09:43\n\n- Exception Filters\n\n\n\nPreview07:30\n\n- Post, Patch y Delete\n\n\n\n09:18\n\n- Código fuente de la sección\n\n\n\n00:08\n\n\n### DTOs y Validación de información14 lectures • 1hr 26min\n\n- Introducción a la sección\n\n\n\n03:32\n\n- Temas puntuales de la sección\n\n\n\n00:09\n\n- Continuación de la sección\n\n\n\n04:54\n\n- Interfaces y UUID\n\n\n\n10:48\n\n- Pipe - ParseUUIDPipe\n\n\n\n05:22\n\n- DTO - Data Transfer Object\n\n\n\n08:29\n\n- ValidationPipe - Class Validator y Class Transformer\n\n\n\n08:34\n\n- Pipes Globales - A nivel de Aplicación\n\n\n\n08:09\n\n- Crear el nuevo carro\n\n\n\n06:48\n\n- Actualizar un carro\n\n\n\n08:34\n\n- Actualizar el listado de carros\n\n\n\n08:36\n\n- Borrar un carro\n\n\n\n04:50\n\n- Resumen de la sección\n\n\n\n07:26\n\n- Código fuente de la sección\n\n\n\n00:08\n\n\n### Nest CLI Resource - Brands CRUD9 lectures • 53min\n\n- Introducción a la sección\n\n\n\n02:58\n\n- Temas puntuales de la sección\n\n\n\n00:13\n\n- Continuación de la sección\n\n\n\n02:42\n\n- Nest CLI Resource - Brands\n\n\n\n11:41\n\n- Crear CRUD completo de Brands\n\n\n\n14:18\n\n- Crear servicio SEED para cargar datos\n\n\n\n05:10\n\n- Preparar servicios para insertar SEED\n\n\n\n07:00\n\n- Inyectar servicios en otros servicios\n\n\n\n09:19\n\n- Código fuente de la sección\n\n\n\n00:05\n\n\n### Generar build de producción básico2 lectures • 6min\n\n- Introducción a la sección\n\n\n\n01:20\n\n- Generar build de producción básico\n\n\n\n04:41\n\n\n### MongoDB Pokedex20 lectures • 2hr 3min\n\n- Introducción a la sección\n\n\n\n03:30\n\n- Temas puntuales de la sección\n\n\n\n00:09\n\n- Inicio de proyecto - Pokedex\n\n\n\n04:50\n\n- Servir contenido estático\n\n\n\n06:09\n\n- Global Prefix\n\n\n\n05:36\n\n- Docker - DockerCompose - MongoDB\n\n\n\n10:29\n\n- README.md\n\n\n\n03:34\n\n- Conectar Nest con Mongo\n\n\n\n05:41\n\n- Crear esquemas y Modelos\n\n\n\n10:33\n\n- POST - Recibir y validar la data\n\n\n\n06:49\n\n- Crear Pokémon en base de datos\n\n\n\n05:29\n\n- Responder un error específico\n\n\n\n09:59\n\n- FindOneBy - Buscar por nombre, MongoId y no\n\n\n\nPreview10:51\n\n- Actualizar Pokemon en base de datos\n\n\n\n08:01\n\n- Tarea - Validar valores únicos\n\n\n\n05:28\n\n- Eliminar un Pokemon\n\n\n\n04:37\n\n- CustomPipes - ParseMongoIdPipe\n\n\n\n10:47\n\n- Validar y eliminar en una sola consulta\n\n\n\n06:38\n\n- Respaldar código fuente en GitHub\n\n\n\n03:32\n\n- Código fuente de la sección\n\n\n\n00:05\n\n\n### Seed y Paginación13 lectures • 1hr 8min\n\n- Introducción a la sección\n\n\n\n02:05\n\n- Temas puntuales de la sección\n\n\n\n00:09\n\n- Continuación de proyecto\n\n\n\n02:51\n\n- Crear módulo SEED\n\n\n\n05:50\n\n- Nota de actualización - Axios\n\n\n\n00:20\n\n- Realizar petición http desde Nest\n\n\n\n11:22\n\n- Tarea - Insertar Pokemons por lote\n\n\n\n04:32\n\n- Resolución - Insertar Pokemons por lote\n\n\n\n06:01\n\n- Insertar multiples registros simultáneamente\n\n\n\n08:33\n\n- Crear un custom provider - opcional\n\n\n\n10:22\n\n- Paginación de Pokemons\n\n\n\n08:29\n\n- Transform DTOs\n\n\n\n07:01\n\n- Código fuente de la sección\n\n\n\n00:04\n\n\n### Variables de entorno - Deployment y Dockerizar la aplicación21 lectures • 2hr 27min\n\n- Introducción a la sección\n\n\n\n02:29\n\n- Temas puntuales de la sección\n\n\n\n00:05\n\n- Continuación de proyecto\n\n\n\n04:41\n\n- Configuración de variables de entorno\n\n\n\n06:49\n\n- Configuration Loader\n\n\n\n11:26\n\n- ConfigurationService\n\n\n\n11:15\n\n- joi - ValidationSchema\n\n\n\n08:31\n\n- ENV Template - Readme\n\n\n\n04:26\n\n- MongoDB - Aprovisionamiento\n\n\n\n06:23\n\n- Desplegar aplicación en la nube\n\n\n\n10:13\n\n- Bonus - Docker ¿Dockerizar?\n\n\n\n04:12\n\n- Bonus: Explicación general del Dockerfile\n\n\n\n15:23\n\n- Bonus: Definir la construcción de la imagen\n\n\n\n12:21\n\n- Bonus: Construir la imagen\n\n\n\n09:44\n\n- Bonus: Conservar la base de datos y analizar imagen\n\n\n\n07:18\n\n- Actualizar Readme.md\n\n\n\n03:47\n\n- Código fuente de la sección\n\n\n\n00:07\n\n- Nota de actualización\n\n\n\n00:14\n\n- \\\\* MongoAtlas - MongoDB en la nube\n\n\n\n07:48\n\n- Archivado Heroku - Desplegar aplicación en la nube\n\n\n\n11:07\n\n- Archivado Heroku - Desplegar en Heroku - Parte 2\n\n\n\n08:43\n\n\n### TypeORM - Postgres19 lectures • 2hr 14min\n\n- Introducción a la sección\n\n\n\n02:56\n\n- Temas puntuales de la sección\n\n\n\n00:07\n\n- Inicio de proyecto - TesloShop\n\n\n\n05:24\n\n- Docker - Instalar y correr Postgres\n\n\n\n10:31\n\n- Conectar Postgres con Nest\n\n\n\n10:05\n\n- TypeORM - Entity - Product\n\n\n\n08:08\n\n- Entidad sin relaciones\n\n\n\n07:05\n\n- Create Product DTO\n\n\n\n07:56\n\n- Insertar usando TypeORM\n\n\n\n10:17\n\n- Manejo de errores\n\n\n\n07:34\n\n- BeforeInsert y BeforeUpdate\n\n\n\n08:27\n\n- Get y Delete TypeORM\n\n\n\n08:56\n\n- Paginar en TypeORM\n\n\n\n09:34\n\n- Buscar por Slug o UUID\n\n\n\nPreview05:47\n\n- QueryBuilder\n\n\n\n07:47\n\n- Update en TypeORM\n\n\n\n09:38\n\n- BeforeUpdate\n\n\n\n05:00\n\n- Nueva columna - Tags\n\n\n\n08:40\n\n- Código fuente de la sección\n\n\n\n00:04\n\n\n7 more sections\n\n## Requirements\n\n- Conocimiento de JavaScript es necesario\n\n- Bases de TypeScript son recomendadas\n\n- Tener una idea general de Node es recomendado\n\n- Tener una idea de programación orientada a objetos es recomendada pero no necesaria\n\n\n## Description\n\nBienvenidos a mi curso completo sobre **Nest**\n\n**Nest es un framework de node** extensible, versátil y progresivo, el cual nos ofrece la columna vertebral de todo tipo de aplicaciones del lado del servidor. Con Nest tendremos el poder de crear backend servers siguiendo las buenas prácticas recomendadas por el **equipo de Nest** y el mismo **Kamil Mysliwiec**(autor de Nest)\n\nEl curso parte de cero conocimiento de Nest y TypeScript y poco a poco vamos creando aplicaciones más complejas hasta desplegarlas en producción.\n\nPuntualmente veremos temas como:\n\n01. Core building blocks\n\n    1. Services\n\n    2. Controllers\n\n    3. Providers\n\n    4. Decorators\n\n    5. Gateways\n\n    6. Guards\n\n    7. Interceptors\n\n    8. Exception Filters\n\n    9. Modules\n02. Docker\n\n    1. Docker-compose\n\n    2. Dockerization\n03. CORS\n\n04. Websockets\n\n05. Autentication y Authorization basado en roles\n\n06. JWTs\n\n07. Ciclo de vida de una petición\n\n08. Nest CLI\n\n09. Transacciones de base de datos\n\n10. Secuencias y UUID\n\n11. Restful endpoints\n\n12. Control de versiones con Git\n\n13. Despliegues a producción.\n\n14. Class transformation\n\n15. Validaciones de inicio a fin de un request\n\n16. DTOs\n\n17. TypeORM\n\n18. Postgres\n\n19. MongoDB\n\n20. TypeORM y Mongoose\n\n21. Patrón repository para TypeORM\n\n22. Schemas de Mongo\n\n23. Core building blocks personalizados\n\n24. Global Pipes, Filters, Exceptions.\n\n25. Carga y validación de archivos\n\n26. Principios SOLID\n\n27. Documentación automática y semi-automática\n\n28. Estructuras siguiendo las prácticas recomendadas por el equipo de Nest\n\n29. Ciclo de vida de Nest\n\n30. TypeScript\n\n31. Genericos e interfaces.\n\n32. Mucho mas.\n\n\nEl curso está pensado para ayudarlos **a empezar en Nest como para mejorar sus habilidades en este framework** tan poderoso, adicionalmente cuenta con un cheat-sheet personalizado por mi para ayudarlos en el aprendizaje que pueden imprimir y compartir.\n\n**Bases necesarias:**\n\nIdealmente el curso necesita conocimiento básico de JavaScript, Node y TypeScript, siempre soy de la opinión que para aprender un framework que se basa en JavaScript, es necesario tener las bases del mismo para no confundir conceptos. Si bien es cierto que el curso cuenta con las bases de TypeScript, es ideal conocerlo para no sentir la curva de aprendizaje alta.\n\n## Who this course is for:\n\n- Backend developers\n- Desarrolladores que quieran construir restful APIs\n- Personas con conocimiento de Nest que quieran mejorar habilidades\n\nShow moreShow less\n\n## Instructors\n\n[Fernando Herrera](https://www.udemy.com/user/550c38655ec11/)\n\nA Full-Stack Developer & Teacher\n\n[![](https://img-c.udemycdn.com/user/200_H/11767934_4361_2.jpg)](https://www.udemy.com/user/550c38655ec11/)\n\n- 4.8 Instructor Rating\n\n- 297,282 Reviews\n\n- 642,320 Students\n\n- 56 Courses\n\n\nSoy un analista programador de sistemas de computo, con poco más de 19 años en el mundo del desarrollo de aplicaciones frontend y backend.\n\nDurante mis últimos años me he dedicado a la enseñanza en línea,  mientras trabajo en una empresa en Canadá.\n\nMe encanta enseñar y programar, son mis dos pasatiempos favoritos que a su vez, es mi trabajo.\n\n[{d/t} - DevTalles](https://www.udemy.com/user/soporte-cursos-2/)\n\nPlataforma Educativa\n\n[![](https://img-c.udemycdn.com/user/200_H/267457580_ae55.jpg)](https://www.udemy.com/user/soporte-cursos-2/)\n\n- 4.8 Instructor Rating\n\n- 213,707 Reviews\n\n- 560,329 Students\n\n- 48 Courses\n\n\nDevTalles es una plataforma educativa en línea creada por Fernando Herrera que se especializa en cursos de desarrollo web y programación. Ofrece una variedad de cursos en tecnologías populares como React, Angular, Vue.js, TypeScript, SQL, y herramientas de inteligencia artificial. Estos cursos están diseñados tanto para principiantes como para desarrolladores avanzados que deseen profundizar sus conocimientos y adquirir habilidades competitivas.\n\n4.9 course rating4K ratings\n\nCarlos Luciano F.\n\nRating: 5.0 out of 53 weeks ago\n\nCF\n\n- Report\n\n\nExcelente como todo lo que hace este instructor. Muy recomendable para iniciarse en este framework después de aprender node con typescript.\n\nHelpful?\n\nAbner Jurado H.\n\nRating: 5.0 out of 5a month ago\n\nAH\n\n- Report\n\n\nEs un excelente curso, ideal para quienes comienzan desde cero con NestJS. Fernando explica cada concepto de forma clara y pausada, lo que facilita mucho el aprendizaje, incluso sin experiencia previa.Además, los ejercicios prácticos y el contenido adicional que ofrece complementan muy bien la teoría, ayudando a afianzar los conocimientos.Sin duda, un curso muy completo y bien estructurado. ¡Altamente recomendado!\n\nHelpful?\n\nCamilo Andrés Páez E.\n\nRating: 5.0 out of 5a month ago\n\nCE\n\n- Report\n\n\nUn curso excelente para quienes quieren llevar sus conocimientos de backend con Node.js al siguiente nivel. La forma en la que el instructor explica los conceptos es clara, directa y muy práctica. Cada módulo está bien estructurado, y los retos planteados no solo refuerzan lo aprendido, sino que también ayudan a desarrollar pensamiento crítico para resolver problemas reales. Sin duda, un contenido muy completo que me permitió adquirir nuevas habilidades y aplicar buenas prácticas de desarrollo backend con Nest.js.\n\nHelpful?\n\nIsidro S.\n\nRating: 4.5 out of 5a month ago\n\nIS\n\n- Report\n\n\nVengo de los cursos de Angular y la verdad si que se nota la gran similitud entre ambos, me ha facilitado mucho la curva de aprendizaje y además he aprendido cosas que llevaba tiempo queriendo aprender pero nunca me había puesto a ello como los websockets.Lo que si que me ha faltado es una sección de testing y algo más de profundidad en cómo se gestionan las bases de datos mediante las anotaciones, el curso explica que al ponerlas se crea la tabla automaticamente con las columnas definidas pero no entra en cómo gestionar el cambio de tipos de columna cuando la tabla ya está creada y rellena y esto es algo muy básico que de seguro nos encontraremos trabajando a la mínima.\n\nHelpful?\n\nShow all reviews\n\n## More Courses by [Fernando Herrera](https://www.udemy.com/user/550c38655ec11/)\n\n![](https://img-c.udemycdn.com/course/240x135/5500812_5acb_6.jpg)\n\n### [NodeJS: De cero a experto\\ Clean Architecture, DDD, WebHooks, WebSockets, Tareas automáticas, Despliegues, TypeScript, Edge, Testing y másRating: 4.8 out of 51981 reviews37.5 total hours389 lecturesAll LevelsCurrent price: $12.99Original price: $199.99](https://www.udemy.com/course/nodejs-de-cero-a-experto/)\n\nInstructors:\n\nFernando Herrera, {d/t} - DevTalles\n\nRating: 4.8 out of 54.8(1,981)\n\n37.5 total hours389 lecturesAll Levels\n\nCurrent price$12.99\n\nOriginal Price~~$199.99~~\n\n![](https://img-c.udemycdn.com/course/240x135/3662358_4d6e_5.jpg)\n\n### [Angular: De cero a experto - Edición 2025\\ Signals, componentes, servicios, zoneless, mapas, autenticación, despliegues, carga de archivos, Git, GitHub y mucho másRating: 4.8 out of 517902 reviews33.5 total hours345 lecturesAll LevelsCurrent price: $12.99Original price: $199.99](https://www.udemy.com/course/angular-fernando-herrera/)\n\nInstructors:\n\nFernando Herrera, {d/t} - DevTalles\n\nRating: 4.8 out of 54.8(17,902)\n\n33.5 total hours345 lecturesAll Levels\n\nCurrent price$12.99\n\nOriginal Price~~$199.99~~\n\n![](https://img-c.udemycdn.com/course/240x135/5132066_04b4_4.jpg)\n\n### [Flutter - Móvil: De cero a experto\\ Riverpod, BLoC, push y local notifications, DDD, cámara, videos, JWT, go\\_router, material 3, App Stores y másRating: 4.8 out of 55059 reviews50.5 total hours465 lecturesAll LevelsCurrent price: $12.99Original price: $199.99](https://www.udemy.com/course/flutter-cero-a-experto/)\n\nInstructors:\n\nFernando Herrera, {d/t} - DevTalles\n\nRating: 4.8 out of 54.8(5,059)\n\n50.5 total hours465 lecturesAll Levels\n\nCurrent price$12.99\n\nOriginal Price~~$199.99~~\n\n## More Courses by [{d/t} - DevTalles](https://www.udemy.com/user/soporte-cursos-2/)\n\n![](https://img-c.udemycdn.com/course/240x135/5500812_5acb_6.jpg)\n\n### [NodeJS: De cero a experto\\ Clean Architecture, DDD, WebHooks, WebSockets, Tareas automáticas, Despliegues, TypeScript, Edge, Testing y másRating: 4.8 out of 51981 reviews37.5 total hours389 lecturesAll LevelsCurrent price: $12.99Original price: $199.99](https://www.udemy.com/course/nodejs-de-cero-a-experto/)\n\nInstructors:\n\nFernando Herrera, {d/t} - DevTalles\n\nRating: 4.8 out of 54.8(1,981)\n\n37.5 total hours389 lecturesAll Levels\n\nCurrent price$12.99\n\nOriginal Price~~$199.99~~\n\n![](https://img-c.udemycdn.com/course/240x135/3662358_4d6e_5.jpg)\n\n### [Angular: De cero a experto - Edición 2025\\ Signals, componentes, servicios, zoneless, mapas, autenticación, despliegues, carga de archivos, Git, GitHub y mucho másRating: 4.8 out of 517902 reviews33.5 total hours345 lecturesAll LevelsCurrent price: $12.99Original price: $199.99](https://www.udemy.com/course/angular-fernando-herrera/)\n\nInstructors:\n\nFernando Herrera, {d/t} - DevTalles\n\nRating: 4.8 out of 54.8(17,902)\n\n33.5 total hours345 lecturesAll Levels\n\nCurrent price$12.99\n\nOriginal Price~~$199.99~~\n\n![](https://img-c.udemycdn.com/course/240x135/5132066_04b4_4.jpg)\n\n### [Flutter - Móvil: De cero a experto\\ Riverpod, BLoC, push y local notifications, DDD, cámara, videos, JWT, go\\_router, material 3, App Stores y másRating: 4.8 out of 55059 reviews50.5 total hours465 lecturesAll LevelsCurrent price: $12.99Original price: $199.99](https://www.udemy.com/course/flutter-cero-a-experto/)\n\nInstructors:\n\nFernando Herrera, {d/t} - DevTalles\n\nRating: 4.8 out of 54.8(5,059)\n\n50.5 total hours465 lecturesAll Levels\n\nCurrent price$12.99\n\nOriginal Price~~$199.99~~\n\nReport abuse\n\n![Udemy logo](https://cdn.cookielaw.org/logos/c7d0d27d-e055-4572-8927-d3c994df5f60/3275d2bc-df67-4c87-81ed-bdfb982b90c2/a3df5d54-4eba-4aeb-9fb3-189c22118d8c/udemy-logo.png)\n\n## Privacy Preference Center\n\nYour Opt Out Preference Signal is Honored\n\n- ### Cookie Preferences\n\n- ### Functional Cookies\n\n- ### Social Media Cookies\n\n- ### Advertising Cookies\n\n- ### Strictly Necessary Cookies\n\n- ### Performance Cookies\n\n\n#### Cookie Preferences\n\nWe use cookies to store or retrieve information on your browser. This information may relate to you, your preferences, or your device and is mostly used to make the site work as you expect it to. Because we respect your right to privacy, you can choose not to allow some types of cookies. Click on the different category headings to find out more and change your settings. However, blocking some types of cookies may impact your experience of the site and the services we are able to offer.\n\n\n[View Privacy Policy](https://www.udemy.com/terms/privacy/)\n\n#### Functional Cookies\n\nFunctional CookiesActive\n\nThese cookies enable the website to provide enhanced functionality and personalisation. They may be set by us or by third party providers whose services we have added to our pages. If you do not allow these cookies then some or all of these services may not function properly.\n\nCookies Details‎\n\n#### Social Media Cookies\n\nSocial Media CookiesActive\n\nThese cookies are set by social media services that we have added to the site to enable you to share our content with your friends and networks. They are capable of tracking your browser across other sites and building up a profile of your interests. This may impact the content and messages you see on other websites you visit. If you do not allow these cookies you may not be able to use or see these sharing tools.\n\nCookies Details‎\n\n#### Advertising Cookies\n\nAdvertising CookiesActive\n\nThese cookies may be set through our site by our advertising partners. They may be used by those companies to build a profile of your interests and show you relevant adverts on other sites. They do not store personally identifiable information but are based on uniquely identifying your browser and internet device. If you do not allow these cookies, you will experience less targeted advertising.\n\nCookies Details‎\n\n#### Strictly Necessary Cookies\n\nAlways Active\n\nThese cookies are necessary for the website to function and cannot be switched off in our systems. They are usually only set in response to actions made by you which amount to a request for services, such as setting your privacy preferences, logging in or filling in forms. You can set your browser to block or alert you about these cookies, but some parts of the site will not then work. These cookies do not store any personally identifiable information.\n\nCookies Details‎\n\n#### Performance Cookies\n\nPerformance CookiesActive\n\nThese cookies allow us to count visits and measure activity so we can improve the performance of our site. They help us to know which pages are the most and least popular and see how users move around the site. If you do not allow these cookies, we will not be able to monitor its performance.\n\nCookies Details‎\n\nBack Button\n\n### Cookie List\n\nFilter Button\n\nConsentLeg.Interest\n\ncheckbox labellabel\n\ncheckbox labellabel\n\ncheckbox labellabel\n\nClear\n\ncheckbox labellabel\n\nApplyCancel\n\nConfirm My Choices\n\nReject AllAllow All\n\n[![Powered by Onetrust](https://cdn.cookielaw.org/logos/static/powered_by_logo.svg)](https://www.onetrust.com/products/cookie-consent/)\n\nStripeM-Inner\n\n## Add course to cart?\n\nPlease confirm that you want to add this course to your cart\n\nCancelAdd to cart",
+            "metadata": {
+              "twitter:card": "summary_large_image",
+              "ogLocale": "en_US",
+              "title": "Nest: Desarrollo backend escalable con Node | Udemy",
+              "ogSiteName": "Udemy",
+              "description": "REST, TypeScript, Websockets, Autenticación, Authorización, Docker, Mongo, Postgres, TypeOrm,",
+              "udemy_com:price": "$19.99",
+              "ogTitle": "Nest: Desarrollo backend escalable con Node",
+              "twitter:image": "https://img-c.udemycdn.com/course/480x270/4756420_66fc_4.jpg",
+              "udemy_com:instructor": "https://www.udemy.com/user/550c38655ec11/",
+              "msapplication-TileColor": "#a435f0",
+              "twitter:url": "https://www.udemy.com/course/nest-framework/",
+              "theme-color": "#ffffff",
+              "ogImage": "https://img-c.udemycdn.com/course/480x270/4756420_66fc_4.jpg",
+              "twitter:domain": "www.udemy.com",
+              "msapplication-config": "/staticx/udemy/images/v7/browserconfig.xml",
+              "google-play-app": "app-id=com.udemy.android",
+              "viewport": [
+                "width=device-width, initial-scale=1.0, minimum-scale=1.0",
+                "width=device-width, initial-scale=1.0"
+              ],
+              "msapplication-TileImage": "/staticx/udemy/images/v7/mstile-144x144.png",
+              "og:locale": "en_US",
+              "language": "en-us",
+              "favicon": "https://www.udemy.com/staticx/udemy/images/v8/favicon-32x32.png",
+              "fb:app_id": "313137469260",
+              "udemy_com:category": "Development",
+              "twitter:title": "Nest: Desarrollo backend escalable con Node",
+              "og:type": "udemy_com:course",
+              "twitter:description": "REST, TypeScript, Websockets, Autenticación, Authorización, Docker, Mongo, Postgres, TypeOrm,",
+              "og:image:secure_url": "https://img-c.udemycdn.com/course/480x270/4756420_66fc_4.jpg",
+              "og:title": "Nest: Desarrollo backend escalable con Node",
+              "ogDescription": "REST, TypeScript, Websockets, Autenticación, Authorización, Docker, Mongo, Postgres, TypeOrm,",
+              "og:url": "https://www.udemy.com/course/nest-framework/",
+              "udemy_com:available": "1",
+              "og:description": "REST, TypeScript, Websockets, Autenticación, Authorización, Docker, Mongo, Postgres, TypeOrm,",
+              "apple-itunes-app": "app-id=562413829, affiliate-data=ct=Safari_SmartBanner&amp;pt=1240482",
+              "ogUrl": "https://www.udemy.com/course/nest-framework/",
+              "og:site_name": "Udemy",
+              "twitter:site": "@udemy",
+              "medium": "mult",
+              "og:image": "https://img-c.udemycdn.com/course/480x270/4756420_66fc_4.jpg",
+              "application-name": "Udemy",
+              "scrapeId": "a080d681-57e8-4843-8eef-817212f4bd80",
+              "sourceURL": "https://www.udemy.com/course/nest-framework/?couponCode=AGOSTO-BEST-2025",
+              "url": "https://www.udemy.com/course/nest-framework/?couponCode=AGOSTO-BEST-2025",
+              "statusCode": 200,
+              "contentType": "text/html; charset=utf-8",
+              "proxyUsed": "basic",
+              "creditsUsed": 1
+            }
+          }
+        }
+      }
+    ],
+    "Extract information from the course": [
+      {
+        "json": {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": {
+              "information": "Título: Nest: Desarrollo backend escalable con Node\n\nSubtítulo / Etiquetas: REST, TypeScript, Websockets, Autenticación, Autorización, Docker, Mongo, Postgres, TypeOrm\n\nResumen rápido:\n- Valoración: 4.9 de 5 (3,865 valoraciones)\n- Estudiantes: 18,098\n- Última actualización: 05/2024\n- Idioma: Español (Subtítulos: Español [Auto])\n- Duración total: 25 horas on-demand\n- Contenido: 229 lecciones en 17 secciones (25h 0m total length)\n- Incluye: 31 articles, 2 recursos descargables, acceso en móvil y TV, acceso de por vida, certificado de finalización\n- Garantía: 30-Day Money-Back Guarantee\n- Precio actual: $9.99 (Precio original: $19.99 — 50% off). Cupón aplicado: AGOSTO-BEST-2025\n\nQué aprenderás (What you'll learn):\n- Nest con TypeScript\n- Servidores backend con Node\n- RESTful APIs robustas y seguras\n- Conexiones con bases de datos SQL (Postgres) y NoSQL (MongoDB)\n- Websockets\n- Validaciones de datos y tipos\n- Uso de: Guards, interceptors, pipes, controllers, decorators, services, filters, modules y middlewares\n\nRequisitos (Requirements):\n- Conocimiento de JavaScript (necesario)\n- Bases de TypeScript (recomendadas)\n- Idea general de Node (recomendado)\n- Conocimientos básicos de programación orientada a objetos (recomendado, no necesario)\n\nDescripción del curso (Description):\nBienvenido al curso completo sobre Nest. Nest es un framework de Node extensible, versátil y progresivo que permite construir la columna vertebral de aplicaciones server-side siguiendo buenas prácticas del equipo de Nest y su autor Kamil Mysliwiec. El curso parte de cero en Nest y TypeScript y progresa hacia aplicaciones más completas y su despliegue en producción.\n\nTemas principales cubiertos (resumen):\n1) Core building blocks: Services, Controllers, Providers, Decorators, Gateways, Guards, Interceptors, Exception Filters, Modules\n2) Docker: docker-compose, dockerización\n3) CORS\n4) Websockets\n5) Autenticación y autorización basada en roles\n6) JWTs\n7) Ciclo de vida de una petición\n8) Nest CLI\n9) Transacciones de base de datos\n10) UUIDs y secuencias\n11) Endpoints RESTful\n12) Control de versiones con Git\n13) Despliegue a producción\n14) Class transformation\n15) Validaciones de requests end-to-end\n16) DTOs\n17) TypeORM\n18) Postgres\n19) MongoDB\n20) TypeORM y Mongoose\n21) Patrón Repository para TypeORM\n22) Schemas de Mongo\n23) Core building blocks personalizados\n24) Pipes, Filters y excepciones globales\n25) Carga y validación de archivos\n26) Principios SOLID\n27) Documentación automática / semi-automática\n28) Estructuras siguiendo buenas prácticas de Nest\n29) Ciclo de vida de Nest\n30) TypeScript (genéricos, interfaces)\n31) Material adicional: cheat-sheet imprimible por el instructor\n\nContenido del curso (ejemplos de secciones destacadas):\n- Introducción al curso — 7 lecciones • 37 min\n- Breve introducción a TypeScript y conocimientos generales — 18 lecciones • 2h 12min\n- Primeros pasos en Nest — 16 lecciones • 1h 50min\n- DTOs y Validación de información — 14 lecciones • 1h 26min\n- Nest CLI Resource - Brands CRUD — 9 lecciones • 53 min\n- Generar build de producción básico — 2 lecciones • 6 min\n- MongoDB Pokedex — 20 lecciones • 2h 3min\n- Seed y Paginación — 13 lecciones • 1h 8min\n- Variables de entorno, Deployment y Dockerizar la aplicación — 21 lecciones • 2h 27min\n- TypeORM - Postgres — 19 lecciones • 2h 14min\n(El curso contiene más secciones hasta completar las 17 indicadas y 229 lecciones en total)\n\nAudiencia objetivo (Who this course is for):\n- Backend developers\n- Desarrolladores que quieran construir RESTful APIs\n- Personas con conocimiento de Nest que quieran mejorar sus habilidades\n\nInstructores:\n- Fernando Herrera (A Full-Stack Developer & Teacher)\n  - Datos: 4.8 Instructor Rating, 297,282 Reviews, 642,320 Students, 56 Courses\n  - Breve bio: Analista programador con ~19 años de experiencia en desarrollo frontend y backend. Actualmente combina trabajo en industria y enseñanza en línea.\n\n- {d/t} - DevTalles (Plataforma Educativa)\n  - Datos: 4.8 Instructor Rating, 213,707 Reviews, 560,329 Students, 48 Courses\n  - Breve bio: Plataforma educativa creada por Fernando Herrera especializada en cursos de desarrollo web y programación.\n\nValoraciones y testimonios (selección):\n- Rating general: 4.9 (cerca de 3,865 valoraciones)\n- Comentarios destacados incluyen: claridad en las explicaciones, curso ideal para iniciarse en NestJS, ejercicios prácticos que refuerzan la teoría. Algunos usuarios piden más contenido sobre testing y manejo avanzado de migraciones/alteraciones en bases de datos.\n\nRecursos adicionales y notas:\n- Código fuente y material de secciones disponible (referenciado en el curso)\n- Bonus y explicaciones sobre Docker y despliegue (incluye Dockerfile, construcción de imagen, persistencia de DB, despliegue en la nube, notas sobre MongoAtlas y Heroku)\n- Incluye guía de atajos y cheat-sheet personalizado imprimible\n\nEnlaces relevantes (mencionados en la página del curso):\n- Página del curso Udemy: https://www.udemy.com/course/nest-framework/\n- Instructor Fernando Herrera: https://www.udemy.com/user/550c38655ec11/\n\nInformación promocional:\n- Cupón/instructor coupon aplicado: AGOSTO-BEST-2025\n- Oferta y duración de la oferta mostrada en la página (cuando aplica)\n\nFin del resumen."
+            },
+            "refusal": null,
+            "annotations": []
+          },
+          "finish_reason": "stop"
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Filter websites with links",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Find sites to investigate": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Manual process start": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter websites with links": {
+      "main": [
+        [
+          {
+            "node": "Get HTML from the website",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get HTML from the website": {
+      "main": [
+        [
+          {
+            "node": "Convert to Markdown",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to Markdown": {
+      "main": [
+        [
+          {
+            "node": "Send information to OpenAI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send information to OpenAI": {
+      "main": [
+        [
+          {
+            "node": "Extract course array",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract course array": {
+      "main": [
+        [
+          {
+            "node": "Sweep each course",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sweep each course": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Update general course information",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update general course information": {
+      "main": [
+        [
+          {
+            "node": "Extract information from Udemy",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract information from Udemy": {
+      "main": [
+        [
+          {
+            "node": "Create course document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create course document": {
+      "main": [
+        [
+          {
+            "node": "Update syllabus URL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update syllabus URL": {
+      "main": [
+        [
+          {
+            "node": "Extract information from the course",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract information from the course": {
+      "main": [
+        [
+          {
+            "node": "Update the syllabus within Google Docs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update the syllabus within Google Docs": {
+      "main": [
+        [
+          {
+            "node": "End of course reading",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "End of course reading": {
+      "main": [
+        [
+          {
+            "node": "Sweep each course",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "78763eac-c3f0-4352-94ef-4db441666144",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "a940a28466c4bb650efaff414f6a214ebb2582c886f2cf5eacf55952ba966e75"
+  },
+  "id": "5Za3QtNkIebpMbVh",
+  "tags": [
+    {
+      "updatedAt": "2026-02-24T20:09:25.058Z",
+      "createdAt": "2026-02-24T20:09:25.058Z",
+      "id": "qRxq1Zvj5qqFm4uZ",
+      "name": "scraping"
+    }
+  ]
+}
