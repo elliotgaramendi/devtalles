@@ -2,6 +2,12 @@
 
 En este repositorio 👨‍💻 mostraré cómo voy aprendiendo 👨‍🏫 poco a poco de Fernando Herrera en DevTalles 🚀 las tecnologías de mi interés ⚛️ y todo lo relacionado al Frontend. 🌌
 
+## 📚 Menú de cursos
+
+- [React Native Expo](./react-native-expo)
+- [React Native CLI](./react-native-cli)
+- [Shadcn UI](./shadcn-ui)
+
 ## React Native Expo
 # 🎬[ Movies App](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native-expo/o6-movies-app)
 | 🤖 Android                                                                 | 🍏 iOS                                                             |
@@ -13,3 +19,9 @@ En este repositorio 👨‍💻 mostraré cómo voy aprendiendo 👨‍🏫 poco
 | 🤖 Android                                                              | 🍏 iOS                                                          |
 | ---------------------------------------------------------------------- | -------------------------------------------------------------- |
 | ![Android Screenshot](./react-native-cli/o7MoviesApp/docs/android.png) | ![iOS Screenshot](./react-native-cli/o7MoviesApp/docs/ios.png) |
+
+## Shadcn UI
+### [Shadcn Dashboard](https://github.com/elliotgaramendi/devtalles/tree/develop/shadcn-ui/o1-shadcn-dashboard)
+| 🌐 Web |
+| ------ |
+| ![Web Screenshot](./shadcn-ui/o1-shadcn-dashboard/docs/web.png) |
