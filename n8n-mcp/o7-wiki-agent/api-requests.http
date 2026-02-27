@@ -1,0 +1,16 @@
+# API Requests for Wiki Agent
+## Edit the variables section to match your local setup and models
+@host = http://localhost:11434
+@model = lfm2.5-thinking:latest
+
+### Generate
+POST {{host}}/api/generate
+Content-Type: application/json
+{
+  "model": "{{model}}",
+  "prompt": "Explícame qué es RAG en 3 puntos",
+  "stream": false
+}
+
+### List models
+GET {{host}}/api/tags

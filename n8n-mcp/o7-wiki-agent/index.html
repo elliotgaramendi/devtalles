@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>n8n - Chatbot</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+
+  <style>
+    :root {
+      /* Colors - Paleta clara pastel */
+      --chat--color-primary: #4a90e2;
+      /* azul pastel */
+      --chat--color-primary-shade-50: #6aa7ea;
+      --chat--color-primary-shade-100: #8cbcf0;
+      --chat--color-secondary: #a7d8f0;
+      /* celeste claro */
+      --chat--color-secondary-shade-50: #bde3f5;
+      --chat--color-white: #ffffff;
+      --chat--color-light: #f7faff;
+      /* fondo casi blanco azulado */
+      --chat--color-light-shade-50: #e9f1fb;
+      --chat--color-light-shade-100: #d6e6f8;
+      --chat--color-medium: #a0b6cc;
+      --chat--color-dark: #2a3a4b;
+      /* azul gris oscuro para texto */
+      --chat--color-disabled: #bfc8d2;
+      --chat--color-typing: #6c7a89;
+
+      /* Base Layout */
+      --chat--spacing: 1rem;
+      --chat--border-radius: 0.6rem;
+      --chat--transition-duration: 0.2s;
+      --chat--font-family: (-apple-system,
+          BlinkMacSystemFont,
+          'Segoe UI',
+          Roboto,
+          Oxygen-Sans,
+          Ubuntu,
+          Cantarell,
+          'Helvetica Neue',
+          sans-serif);
+
+      /* Window Dimensions */
+      --chat--window--width: 400px;
+      --chat--window--height: 600px;
+      --chat--window--bottom: var(--chat--spacing);
+      --chat--window--right: var(--chat--spacing);
+      --chat--window--z-index: 9999;
+      --chat--window--border: 1px solid var(--chat--color-light-shade-50);
+      --chat--window--border-radius: var(--chat--border-radius);
+      --chat--window--margin-bottom: var(--chat--spacing);
+
+      /* Header Styles */
+      --chat--header-height: auto;
+      --chat--header--padding: var(--chat--spacing);
+      --chat--header--background: var(--chat--color-primary);
+      --chat--header--color: var(--chat--color-white);
+      --chat--heading--font-size: 1.5em;
+      --chat--subtitle--font-size: inherit;
+      --chat--subtitle--line-height: 1.6;
+
+      /* Message Styles */
+      --chat--message--font-size: 1rem;
+      --chat--message--padding: var(--chat--spacing);
+      --chat--message--border-radius: var(--chat--border-radius);
+      --chat--message-line-height: 1.5;
+      --chat--message--margin-bottom: calc(var(--chat--spacing) * 1);
+      --chat--message--bot--background: var(--chat--color-light);
+      --chat--message--bot--color: var(--chat--color-dark);
+      --chat--message--user--background: var(--chat--color-primary);
+      --chat--message--user--color: var(--chat--color-white);
+      --chat--message--pre--background: #eaf3fc;
+      --chat--messages-list--padding: var(--chat--spacing);
+
+      /* Toggle Button */
+      --chat--toggle--size: 64px;
+      --chat--toggle--background: var(--chat--color-primary);
+      --chat--toggle--hover--background: var(--chat--color-primary-shade-50);
+      --chat--toggle--active--background: var(--chat--color-primary-shade-100);
+      --chat--toggle--color: var(--chat--color-white);
+
+      /* Input Area */
+      --chat--textarea--height: 50px;
+      --chat--input--padding: 0.8rem;
+      --chat--input--background: var(--chat--color-white);
+      --chat--input--text-color: var(--chat--color-dark);
+      --chat--input--placeholder--font-size: var(--chat--input--font-size);
+      --chat--input--border-active: 1px solid var(--chat--color-primary);
+
+      /* Button Styles */
+      --chat--button--color: var(--chat--color-white);
+      --chat--button--background: var(--chat--color-primary);
+      --chat--button--hover--background: var(--chat--color-primary-shade-50);
+
+      /* Send and File Buttons */
+      --chat--input--send--button--background: transparent;
+      --chat--input--send--button--color: var(--chat--color-primary);
+      --chat--input--send--button--color-hover: var(--chat--color-dark);
+      --chat--input--file--button--color: var(--chat--color-secondary);
+      --chat--input--file--button--color-hover: var(--chat--color-primary);
+
+      /* Body and Footer */
+      --chat--body--background: var(--chat--color-light);
+      --chat--footer--background: var(--chat--color-white);
+      --chat--footer--color: var(--chat--color-dark);
+    }
+
+    /* Mensajes */
+    .chat-message {
+      max-width: 55%;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Wiki-bot</h1>
+
+  <script type="module">
+    import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+    createChat({
+      webhookUrl:
+        'http://localhost:5678/webhook/71a04174-87b7-4001-8e7f-92587b4d07f6/chat',
+      initialMessages: [
+        'Hola! 👋',
+        'Me llamo Ana, soy un asistente de Wikipedia',
+      ],
+      i18n: {
+        es: {
+          title: 'WikiBot',
+          subtitle:
+            'Empieza una conversación. Estamos aquí para ayudarte 24/7.',
+          footer: '',
+          getStarted: 'Nueva conversación',
+          inputPlaceholder: 'Escribe tu pregunta..',
+        },
+      },
+    });
+  </script>
+</body>
+
+</html>
