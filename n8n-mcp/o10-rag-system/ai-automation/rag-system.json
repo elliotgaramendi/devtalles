@@ -1,0 +1,1043 @@
+{
+  "name": "RAG system",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## Alimentar la base de datos\n",
+        "height": 640,
+        "width": 448,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        288,
+        48
+      ],
+      "id": "7b0bee20-766d-49f7-8d0a-3f2a179d6738",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## Consumo de esa base de datos\n",
+        "height": 640,
+        "width": 816,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        768,
+        48
+      ],
+      "id": "9a63cb57-def7-4b71-bb49-c0fb6364c466",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "formTitle": "Cargar documentos",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Documentos",
+              "fieldType": "file",
+              "acceptFileTypes": ".pdf"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.3,
+      "position": [
+        -1936,
+        -112
+      ],
+      "id": "115a93f2-d470-42ab-a4fb-f86ee3be1a56",
+      "name": "On form submission",
+      "webhookId": "cf7f06ad-3401-48a2-a62f-70c7d3928f11",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "dataType": "binary",
+        "textSplittingMode": "custom",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1.1,
+      "position": [
+        480,
+        320
+      ],
+      "id": "227a2659-be9c-4f27-a493-17ea15ecc186",
+      "name": "Default Data Loader"
+    },
+    {
+      "parameters": {
+        "chunkSize": 600,
+        "chunkOverlap": 100,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "typeVersion": 1,
+      "position": [
+        480,
+        480
+      ],
+      "id": "d385f5ca-db53-479c-af80-e492a1b60f96",
+      "name": "Recursive Character Text Splitter"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        800,
+        96
+      ],
+      "id": "e96441c7-f8be-42b1-82c5-8f49546d7631",
+      "name": "When chat message received",
+      "webhookId": "1ee80bac-064b-4a80-912e-8fcd9041ed40"
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 10
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        1152,
+        320
+      ],
+      "id": "7ab71daf-7854-41ae-b9dc-27bf5a6cf6e2",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-embedding-001"
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        720,
+        736
+      ],
+      "id": "7d1575bc-b429-416b-9633-5a528a7c623a",
+      "name": "Embeddings Google Gemini",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "qEO9zSi9La700aKt",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        1024,
+        320
+      ],
+      "id": "fc16e1df-6c66-4bae-af16-2017acbd305a",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "qEO9zSi9La700aKt",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "# System Prompt — Asistente Legal\n\n**Reglamento del Sistema de Control de Licencias de Conducir por Puntos**\n\n## Rol\n\nEres un asistente legal que responde preguntas sobre el **Reglamento del Sistema de Control de Licencias de Conducir por Puntos**.\n\nDebes responder **únicamente usando la información recuperada por el sistema RAG**.\n\nLas respuestas deben ser **cortas, claras y precisas**.\n\n## Reglas\n\n1. Usa **solo el contexto proporcionado** por los documentos recuperados.\n2. **No inventes información ni utilices conocimiento externo.**\n3. Si la información está en el contexto:\n\n   * Resume la respuesta de forma clara.\n   * Incluye la referencia del documento (ej: *Artículo X*).\n4. Si la información **no está en el contexto**, responde exactamente:\n\n```\nNo puedo encontrar la respuesta en los recursos disponibles.\n```\n\n## Formato de respuesta\n\n**Respuesta:**\n[explicación breve]\n\n**Fuente:**\n[Documento], Artículo X\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        1088,
+        96
+      ],
+      "id": "02d68faf-0023-46c8-9813-d857c2898eec",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePGVector",
+      "typeVersion": 1.3,
+      "position": [
+        320,
+        96
+      ],
+      "id": "e125918d-6be3-43f0-8959-ef3cd06bdc6d",
+      "name": "Postgres PGVector Store",
+      "credentials": {
+        "postgres": {
+          "id": "EwphMmRvOZhHRHOU",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "memoryKey": {
+          "__rl": true,
+          "value": "vector_store_key",
+          "mode": "list",
+          "cachedResultName": "vector_store_key"
+        },
+        "embeddingBatchSize": 250
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreInMemory",
+      "typeVersion": 1.3,
+      "position": [
+        320,
+        -144
+      ],
+      "id": "d3e99a7d-9cd3-4056-b4aa-b0a63ebbd3bc",
+      "name": "Simple Vector Store - 0",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "mode": "retrieve-as-tool",
+        "toolDescription": "Aquí puedes tomar los documentos cargados como base de información",
+        "memoryKey": {
+          "__rl": true,
+          "value": "vector_store_key",
+          "mode": "list",
+          "cachedResultName": "vector_store_key"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreInMemory",
+      "typeVersion": 1.3,
+      "position": [
+        1072,
+        -144
+      ],
+      "id": "4dda8982-6f62-4c10-9f26-26682c2807da",
+      "name": "Simple Vector Store",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "description": "Aquí puedes tomar los documentos cargados como base de información para responder preguntas relacionadas."
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolVectorStore",
+      "typeVersion": 1.1,
+      "position": [
+        1280,
+        320
+      ],
+      "id": "523e2247-fac5-49b8-9da0-ff3b3296988d",
+      "name": "Answer questions with a vector store"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePGVector",
+      "typeVersion": 1.3,
+      "position": [
+        1120,
+        528
+      ],
+      "id": "8500f2d3-65ff-4ea8-a8bf-9e36581f4e1c",
+      "name": "Postgres PGVector Store1",
+      "credentials": {
+        "postgres": {
+          "id": "EwphMmRvOZhHRHOU",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        1440,
+        528
+      ],
+      "id": "d80ee065-f1a5-433e-a1ee-ef18136b15e9",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "qEO9zSi9La700aKt",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1920,
+        224
+      ],
+      "id": "ac5ef84f-7606-41cb-968a-92e0a148aab6",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {}
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -1920,
+        416
+      ],
+      "id": "993ebf86-7c01-452b-8293-222bb92f3d8d",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "content": "## Selección de documentos",
+        "height": 640,
+        "width": 2240,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1984,
+        48
+      ],
+      "id": "8793b893-5e38-496a-864f-016439651572",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "resource": "fileFolder",
+        "returnAll": true,
+        "filter": {
+          "folderId": {
+            "__rl": true,
+            "value": "={{ $json.id }}",
+            "mode": "id"
+          }
+        },
+        "options": {
+          "fields": [
+            "*"
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -1248,
+        384
+      ],
+      "id": "27e54d27-941d-4706-856b-27ab65c5bddd",
+      "name": "Search files and folders",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "tfLKOOkrglTceqN9",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        -800,
+        96
+      ],
+      "id": "6a5ff1df-46da-45fa-a698-d20021164147",
+      "name": "No Operation, do nothing"
+    },
+    {
+      "parameters": {
+        "resource": "fileFolder",
+        "searchMethod": "query",
+        "returnAll": true,
+        "filter": {
+          "folderId": {
+            "__rl": true,
+            "value": "1Ot8sKuH_3Ck_rSuPNEf6-0EMJsna2Jpz",
+            "mode": "list",
+            "cachedResultName": "rag",
+            "cachedResultUrl": "https://drive.google.com/drive/folders/1Ot8sKuH_3Ck_rSuPNEf6-0EMJsna2Jpz"
+          },
+          "includeTrashed": false
+        },
+        "options": {
+          "fields": [
+            "*"
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -1696,
+        336
+      ],
+      "id": "d5fa2dfe-8a05-4f3c-abd5-16c2216656e8",
+      "name": "Search for files and directories",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "tfLKOOkrglTceqN9",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "e84a28f6-31c5-422c-9c1d-7fd98d509b67",
+              "leftValue": "={{ $json.mimeType }}",
+              "rightValue": "application/vnd.google-apps.folder",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -1472,
+        336
+      ],
+      "id": "853d6795-1982-4e2a-a095-b37336b802ed",
+      "name": "Is it a file?"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "select count(*) as ingested from public.ingested_files\nwhere file_id = '{{ $json.id }}' and md5_checksum ='{{ $json.md5Checksum }}'",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -1248,
+        192
+      ],
+      "id": "032902b1-196b-4ed6-a689-22496f9231ce",
+      "name": "Get preload",
+      "credentials": {
+        "postgres": {
+          "id": "EwphMmRvOZhHRHOU",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "195bdf5e-2801-43f0-a386-5663c31bc175",
+              "leftValue": "={{ $json.ingested }}",
+              "rightValue": "0",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -1024,
+        192
+      ],
+      "id": "fb1b2b40-cefa-4ac1-a9ab-872237694725",
+      "name": "Was it previously charged?"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2f36f267-1a48-4a68-98a1-f7f2988fcd83",
+              "name": "id",
+              "value": "={{ $('Is it a file?').item.json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "24d5d0a0-2be5-420a-baea-60a21e8744ea",
+              "name": "md5Checksum",
+              "value": "={{ $('Is it a file?').item.json.md5Checksum }}",
+              "type": "string"
+            },
+            {
+              "id": "75fd38a0-0b49-44e4-9747-add47fc645b8",
+              "name": "mimeType",
+              "value": "={{ $('Is it a file?').item.json.mimeType }}",
+              "type": "string"
+            },
+            {
+              "id": "4b5083fc-8fc7-48af-82d3-b3e399bc114e",
+              "name": "modifiedTime",
+              "value": "={{ $('Is it a file?').item.json.modifiedTime }}",
+              "type": "string"
+            },
+            {
+              "id": "66dccab1-a24d-4956-9fae-b33657b8fd80",
+              "name": "name",
+              "value": "={{ $('Is it a file?').item.json.name }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -800,
+        288
+      ],
+      "id": "e4a822c6-8f15-475e-8649-e6442fee0f95",
+      "name": "Extract variables"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "delete from n8n_vectors where file_id= '{{ $json.id }}';\ndelete from ingested_files where file_id= '{{ $json.id }}';",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -576,
+        368
+      ],
+      "id": "4b7da735-0540-4249-9a3c-ecc69f1b715f",
+      "name": "Delete references",
+      "alwaysOutputData": true,
+      "credentials": {
+        "postgres": {
+          "id": "EwphMmRvOZhHRHOU",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch"
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        -352,
+        96
+      ],
+      "id": "4f7a157b-9408-4e45-a00e-21187078a8ee",
+      "name": "Wait for elimination"
+    },
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "ingested_files",
+          "mode": "list",
+          "cachedResultName": "ingested_files"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "file_id": "={{ $json.id }}",
+            "name": "={{ $json.name }}",
+            "mime_type": "={{ $json.mimeType }}",
+            "md5_checksum": "={{ $json.md5Checksum }}",
+            "modified_time": "={{ $json.modifiedTime }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "file_id",
+              "displayName": "file_id",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "name",
+              "displayName": "name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "mime_type",
+              "displayName": "mime_type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "md5_checksum",
+              "displayName": "md5_checksum",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "modified_time",
+              "displayName": "modified_time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "last_ingested",
+              "displayName": "last_ingested",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -128,
+        96
+      ],
+      "id": "05024f8c-de66-44c8-b4bc-a725aa7f8f2a",
+      "name": "Insert document",
+      "credentials": {
+        "postgres": {
+          "id": "EwphMmRvOZhHRHOU",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.file_id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        96,
+        96
+      ],
+      "id": "bf4e8a5f-b284-4fc7-80b6-ce342d7925de",
+      "name": "Download file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "tfLKOOkrglTceqN9",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "UPDATE n8n_vectors\nSET file_id = '{{ $('Extract variables').item.json.id }}'\nWHERE metadata->'loc'->'lines' = '{{ $json.metadata.loc.lines.toJsonString() }}' and file_id is null",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        96,
+        320
+      ],
+      "id": "09a0417f-7de9-445e-846a-a758cfa8e186",
+      "name": "Update file_id in vectors",
+      "credentials": {
+        "postgres": {
+          "id": "EwphMmRvOZhHRHOU",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        96,
+        544
+      ],
+      "id": "eec94f6c-e978-4437-980c-1627d8b1e23d",
+      "name": "Process ends"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "On form submission": {
+      "main": [
+        []
+      ]
+    },
+    "Default Data Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Postgres PGVector Store",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recursive Character Text Splitter": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "Default Data Loader",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings Google Gemini": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Postgres PGVector Store",
+            "type": "ai_embedding",
+            "index": 0
+          },
+          {
+            "node": "Postgres PGVector Store1",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Vector Store": {
+      "ai_tool": [
+        []
+      ]
+    },
+    "Postgres PGVector Store1": {
+      "ai_vectorStore": [
+        [
+          {
+            "node": "Answer questions with a vector store",
+            "type": "ai_vectorStore",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Answer questions with a vector store",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Search for files and directories",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Search for files and directories",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search files and folders": {
+      "main": [
+        [
+          {
+            "node": "Is it a file?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres PGVector Store": {
+      "main": [
+        [
+          {
+            "node": "Update file_id in vectors",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Answer questions with a vector store": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search for files and directories": {
+      "main": [
+        [
+          {
+            "node": "Is it a file?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is it a file?": {
+      "main": [
+        [
+          {
+            "node": "Get preload",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Search files and folders",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get preload": {
+      "main": [
+        [
+          {
+            "node": "Was it previously charged?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Was it previously charged?": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Extract variables",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract variables": {
+      "main": [
+        [
+          {
+            "node": "Delete references",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Wait for elimination",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete references": {
+      "main": [
+        [
+          {
+            "node": "Wait for elimination",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Wait for elimination": {
+      "main": [
+        [
+          {
+            "node": "Insert document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert document": {
+      "main": [
+        [
+          {
+            "node": "Download file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download file": {
+      "main": [
+        [
+          {
+            "node": "Postgres PGVector Store",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update file_id in vectors": {
+      "main": [
+        [
+          {
+            "node": "Process ends",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "cea70f5d-70eb-4a38-9edf-c25f43ac8973",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "a940a28466c4bb650efaff414f6a214ebb2582c886f2cf5eacf55952ba966e75"
+  },
+  "id": "jIRZM4YFFyeo4gZO",
+  "tags": [
+    {
+      "updatedAt": "2026-03-06T21:21:01.568Z",
+      "createdAt": "2026-03-06T21:21:01.568Z",
+      "id": "bUOLjLh98Cp6WQIL",
+      "name": "rag"
+    }
+  ]
+}
