@@ -1,0 +1,51 @@
+### ========================================
+### ENVIRONMENT CONFIGURATION
+### ========================================
+# Uncomment the environment you want to use
+
+# Local n8n
+@baseUrl = http://localhost:5678
+
+# Remote n8n (example)
+# @baseUrl = https://your-n8n-domain.com
+
+### ========================================
+### AUTHENTICATION
+### ========================================
+# Replace with your real x-auth value configured in n8n (Header Auth credential)
+@xAuth = change-me
+
+### ========================================
+### STORE ASSISTANT - WEBHOOK APIS
+### ========================================
+
+### Get Products
+# Returns the full catalog from backend
+GET {{baseUrl}}/webhook/my-store/products
+x-auth: {{xAuth}}
+
+### Get Order by ID (Success)
+# Body: { "orderId": "1001-2024" }
+POST {{baseUrl}}/webhook/my-store/orders
+Content-Type: application/json
+x-auth: {{xAuth}}
+
+{
+  "orderId": "1001-2024"
+}
+
+### Get Order by ID (Bad Request - missing orderId)
+POST {{baseUrl}}/webhook/my-store/orders
+Content-Type: application/json
+x-auth: {{xAuth}}
+
+{}
+
+### Get Order by ID (Not Found)
+POST {{baseUrl}}/webhook/my-store/orders
+Content-Type: application/json
+x-auth: {{xAuth}}
+
+{
+  "orderId": "does-not-exist"
+}
