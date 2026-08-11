@@ -7,6 +7,7 @@ import { age, name } from './ts/o1-types.ts'
 import { charmander } from './ts/o2-objects.ts'
 
 import './style.css'
+import { instantiatedCharmander } from './ts/o3-classes.ts'
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 <section id="center">
@@ -20,7 +21,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     <p>Edit <code>src/main.ts</code> and save to test <code>HMR</code></p>
   </div>
   <button id="counter" type="button" class="counter"></button>
-  <small>${charmander.name}</small>
+  <small>${charmander.name}, ${instantiatedCharmander.speak()}</small>
 </section>
 
 <div class="ticks"></div>
