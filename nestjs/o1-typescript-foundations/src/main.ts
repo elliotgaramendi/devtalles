@@ -8,6 +8,7 @@ import { charmander } from './ts/o2-objects.ts'
 
 import './style.css'
 import { instantiatedCharmander } from './ts/o3-classes.ts'
+import { injectedCharmander } from './ts/o4-injection.ts.ts'
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 <section id="center">
@@ -22,6 +23,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   </div>
   <button id="counter" type="button" class="counter"></button>
   <small>${charmander.name}, ${instantiatedCharmander.speak()}</small>
+  <small>${injectedCharmander.scream()}</small>
 </section>
 
 <div class="ticks"></div>
