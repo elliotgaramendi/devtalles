@@ -7,6 +7,7 @@ En este repositorio 👨‍💻 mostraré cómo voy aprendiendo 👨‍🏫 poco
 - [React Native Expo](./react-native-expo)
 - [React Native CLI](./react-native-cli)
 - [Shadcn UI](./shadcn-ui)
+- [n8n Workflows](./n8n-mcp)
 
 ## React Native Expo
 # 🎬[ Movies App](https://github.com/elliotgaramendi/devtalles/tree/develop/react-native-expo/o6-movies-app)
@@ -25,3 +26,9 @@ En este repositorio 👨‍💻 mostraré cómo voy aprendiendo 👨‍🏫 poco
 | 🌐 Web |
 | ------ |
 | ![Web Screenshot](./shadcn-ui/o1-shadcn-dashboard/docs/web.png) |
+
+## n8n Workflows
+
+### [RAG System](./n8n-mcp/o10-rag-system)
+
+Mi workflow favorito de la colección: un sistema RAG con n8n, Google Drive, Gemini, PostgreSQL y PGVector para consultar documentos usando contexto controlado.
