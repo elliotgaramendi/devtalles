@@ -4,7 +4,7 @@ import request from 'supertest';
 import { App } from 'supertest/types';
 import { AppModule } from './../src/app.module';
 
-describe('AppController (e2e)', () => {
+describe('Cars (e2e)', () => {
   let app: INestApplication<App>;
 
   beforeEach(async () => {
@@ -16,11 +16,13 @@ describe('AppController (e2e)', () => {
     await app.init();
   });
 
-  it('/ (GET)', () => {
+  it('/cars (GET)', () => {
     return request(app.getHttpServer())
-      .get('/')
+      .get('/cars')
       .expect(200)
-      .expect('Hello World!');
+      .expect((response) => {
+        expect(response.body).toHaveLength(3);
+      });
   });
 
   afterEach(async () => {

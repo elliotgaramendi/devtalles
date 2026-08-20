@@ -18,4 +18,8 @@ describe('CarsController', () => {
   it('should be defined', () => {
     expect(controller).toBeDefined();
   });
+
+  it('should return all cars', () => {
+    expect(controller.getAllCars()).toHaveLength(3);
+  });
 });
