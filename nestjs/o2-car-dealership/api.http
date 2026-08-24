@@ -4,6 +4,11 @@
 @carId = replace-with-an-existing-uuid
 @brandId = ba6ce8d2-d7b3-45c5-ac17-c6e255155ee7
 
+## Seed
+### Execute seed
+GET {{baseUrl}}/seed
+Accept: application/json
+
 ## Cars
 ### Get all cars
 GET {{baseUrl}}/cars
