@@ -1,6 +1,10 @@
-@baseUrl = http://localhost:3000
+@host = localhost
+@port = 3000
+@baseUrl = http://{{host}}:{{port}}
 @carId = replace-with-an-existing-uuid
+@brandId = ba6ce8d2-d7b3-45c5-ac17-c6e255155ee7
 
+## Cars
 ### Get all cars
 GET {{baseUrl}}/cars
 Accept: application/json
@@ -28,4 +32,34 @@ Content-Type: application/json
 
 ### Delete a car
 DELETE {{baseUrl}}/cars/{{carId}}
+Accept: application/json
+
+## Brands
+
+### Get all brands
+GET {{baseUrl}}/brands
+Accept: application/json
+
+### Get a brand by ID
+GET {{baseUrl}}/brands/{{brandId}}
+Accept: application/json
+
+### Create a brand
+POST {{baseUrl}}/brands
+Content-Type: application/json
+
+{
+  "name": "Nissan"
+}
+
+### Partially update a brand
+PATCH {{baseUrl}}/brands/{{brandId}}
+Content-Type: application/json
+
+{
+  "name": "Honda"
+}
+
+### Delete a brand
+DELETE {{baseUrl}}/brands/{{brandId}}
 Accept: application/json
