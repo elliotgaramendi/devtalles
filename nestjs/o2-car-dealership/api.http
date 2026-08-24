@@ -1,0 +1,31 @@
+@baseUrl = http://localhost:3000
+@carId = replace-with-an-existing-uuid
+
+### Get all cars
+GET {{baseUrl}}/cars
+Accept: application/json
+
+### Get a car by ID
+GET {{baseUrl}}/cars/{{carId}}
+Accept: application/json
+
+### Create a car
+POST {{baseUrl}}/cars
+Content-Type: application/json
+
+{
+  "brand": "Nissan",
+  "model": "Versa"
+}
+
+### Partially update a car
+PATCH {{baseUrl}}/cars/{{carId}}
+Content-Type: application/json
+
+{
+  "brand": "Audi"
+}
+
+### Delete a car
+DELETE {{baseUrl}}/cars/{{carId}}
+Accept: application/json
