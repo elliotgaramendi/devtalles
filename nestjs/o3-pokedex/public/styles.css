@@ -1,0 +1,33 @@
+:root {
+  color-scheme: dark;
+  background: #010508;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: grid;
+  min-height: 100svh;
+  margin: 0;
+  place-items: center;
+  overflow: hidden;
+  background: #010508;
+}
+
+h1 {
+  margin: 0;
+  padding: 0.2em;
+  background: linear-gradient(110deg, #a855f7 8%, #283593 50%, #43e6cf 92%);
+  background-clip: text;
+  color: transparent;
+  font-family: Avenir, Montserrat, sans-serif;
+  font-size: clamp(3rem, 11vw, 8rem);
+  font-weight: 800;
+  letter-spacing: -0.07em;
+  line-height: 0.9;
+  text-align: center;
+  text-wrap: balance;
+  filter: drop-shadow(0 0 2.5rem rgb(67 230 207 / 20%));
+}
