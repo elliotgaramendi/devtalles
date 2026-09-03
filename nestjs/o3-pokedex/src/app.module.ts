@@ -1,11 +1,30 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { MongooseModule } from '@nestjs/mongoose';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { CommonModule } from './common/common.module';
 import { PokemonModule } from './pokemon/pokemon.module';
 
 @Module({
-  imports: [PokemonModule],
+  imports: [
+    ConfigModule.forRoot({
+      cache: true,
+      envFilePath: '.env',
+      isGlobal: true,
+    }),
+    MongooseModule.forRootAsync({
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => ({
+        retryAttempts: 1,
+        serverSelectionTimeoutMS: 5_000,
+        uri: configService.getOrThrow<string>('MONGODB_URI'),
+      }),
+    }),
+    CommonModule,
+    PokemonModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
