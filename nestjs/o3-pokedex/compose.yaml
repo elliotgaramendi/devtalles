@@ -1,9 +1,10 @@
 services:
   mongodb:
-    image: mongo:8.0
+    image: mongo:8.0.29-noble
     container_name: nest-o3-mongodb
     restart: unless-stopped
     environment:
+      GLIBC_TUNABLES: glibc.pthread.rseq=1
       MONGO_INITDB_ROOT_USERNAME: pokedex
       MONGO_INITDB_ROOT_PASSWORD: pokedex
     ports:
