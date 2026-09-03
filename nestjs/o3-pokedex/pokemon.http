@@ -1,0 +1,45 @@
+@baseUrl = http://localhost:3803/api/v2
+
+### Create a Pokémon
+# @name createPokemon
+
+POST {{baseUrl}}/pokemon
+Content-Type: application/json
+
+{
+  "no": {{$timestamp}},
+  "name": "pokemon-{{$timestamp}}"
+}
+
+### Find the created Pokémon by number
+GET {{baseUrl}}/pokemon/{{createPokemon.response.body.$.no}}
+
+### Find the created Pokémon by name
+GET {{baseUrl}}/pokemon/{{createPokemon.response.body.$.name}}
+
+### Find the created Pokémon by MongoDB ObjectId
+GET {{baseUrl}}/pokemon/{{createPokemon.response.body.$._id}}
+
+### Update the created Pokémon and return the persisted document
+# @name updatePokemon
+
+PATCH {{baseUrl}}/pokemon/{{createPokemon.response.body.$._id}}
+Content-Type: application/json
+
+{
+  "name": "updated-{{createPokemon.response.body.$.no}}"
+}
+
+### Find the updated Pokémon by its new name
+GET {{baseUrl}}/pokemon/{{updatePokemon.response.body.$.name}}
+
+### Delete the created Pokémon and return the deleted document
+# @name deletePokemon
+
+DELETE {{baseUrl}}/pokemon/{{createPokemon.response.body.$._id}}
+
+### Confirm that the deleted Pokémon no longer exists
+GET {{baseUrl}}/pokemon/{{deletePokemon.response.body.$._id}}
+
+### Return 404 for an unknown Pokémon
+GET {{baseUrl}}/pokemon/unknown-pokemon
