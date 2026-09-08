@@ -6,6 +6,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CommonModule } from './common/common.module';
 import { PokemonModule } from './pokemon/pokemon.module';
+import { SeedModule } from './seed/seed.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { PokemonModule } from './pokemon/pokemon.module';
     }),
     CommonModule,
     PokemonModule,
+    SeedModule,
   ],
   controllers: [AppController],
   providers: [AppService],
