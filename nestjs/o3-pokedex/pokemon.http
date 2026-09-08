@@ -1,4 +1,8 @@
-@baseUrl = http://localhost:3803/api/v2
+@port = {{$dotenv PORT}}
+@baseUrl = http://localhost:{{port}}/api/v2
+
+### Seed the first 10 Pokémon from PokéAPI
+POST {{baseUrl}}/seed
 
 ### Create a Pokémon
 # @name createPokemon
