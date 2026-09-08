@@ -1,6 +1,7 @@
 import { getModelToken } from '@nestjs/mongoose';
 import { Test, TestingModule } from '@nestjs/testing';
 
+import { AxiosAdapter } from '../common/adapters/axios.adapter';
 import { Pokemon } from '../pokemon/entities/pokemon.entity';
 import { SeedService } from './seed.service';
 
@@ -11,6 +12,10 @@ describe('SeedService', () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         SeedService,
+        {
+          provide: AxiosAdapter,
+          useValue: {},
+        },
         {
           provide: getModelToken(Pokemon.name),
           useValue: {},
