@@ -5,6 +5,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CommonModule } from './common/common.module';
+import { validateEnvironment } from './config/environment.validation';
 import { PokemonModule } from './pokemon/pokemon.module';
 import { SeedModule } from './seed/seed.module';
 
@@ -14,6 +15,7 @@ import { SeedModule } from './seed/seed.module';
       cache: true,
       envFilePath: '.env',
       isGlobal: true,
+      validate: validateEnvironment,
     }),
     MongooseModule.forRootAsync({
       inject: [ConfigService],
