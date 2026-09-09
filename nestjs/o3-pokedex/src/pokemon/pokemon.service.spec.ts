@@ -1,3 +1,4 @@
+import { ConfigService } from '@nestjs/config';
 import { getModelToken } from '@nestjs/mongoose';
 import { Test, TestingModule } from '@nestjs/testing';
 
@@ -11,6 +12,12 @@ describe('PokemonService', () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         PokemonService,
+        {
+          provide: ConfigService,
+          useValue: {
+            getOrThrow: jest.fn().mockReturnValue(10),
+          },
+        },
         {
           provide: getModelToken(Pokemon.name),
           useValue: {},

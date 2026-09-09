@@ -21,7 +21,7 @@ export class FindPokemonDto {
   @IsInt()
   @Min(1)
   @Max(500)
-  limit = 10;
+  limit?: number;
 
   @IsOptional()
   @IsString()
