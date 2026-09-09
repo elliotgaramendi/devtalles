@@ -6,7 +6,7 @@ import { AxiosAdapter } from '../common/adapters/axios.adapter';
 import { Pokemon } from '../pokemon/entities/pokemon.entity';
 import { PokeApiResponse } from './interfaces/poke-api-response.interface';
 
-const POKE_API_URL = 'https://pokeapi.co/api/v2/pokemon?limit=10';
+const POKE_API_URL = 'https://pokeapi.co/api/v2/pokemon?limit=500';
 
 @Injectable()
 export class SeedService {

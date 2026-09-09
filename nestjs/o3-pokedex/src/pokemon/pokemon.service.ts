@@ -8,6 +8,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { isValidObjectId, Model, mongo } from 'mongoose';
 
 import { CreatePokemonDto } from './dto/create-pokemon.dto';
+import { FindPokemonDto } from './dto/find-pokemon.dto';
 import { UpdatePokemonDto } from './dto/update-pokemon.dto';
 import { Pokemon } from './entities/pokemon.entity';
 
@@ -29,8 +30,38 @@ export class PokemonService {
     }
   }
 
-  findAll() {
-    return `This action returns all pokemon`;
+  async findAll(findPokemonDto: FindPokemonDto) {
+    const { limit, name, no, page } = findPokemonDto;
+    const filter: { name?: string; no?: number } = {};
+
+    if (name) {
+      filter.name = name.toLowerCase().trim();
+    }
+
+    if (no !== undefined) {
+      filter.no = no;
+    }
+
+    const [data, total] = await Promise.all([
+      this.pokemonModel
+        .find(filter)
+        .sort({ no: 1 })
+        .skip((page - 1) * limit)
+        .limit(limit)
+        .lean()
+        .exec(),
+      this.pokemonModel.countDocuments(filter).exec(),
+    ]);
+
+    return {
+      data,
+      meta: {
+        limit,
+        page,
+        total,
+        totalPages: Math.ceil(total / limit),
+      },
+    };
   }
 
   async findOne(term: string) {

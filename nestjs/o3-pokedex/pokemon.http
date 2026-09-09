@@ -1,8 +1,23 @@
 @port = {{$dotenv PORT}}
 @baseUrl = http://localhost:{{port}}/api/v2
 
-### Seed the first 10 Pokémon from PokéAPI
+### Seed the first 500 Pokémon from PokéAPI
 POST {{baseUrl}}/seed
+
+### Find the first 10 Pokémon using the default pagination
+GET {{baseUrl}}/pokemon
+
+### Find the second page with a custom limit
+GET {{baseUrl}}/pokemon?page=2&limit=20
+
+### Filter Pokémon by name
+GET {{baseUrl}}/pokemon?name=bulbasaur
+
+### Filter Pokémon by Pokédex number
+GET {{baseUrl}}/pokemon?no=25
+
+### Validate invalid pagination parameters
+GET {{baseUrl}}/pokemon?page=0&limit=501
 
 ### Create a Pokémon
 # @name createPokemon
