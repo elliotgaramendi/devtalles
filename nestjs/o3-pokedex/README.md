@@ -11,6 +11,6 @@ docker compose up -d
 pnpm start:dev
 ```
 
-- Aplicación: <http://localhost:3803>
-- API: <http://localhost:3803/api/v2>
+- Aplicación: <http://localhost:3000>
+- API: <http://localhost:3000/api/v2>
 - MongoDB: `mongodb://pokedex:pokedex@localhost:27017/pokedex?authSource=admin`
