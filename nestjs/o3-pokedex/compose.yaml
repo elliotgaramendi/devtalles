@@ -1,32 +1,24 @@
 services:
-  mongodb:
-    image: mongo:8.0.29-noble
-    container_name: nest-o3-mongodb
+  api:
+    image: nest-o3-api:local
+    build:
+      context: .
+      target: runtime
     restart: unless-stopped
-    environment:
-      GLIBC_TUNABLES: glibc.pthread.rseq=1
-      MONGO_INITDB_ROOT_USERNAME: pokedex
-      MONGO_INITDB_ROOT_PASSWORD: pokedex
+    init: true
+    env_file:
+      - .env
     ports:
-      - '27017:27017'
-    volumes:
-      - ./mongo-data:/data/db
+      - '${PORT:-3000}:${PORT:-3000}'
     healthcheck:
       test:
         [
           'CMD',
-          'mongosh',
-          '--quiet',
-          '--username',
-          'pokedex',
-          '--password',
-          'pokedex',
-          '--authenticationDatabase',
-          'admin',
-          '--eval',
-          "db.adminCommand('ping')",
+          'node',
+          '-e',
+          "fetch('http://127.0.0.1:' + process.env.PORT + '/').then((response) => { if (!response.ok) process.exit(1); }).catch(() => process.exit(1));",
         ]
       interval: 10s
-      timeout: 5s
+      timeout: 3s
       retries: 5
-      start_period: 10s
+      start_period: 15s

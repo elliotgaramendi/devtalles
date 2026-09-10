@@ -1,0 +1,17 @@
+.git
+.gitignore
+.vscode
+coverage
+dist
+mongo-data
+node_modules
+
+.env
+.env.*
+
+*.log
+*.md
+compose*.yaml
+pokemon.http
+test
+**/*.spec.ts

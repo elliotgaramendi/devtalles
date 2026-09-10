@@ -4,13 +4,27 @@
 
 ## Quick Start
 
+### Docker
+
+Create `.env` from `.env.example` and configure your MongoDB Atlas URI.
+
+```bash
+cp .env.example .env
+docker compose up --build -d
+```
+
+```bash
+docker compose logs -f api
+docker compose down
+```
+
+### Local
+
 ```bash
 pnpm install
 cp .env.example .env
-docker compose up -d
 pnpm start:dev
 ```
 
-- Aplicación: <http://localhost:3000>
+- Application: <http://localhost:3000>
 - API: <http://localhost:3000/api/v2>
-- MongoDB: `mongodb://pokedex:pokedex@localhost:27017/pokedex?authSource=admin`
